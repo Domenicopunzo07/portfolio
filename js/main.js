@@ -215,26 +215,10 @@ requestAnimationFrame(() => {
         </div>`
       : `<div class="modal-hero-emoji">${d.emoji || '📁'}</div>`;
 
-    const tags   = (d.tags   || []).map(t => `<span class="tag tag-blue">${t}</span>`).join('');
-    const skills = (d.skills || []).map(t => `<span class="tag">${t}</span>`).join('');
-    const tools  = (d.tools  || []).map(t => `<span class="skill-tool-badge">${t}</span>`).join('');
-
-    const acSection = d.ac?.length
-      ? `<div class="modal-section">
-           <h4>Apprentissages Critiques</h4>
-           <div class="ac-list">
-             ${d.ac.map(a => `<div class="ac-badge">${a.code}<div class="ac-tooltip"><div class="ac-tooltip-code">${a.code}</div><div class="ac-tooltip-title">${a.title}</div><div class="ac-tooltip-desc">${a.desc}</div></div></div>`).join('')}
-           </div>
-         </div>` : '';
-
-    const reflecSection = d.reflection
-      ? `<div class="modal-section modal-reflection-block">
-           <h4>Réflexion personnelle</h4>
-           ${d.reflection.before  ? `<div class="modal-refl-item"><span class="modal-refl-label">Niveau avant</span><p>${d.reflection.before}</p></div>`  : ''}
-           ${d.reflection.during  ? `<div class="modal-refl-item"><span class="modal-refl-label">Difficultés</span><p>${d.reflection.during}</p></div>`    : ''}
-           ${d.reflection.after   ? `<div class="modal-refl-item"><span class="modal-refl-label">Progression</span><p>${d.reflection.after}</p></div>`     : ''}
-           ${d.reflection.learned ? `<div class="modal-refl-item"><span class="modal-refl-label">Ce que j'ai appris</span><p>${d.reflection.learned}</p></div>` : ''}
-         </div>` : '';
+    const tools     = (d.tools || []).map(t => `<span class="skill-tool-badge">${t}</span>`).join('');
+    const acBadges  = (d.ac   || []).map(a => `<div class="ac-badge">${a.code}<div class="ac-tooltip"><div class="ac-tooltip-code">${a.code}</div><div class="ac-tooltip-title">${a.title}</div><div class="ac-tooltip-desc">${a.desc}</div></div></div>`).join('');
+    const demarche  = [d.context, d.methodology].filter(Boolean).join(' — ');
+    const learned   = d.reflection?.learned || '';
 
     modal.innerHTML = `
       <div class="modal-close">
@@ -250,15 +234,23 @@ requestAnimationFrame(() => {
         </div>
         <h2 class="modal-title">${d.title}</h2>
         <p class="modal-desc">${d.description}</p>
-        ${d.context    ? `<div class="modal-section"><h4>Contexte</h4><p class="body">${d.context}</p></div>` : ''}
-        ${d.objectives ? `<div class="modal-section"><h4>Objectifs</h4><p class="body">${d.objectives}</p></div>` : ''}
-        ${d.methodology ? `<div class="modal-section"><h4>Méthodologie</h4><p class="body">${d.methodology}</p></div>` : ''}
-        ${d.results    ? `<div class="modal-section"><h4>Résultats</h4><p class="body">${d.results}</p></div>` : ''}
-        ${reflecSection}
-        ${acSection}
-        ${tools ? `<div class="modal-section"><h4>Outils utilisés</h4><div class="skill-tool-badges modal-tools">${tools}</div></div>` : ''}
-        ${tags  ? `<div class="modal-section"><h4>Technologies</h4><div class="modal-tags">${tags}</div></div>` : ''}
-        ${skills ? `<div class="modal-section"><h4>Compétences mobilisées</h4><div class="modal-tags">${skills}</div></div>` : ''}
+        ${demarche  ? `<div class="modal-section"><h4>Démarche</h4><p class="body">${demarche}</p></div>` : ''}
+        ${d.results ? `<div class="modal-section"><h4>Résultats</h4><p class="body">${d.results}</p></div>` : ''}
+        ${d.pdf ? `<div class="modal-section modal-pdf-section">
+          <h4>Document de projet</h4>
+          <div class="modal-pdf-wrap">
+            <iframe src="${d.pdf}" class="modal-pdf-iframe" loading="lazy" title="Document PDF"></iframe>
+          </div>
+          <a href="${d.pdf}" target="_blank" class="btn btn-ghost modal-pdf-dl">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            Ouvrir en plein écran
+          </a>
+        </div>` : ''}
+        ${learned ? `<div class="modal-section"><h4>Ce que j'ai retenu</h4><p class="body">${learned}</p></div>` : ''}
+        ${acBadges || tools ? `<div class="modal-section modal-footer-meta">
+          ${acBadges ? `<div class="ac-list">${acBadges}</div>` : ''}
+          ${tools ? `<div class="skill-tool-badges">${tools}</div>` : ''}
+        </div>` : ''}
         ${d.link ? `<div class="modal-section"><a href="${d.link}" target="_blank" class="btn btn-ghost">Voir le projet ↗</a></div>` : ''}
       </div>`;
   }

@@ -86,6 +86,22 @@
       box-shadow: 0 0 0 1px rgba(245,158,11,0.1), var(--shadow);
     }
 
+    /* PDF embed in modal */
+    .modal-pdf-wrap {
+      width: 100%; height: 520px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      margin-top: 10px;
+      background: var(--bg-3);
+    }
+    .modal-pdf-iframe { width: 100%; height: 100%; border: none; display: block; }
+    .modal-pdf-dl { margin-top: 10px; display: inline-flex; align-items: center; gap: 8px; }
+    .modal-footer-meta {
+      display: flex; flex-wrap: wrap; gap: 14px; align-items: center;
+      padding-top: 20px; border-top: 1px solid var(--border);
+    }
+
     /* BUT MMI subtitle in hero */
     .hero-but-label {
       font-size: clamp(18px, 2.6vw, 28px);
@@ -412,7 +428,7 @@
         <!-- BUT 2 / So' Italiano — Click & Collect -->
         <div class="project-card reveal" data-modal="acad-soitaliano" data-year="but2" data-skill="ux,design">
           <div class="project-card-thumb">
-            <div class="project-card-thumb-placeholder">🍝</div>
+            <img src="traces/BUT%202/mockoup2.png" alt="So' Italiano — mockup" loading="lazy" />
             <div class="project-card-overlay"></div>
             <span class="project-card-year but2">BUT 2</span>
             <div class="project-card-cta">
@@ -433,7 +449,7 @@
         <!-- BUT 2 / Carl's Jr. — Stratégie de marque -->
         <div class="project-card reveal reveal-delay-1" data-modal="acad-carlsjr" data-year="but2" data-skill="branding,comm">
           <div class="project-card-thumb">
-            <div class="project-card-thumb-placeholder">🍔</div>
+            <img src="traces/BUT%202/mockoup1.png" alt="Sauvons Carl's Jr. — mockup" loading="lazy" />
             <div class="project-card-overlay"></div>
             <span class="project-card-year but2">BUT 2</span>
             <div class="project-card-cta">
@@ -776,6 +792,8 @@
           after: 'Je suis sorti de cette SAÉ avec une méthode : on conçoit pour l\'utilisateur, pas pour soi. Cette méthode s\'applique à tous les types de projets, pas uniquement au digital.',
           learned: 'Un prototype sans test n\'est qu\'une hypothèse habillée. La vraie conception commence quand on observe quelqu\'un utiliser ce qu\'on a fait.'
         },
+        images: ['traces/BUT%202/mockoup2.png'],
+        pdf: 'traces/BUT%202/So\'%20italiano.pdf',
         tools: ['Figma', 'Notion', 'Maze'],
         ac: [
           { code: 'AC22.01', title: 'Co-concevoir un produit ou un service', desc: 'Définir la proposition de valeur et les fonctionnalités d\'un service de click & collect adapté à une cible identifiée.' },
@@ -797,6 +815,8 @@
           after: 'J\'ai appris à structurer une argumentation stratégique — pas juste "voilà ce qu\'on propose" mais "voilà pourquoi ça va fonctionner, et voilà comment on le mesure".',
           learned: 'La recommandation stratégique, c\'est de la narration : il faut convaincre, pas seulement informer. La forme de la présentation est aussi importante que son contenu.'
         },
+        images: ['traces/BUT%202/mockoup1.png'],
+        pdf: 'traces/BUT%202/CARL\'S%20JR.pdf',
         tools: ['Canva', 'Notion', 'PowerPoint'],
         ac: [
           { code: 'AC22.03', title: 'Co-construire une recommandation stratégique', desc: 'Structurer un plan d\'action argumenté pour redresser le positionnement de Carl\'s Jr. face à ses concurrents directs.' }
