@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio Académique — Domenico Punzo</title>
+  <meta name="description" content="Projets universitaires BUT de Domenico Punzo" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Hero gradient unique acad */
+    .hero-acad .hero-bg {
+      background:
+        radial-gradient(ellipse 70% 60% at 80% 40%, rgba(70,113,205,0.2), transparent 55%),
+        radial-gradient(ellipse 50% 40% at 20% 70%, rgba(85,125,209,0.12), transparent 50%);
+    }
+
+    /* Year badge on card */
+    .project-card-year {
+      position: absolute;
+      top: 14px; right: 14px;
+      padding: 4px 12px;
+      background: var(--bg-glass);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      font-size: 11px; font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+    .project-card-year.but1 { color: #60a5fa; border-color: rgba(96,165,250,0.3); }
+    .project-card-year.but2 { color: var(--primary); border-color: var(--border-blue); }
+    .project-card-year.but3 { color: #a78bfa; border-color: rgba(167,139,250,0.3); }
+
+    /* Progress tag (academic specific) */
+    .project-card-type {
+      font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--text-subtle);
+      margin-bottom: 6px;
+    }
+
+    /* Modal academic extras */
+    .modal-reflection {
+      background: rgba(85,125,209,0.06);
+      border: 1px solid var(--border-blue);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+    }
+    .modal-reflection h4 {
+      font-size: 14px; font-weight: 600;
+      color: var(--primary); margin-bottom: 12px;
+    }
+    .modal-reflection p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+    .modal-progression {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 12px; margin-top: 12px;
+    }
+    .modal-progression-card {
+      background: var(--bg-3);
+      border-radius: var(--radius);
+      padding: 14px;
+    }
+    .modal-progression-label { font-size: 11px; font-weight: 600; color: var(--text-subtle); margin-bottom: 6px; letter-spacing: 1px; text-transform: uppercase; }
+    .modal-progression-text { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+    /* Section divider */
+    .section-divider { height: 1px; background: var(--border); }
+
+    /* BUT MMI subtitle in hero */
+    .hero-but-label {
+      font-size: clamp(18px, 2.6vw, 28px);
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: -0.3px;
+      margin-bottom: 18px;
+      animation: slideUp 0.7s var(--ease-expo) 1.4s both;
+    }
+
+    /* Hero photo */
+    .hero-photo-wrap {
+      position: absolute;
+      right: 0; top: 0; bottom: 0;
+      width: 46%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .hero-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 12%;
+      opacity: 0.38;
+      filter: saturate(0.55) brightness(0.9);
+    }
+    .hero-photo-wrap::after {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to right, var(--bg) 0%, rgba(7,7,15,0.6) 40%, transparent 70%),
+        linear-gradient(to top, var(--bg) 0%, transparent 22%),
+        linear-gradient(to bottom, var(--bg) 0%, transparent 20%);
+      z-index: 1;
+    }
+    @media (max-width: 768px) {
+      .hero-photo-wrap { display: none; }
+    }
+
+  </style>
+</head>
+<body>
+  <!-- Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Particle background -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-monogram">DP</div>
+        <span>Domenico Punzo</span>
+      </a>
+      <ul class="nav-links">
+        <li><a class="nav-link" href="#about">À propos</a></li>
+        <li><a class="nav-link" href="#projects">Projets</a></li>
+        <li><a class="nav-link" href="#skills">Compétences</a></li>
+        <li><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+      <a href="professional.html" class="nav-switch">Portfolio Pro →</a>
+      <button class="nav-hamburger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile nav -->
+  <div class="mobile-nav" id="mobileNav">
+    <a class="nav-link" href="#about">À propos</a>
+    <a class="nav-link" href="#projects">Projets BUT</a>
+    <a class="nav-link" href="#skills">Compétences</a>
+    <a class="nav-link" href="#contact">Contact</a>
+    <a href="professional.html" class="btn btn-primary" style="margin-top:20px">Portfolio Pro</a>
+  </div>
+
+  <!-- ── HERO ── -->
+  <section class="hero hero-acad">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+
+    <div class="hero-photo-wrap">
+      <img src="images/photo.jpg" alt="" />
+    </div>
+
+    <div class="container hero-inner">
+      <div style="max-width: 600px;">
+        <div class="hero-badge reveal">
+          <span class="hero-badge-dot"></span>
+          Portfolio Académique
+        </div>
+        <h1 class="hero-name display" style="margin-bottom:6px;">
+          <span id="heroFirst" data-text="Domenico"></span><br>
+          <span id="heroLast" data-text="Punzo"></span>
+        </h1>
+        <p class="hero-but-label reveal">BUT MMI</p>
+        <p class="hero-role reveal reveal-delay-2">
+          2 ans d'apprentissage — <span>Design, Web & Création numérique</span>
+        </p>
+        <p class="hero-tagline reveal reveal-delay-3">
+          Chaque SAÉ a été une occasion d'apprendre, d'itérer et de progresser. Ce portfolio documente honnêtement ce parcours, des premiers projets web aux créations multimédia avancées.
+        </p>
+        <div class="hero-actions reveal reveal-delay-4">
+          <a href="#projects" class="btn btn-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-7 10 7M5 9.5V19a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1V9.5"/></svg>
+            Voir les projets BUT
+          </a>
+          <a href="professional.html" class="btn btn-secondary">Portfolio Pro</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ── ABOUT ── -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-header" style="margin-bottom:52px;">
+        <p class="label reveal">Mon parcours</p>
+        <h2 class="headline reveal reveal-delay-1">2 ans de BUT MMI</h2>
+      </div>
+      <div class="bento-grid reveal">
+
+        <!-- Photo -->
+        <div class="bento-cell bento-photo-cell">
+          <img src="images/photo.jpg" alt="Domenico Punzo" />
+        </div>
+
+        <!-- Badge formation -->
+        <div class="bento-cell bento-badge-cell">
+          <span class="bento-icon">🎓</span>
+          <div class="bento-badge-title">BUT MMI</div>
+          <div class="bento-badge-sub">Métiers du Multimédia<br>et de l'Internet</div>
+        </div>
+
+        <!-- Current year -->
+        <div class="bento-cell" style="display:flex;align-items:center;gap:18px;">
+          <span class="bento-icon" style="font-size:22px;">📗</span>
+          <div>
+            <div class="bento-small-label">Année actuelle</div>
+            <div class="bento-value">2ème année</div>
+            <div style="font-size:12px;color:var(--text-muted);margin-top:3px;">2024 / 2025</div>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="bento-cell bento-stats-cell">
+          <div class="bento-stat">
+            <span class="bento-stat-num" data-count="2" data-suffix="">2</span>
+            <span class="bento-stat-label">Années de BUT</span>
+          </div>
+          <div class="bento-stat">
+            <span class="bento-stat-num" data-count="6" data-suffix="">6</span>
+            <span class="bento-stat-label">SAÉ réalisées</span>
+          </div>
+          <div class="bento-stat">
+            <span class="bento-stat-num" data-count="5" data-suffix="">5</span>
+            <span class="bento-stat-label">Compétences BUT</span>
+          </div>
+        </div>
+
+        <!-- Bio -->
+        <div class="bento-cell bento-bio-cell">
+          <div class="bento-small-label" style="margin-bottom:14px;">Parcours</div>
+          <p class="bento-bio-text">Le BUT MMI m'a plongé dans un univers où le design, le code et la communication se rencontrent. Chaque semestre m'a apporté de nouveaux défis créatifs et techniques à relever.</p>
+          <p class="bento-bio-text" style="margin-bottom:18px;">Ce portfolio académique documente honnêtement ce parcours : les réussites, les difficultés surmontées et les apprentissages qui ont le plus compté dans ma progression.</p>
+          <div class="about-tags">
+            <span class="about-tag">📘 BUT 1 — Fondamentaux</span>
+            <span class="about-tag">📗 BUT 2 — Approfondissement</span>
+            <span class="about-tag">🎓 SAÉ & Projets tutorés</span>
+            <span class="about-tag">🎨 Design & Création</span>
+            <span class="about-tag">🌐 Web & Développement</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ── TIMELINE ── -->
+  <section class="section" id="timeline">
+    <div class="container">
+      <div class="section-header">
+        <p class="label reveal">Parcours</p>
+        <h2 class="headline reveal reveal-delay-1">Ma formation</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <div class="timeline-content">
+            <div class="timeline-year">2017 – 2021</div>
+            <h4>Collège Marie Curie</h4>
+            <p>La Seyne-sur-Mer — Enseignement général et éveil du sens artistique et créatif.</p>
+          </div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-spacer"></div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-spacer"></div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">2021 – 2024</div>
+            <h4>Lycée Général Beaussier</h4>
+            <p>La Seyne-sur-Mer — Baccalauréat général obtenu avec mention.</p>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-content">
+            <div class="timeline-year">2024 – actuel</div>
+            <h4>BUT MMI — IUT de Toulon</h4>
+            <p>Métiers du Multimédia et de l'Internet — Design graphique, développement web, vidéo et UX/UI.</p>
+          </div>
+          <div class="timeline-dot" style="box-shadow: 0 0 0 4px var(--bg), 0 0 0 6px var(--border-blue), 0 0 16px rgba(85,125,209,0.5);"></div>
+          <div class="timeline-spacer"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ── PROJECTS ── -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-header">
+        <p class="label reveal">SAÉ & Projets tutorés</p>
+        <h2 class="headline reveal reveal-delay-1">Projets académiques</h2>
+        <p class="subtitle reveal reveal-delay-2">Filtrez par année ou par compétence mobilisée.</p>
+      </div>
+
+      <!-- Filters -->
+      <div class="filters reveal">
+        <div class="filter-group">
+          <button class="filter-btn active" data-group="year" data-value="all">Toutes les années</button>
+          <button class="filter-btn" data-group="year" data-value="but1">BUT 1</button>
+          <button class="filter-btn" data-group="year" data-value="but2">BUT 2</button>
+        </div>
+        <div class="filter-sep"></div>
+        <div class="filter-group">
+          <button class="filter-btn active" data-group="skill" data-value="all">Toutes</button>
+          <button class="filter-btn" data-group="skill" data-value="design">Design</button>
+          <button class="filter-btn" data-group="skill" data-value="branding">Branding</button>
+          <button class="filter-btn" data-group="skill" data-value="web">Web</button>
+          <button class="filter-btn" data-group="skill" data-value="ux">UX/UI</button>
+          <button class="filter-btn" data-group="skill" data-value="video">Vidéo</button>
+        </div>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- BUT 1 / Projet 1 -->
+        <div class="project-card reveal" data-modal="acad-web1" data-year="but1" data-skill="web">
+          <div class="project-card-thumb">
+            <div class="project-card-thumb-placeholder">🌐</div>
+            <div class="project-card-overlay"></div>
+            <span class="project-card-year but1">BUT 1</span>
+            <div class="project-card-cta">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <div class="project-card-type">SAÉ — Développement web</div>
+            <div class="project-card-category">Intégration & mise en ligne</div>
+            <h3 class="project-card-title">Mon premier site web responsive</h3>
+            <p class="project-card-desc">Conception et intégration d'un site de présentation en HTML/CSS avec navigation, galerie et formulaire de contact.</p>
+            <div class="project-card-tags">
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Responsive</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- BUT 1 / Projet 2 -->
+        <div class="project-card reveal reveal-delay-1" data-modal="acad-graph" data-year="but1" data-skill="design,branding">
+          <div class="project-card-thumb">
+            <div class="project-card-thumb-placeholder">🎨</div>
+            <div class="project-card-overlay"></div>
+            <span class="project-card-year but1">BUT 1</span>
+            <div class="project-card-cta">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <div class="project-card-type">SAÉ — Design graphique</div>
+            <div class="project-card-category">Identité visuelle & charte graphique</div>
+            <h3 class="project-card-title">Création d'une identité graphique associative</h3>
+            <p class="project-card-desc">Logo, palette, typographie et charte d'usage pour une association fictive — du brief créatif à la livraison finale.</p>
+            <div class="project-card-tags">
+              <span class="tag">Illustrator</span><span class="tag">Figma</span><span class="tag">Charte graphique</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- BUT 1 / Projet 3 -->
+        <div class="project-card reveal reveal-delay-2" data-modal="acad-video" data-year="but1" data-skill="video">
+          <div class="project-card-thumb">
+            <div class="project-card-thumb-placeholder">🎬</div>
+            <div class="project-card-overlay"></div>
+            <span class="project-card-year but1">BUT 1</span>
+            <div class="project-card-cta">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <div class="project-card-type">SAÉ — Production audiovisuelle</div>
+            <div class="project-card-category">Réalisation & montage vidéo</div>
+            <h3 class="project-card-title">Mini-documentaire sur un lieu du campus</h3>
+            <p class="project-card-desc">Tournage, montage et étalonnage d'un reportage de 3 minutes sur un lieu du campus — travail de l'image et du son.</p>
+            <div class="project-card-tags">
+              <span class="tag">Premiere Pro</span><span class="tag">Montage</span><span class="tag">Son</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- BUT 2 / Projet 1 -->
+        <div class="project-card reveal" data-modal="acad-web2" data-year="but2" data-skill="web">
+          <div class="project-card-thumb">
+            <div class="project-card-thumb-placeholder">⚡</div>
+            <div class="project-card-overlay"></div>
+            <span class="project-card-year but2">BUT 2</span>
+            <div class="project-card-cta">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <div class="project-card-type">SAÉ — Développement interactif</div>
+            <div class="project-card-category">Application web & JavaScript</div>
+            <h3 class="project-card-title">Application web interactive avec JavaScript</h3>
+            <p class="project-card-desc">Interface web dynamique avec DOM manipulation, événements JS et animation CSS — quiz interactif gamifié.</p>
+            <div class="project-card-tags">
+              <span class="tag">JavaScript</span><span class="tag">HTML / CSS</span><span class="tag">API REST</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- BUT 2 / Projet 2 -->
+        <div class="project-card reveal reveal-delay-1" data-modal="acad-ux" data-year="but2" data-skill="ux">
+          <div class="project-card-thumb">
+            <div class="project-card-thumb-placeholder">📱</div>
+            <div class="project-card-overlay"></div>
+            <span class="project-card-year but2">BUT 2</span>
+            <div class="project-card-cta">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <div class="project-card-type">SAÉ — UX/UI Design</div>
+            <div class="project-card-category">Recherche utilisateur & prototypage</div>
+            <h3 class="project-card-title">Refonte UX d'une application de transport</h3>
+            <p class="project-card-desc">Audit d'une app existante, tests utilisateurs, wireframes et prototype Figma haute fidélité d'une interface de transport repensée.</p>
+            <div class="project-card-tags">
+              <span class="tag">Figma</span><span class="tag">UX Research</span><span class="tag">Tests utilisateurs</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- BUT 2 / Projet 3 -->
+        <div class="project-card reveal reveal-delay-2" data-modal="acad-projet" data-year="but2" data-skill="web,ux,design">
+          <div class="project-card-thumb">
+            <div class="project-card-thumb-placeholder">🎓</div>
+            <div class="project-card-overlay"></div>
+            <span class="project-card-year but2">BUT 2</span>
+            <div class="project-card-cta">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <div class="project-card-type">Projet tutoré — BUT 2</div>
+            <div class="project-card-category">Projet intégrateur multi-compétences</div>
+            <h3 class="project-card-title">Site événementiel complet pour un client réel</h3>
+            <p class="project-card-desc">Projet en équipe de 3 : brief client, maquettes Figma, développement HTML/CSS/JS et livraison complète d'un site événementiel.</p>
+            <div class="project-card-tags">
+              <span class="tag">HTML / CSS</span><span class="tag">JavaScript</span><span class="tag">Figma</span><span class="tag">Git</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ── SKILLS ── -->
+  <section class="section" id="skills">
+    <div class="container">
+      <div class="section-header">
+        <p class="label reveal">Référentiel BUT MMI</p>
+        <h2 class="headline reveal reveal-delay-1">5 compétences développées</h2>
+        <p class="subtitle reveal reveal-delay-2">Chaque compétence est illustrée par des SAÉs et projets académiques concrets.</p>
+      </div>
+      <div class="skills-track reveal">
+
+        <div class="skill-track-item active">
+          <div class="skill-track-header">
+            <span class="skill-track-num">C1</span>
+            <span class="skill-track-name">Comprendre les écosystèmes numériques</span>
+            <div class="skill-track-progress"><div class="skill-track-dot" style="left:75%"></div></div>
+            <span class="skill-track-pct">75%</span>
+          </div>
+          <div class="skill-track-body"><div class="skill-track-inner"><div class="skill-track-content">
+            <p class="body">Analyse des usages numériques, des acteurs du marché et des évolutions des médias et du web.</p>
+            <div class="skill-tool-badges">
+              <span class="skill-tool-badge">SAÉ Veille</span>
+              <span class="skill-tool-badge">SAÉ Communication</span>
+            </div>
+            <div class="ac-list" style="margin-top:12px;">
+              <div class="ac-badge">AC1.1<div class="ac-tooltip"><div class="ac-tooltip-code">AC1.1</div><div class="ac-tooltip-title">Analyser les médias numériques</div><div class="ac-tooltip-desc">Identifier et analyser les différents acteurs et modèles de l'écosystème numérique.</div></div></div>
+              <div class="ac-badge">AC1.2<div class="ac-tooltip"><div class="ac-tooltip-code">AC1.2</div><div class="ac-tooltip-title">Comprendre les usages</div><div class="ac-tooltip-desc">Cerner les comportements des utilisateurs face aux outils et médias numériques.</div></div></div>
+            </div>
+          </div></div></div>
+        </div>
+
+        <div class="skill-track-item">
+          <div class="skill-track-header">
+            <span class="skill-track-num">C2</span>
+            <span class="skill-track-name">Concevoir et créer des contenus</span>
+            <div class="skill-track-progress"><div class="skill-track-dot" style="left:85%"></div></div>
+            <span class="skill-track-pct">85%</span>
+          </div>
+          <div class="skill-track-body"><div class="skill-track-inner"><div class="skill-track-content">
+            <p class="body">De l'idéation au prototype, concevoir des interfaces, visuels et contenus adaptés aux cibles et aux contextes.</p>
+            <div class="skill-tool-badges">
+              <span class="skill-tool-badge">SAÉ Design</span>
+              <span class="skill-tool-badge">SAÉ Prototype</span>
+            </div>
+            <div class="ac-list" style="margin-top:12px;">
+              <div class="ac-badge">AC2.1<div class="ac-tooltip"><div class="ac-tooltip-code">AC2.1</div><div class="ac-tooltip-title">Imaginer et conceptualiser</div><div class="ac-tooltip-desc">Générer des idées créatives et les formaliser en solutions concrètes et adaptées.</div></div></div>
+              <div class="ac-badge">AC2.2<div class="ac-tooltip"><div class="ac-tooltip-code">AC2.2</div><div class="ac-tooltip-title">Prototyper des interfaces</div><div class="ac-tooltip-desc">Créer des maquettes et prototypes validant les choix UX/UI avant développement.</div></div></div>
+            </div>
+          </div></div></div>
+        </div>
+
+        <div class="skill-track-item">
+          <div class="skill-track-header">
+            <span class="skill-track-num">C3</span>
+            <span class="skill-track-name">Développer des solutions web</span>
+            <div class="skill-track-progress"><div class="skill-track-dot" style="left:72%"></div></div>
+            <span class="skill-track-pct">72%</span>
+          </div>
+          <div class="skill-track-body"><div class="skill-track-inner"><div class="skill-track-content">
+            <p class="body">Intégration et développement front-end responsive avec les technologies fondamentales du web.</p>
+            <div class="skill-tool-badges">
+              <span class="skill-tool-badge">SAÉ Web</span>
+              <span class="skill-tool-badge">SAÉ Intégration</span>
+            </div>
+            <div class="ac-list" style="margin-top:12px;">
+              <div class="ac-badge">AC3.1<div class="ac-tooltip"><div class="ac-tooltip-code">AC3.1</div><div class="ac-tooltip-title">Intégrer en HTML/CSS</div><div class="ac-tooltip-desc">Créer des pages web structurées, accessibles et responsive mobile-first.</div></div></div>
+              <div class="ac-badge">AC3.2<div class="ac-tooltip"><div class="ac-tooltip-code">AC3.2</div><div class="ac-tooltip-title">Ajouter de l'interactivité</div><div class="ac-tooltip-desc">Implémenter des comportements dynamiques et animations via JavaScript.</div></div></div>
+            </div>
+          </div></div></div>
+        </div>
+
+        <div class="skill-track-item">
+          <div class="skill-track-header">
+            <span class="skill-track-num">C4</span>
+            <span class="skill-track-name">Produire des contenus multimédias</span>
+            <div class="skill-track-progress"><div class="skill-track-dot" style="left:80%"></div></div>
+            <span class="skill-track-pct">80%</span>
+          </div>
+          <div class="skill-track-body"><div class="skill-track-inner"><div class="skill-track-content">
+            <p class="body">Graphisme, vidéo, motion : produire des contenus visuels et audiovisuels de qualité pour le digital.</p>
+            <div class="skill-tool-badges">
+              <span class="skill-tool-badge">SAÉ Graphisme</span>
+              <span class="skill-tool-badge">SAÉ Vidéo</span>
+            </div>
+            <div class="ac-list" style="margin-top:12px;">
+              <div class="ac-badge">AC4.1<div class="ac-tooltip"><div class="ac-tooltip-code">AC4.1</div><div class="ac-tooltip-title">Créer des visuels numériques</div><div class="ac-tooltip-desc">Concevoir des supports graphiques adaptés aux contextes de diffusion numérique.</div></div></div>
+              <div class="ac-badge">AC4.2<div class="ac-tooltip"><div class="ac-tooltip-code">AC4.2</div><div class="ac-tooltip-title">Produire des contenus vidéo</div><div class="ac-tooltip-desc">Capturer, monter et exporter des vidéos selon les contraintes et objectifs du projet.</div></div></div>
+            </div>
+          </div></div></div>
+        </div>
+
+        <div class="skill-track-item">
+          <div class="skill-track-header">
+            <span class="skill-track-num">C5</span>
+            <span class="skill-track-name">Piloter et collaborer en projet</span>
+            <div class="skill-track-progress"><div class="skill-track-dot" style="left:70%"></div></div>
+            <span class="skill-track-pct">70%</span>
+          </div>
+          <div class="skill-track-body"><div class="skill-track-inner"><div class="skill-track-content">
+            <p class="body">Gestion de projet en équipe, organisation des tâches, communication et livraison dans les délais.</p>
+            <div class="skill-tool-badges">
+              <span class="skill-tool-badge">Projets tutorés</span>
+              <span class="skill-tool-badge">SAÉ collaboratives</span>
+            </div>
+            <div class="ac-list" style="margin-top:12px;">
+              <div class="ac-badge">AC5.1<div class="ac-tooltip"><div class="ac-tooltip-code">AC5.1</div><div class="ac-tooltip-title">Planifier et coordonner</div><div class="ac-tooltip-desc">Organiser les étapes d'un projet numérique et coordonner les rôles au sein d'une équipe.</div></div></div>
+              <div class="ac-badge">AC5.2<div class="ac-tooltip"><div class="ac-tooltip-code">AC5.2</div><div class="ac-tooltip-title">Argumenter ses choix créatifs</div><div class="ac-tooltip-desc">Justifier ses décisions de design et de conception devant un jury ou un client.</div></div></div>
+            </div>
+          </div></div></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ── TOOLS ── -->
+  <section class="tools-section">
+    <div class="tools-ticker">
+      <div class="tools-ticker-label">
+        <p class="label">Outils utilisés en BUT</p>
+      </div>
+      <div class="tools-track-wrap">
+        <div class="tools-track" id="toolsTrack">
+          <div class="tool-item"><span class="tool-icon">🎨</span><span class="tool-name">Figma</span></div>
+          <div class="tool-item"><span class="tool-icon">🖌️</span><span class="tool-name">Illustrator</span></div>
+          <div class="tool-item"><span class="tool-icon">🖼️</span><span class="tool-name">Photoshop</span></div>
+          <div class="tool-item"><span class="tool-icon">📐</span><span class="tool-name">InDesign</span></div>
+          <div class="tool-item"><span class="tool-icon">🎬</span><span class="tool-name">Premiere Pro</span></div>
+          <div class="tool-item"><span class="tool-icon">✨</span><span class="tool-name">After Effects</span></div>
+          <div class="tool-item"><span class="tool-icon">🎞️</span><span class="tool-name">DaVinci Resolve</span></div>
+          <div class="tool-item"><span class="tool-icon">🌐</span><span class="tool-name">HTML / CSS</span></div>
+          <div class="tool-item"><span class="tool-icon">⚡</span><span class="tool-name">JavaScript</span></div>
+          <div class="tool-item"><span class="tool-icon">🖥️</span><span class="tool-name">VS Code</span></div>
+          <div class="tool-item"><span class="tool-icon">🐱</span><span class="tool-name">Git / GitHub</span></div>
+          <div class="tool-item"><span class="tool-icon">🎨</span><span class="tool-name">Canva</span></div>
+          <div class="tool-item"><span class="tool-icon">📷</span><span class="tool-name">Lightroom</span></div>
+          <div class="tool-item"><span class="tool-icon">📝</span><span class="tool-name">Notion</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ── CONTACT ── -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <p class="label reveal">Contact</p>
+        <h2 class="headline reveal reveal-delay-1">Une question sur mon parcours ?</h2>
+        <p class="subtitle reveal reveal-delay-2">Enseignants, jury, recruteurs — je suis disponible pour en discuter.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <div class="contact-photo">
+            <img src="images/photo.jpg" alt="Domenico Punzo" />
+          </div>
+          <div class="contact-name">Domenico Punzo</div>
+          <div class="contact-role">Étudiant BUT MMI — Multimédia & Internet</div>
+          <div class="contact-availability">
+            <span class="contact-availability-dot"></span>
+            Disponible — Échanges &amp; Opportunités
+          </div>
+          <div class="contact-links">
+            <a class="contact-link" href="mailto:domenicopunzo07@gmail.com">
+              <svg class="contact-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+              domenicopunzo07@gmail.com
+            </a>
+            <a class="contact-link" href="https://linkedin.com" target="_blank">
+              <svg class="contact-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+              LinkedIn — Domenico Punzo
+            </a>
+            <a class="contact-link" href="professional.html">
+              <svg class="contact-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+              Portfolio Professionnel
+            </a>
+            <a class="contact-link" href="#" download>
+              <svg class="contact-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+              Télécharger mon CV
+            </a>
+          </div>
+        </div>
+        <div class="contact-form reveal reveal-delay-2">
+          <form id="contactForm">
+            <div class="form-group">
+              <label class="form-label">Nom</label>
+              <input class="form-input" type="text" placeholder="Votre nom" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input class="form-input" type="email" placeholder="votre@email.fr" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Message</label>
+              <textarea class="form-textarea" placeholder="Question sur un projet, invitation à présenter…" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary form-submit">
+              Envoyer
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="container footer">
+    <p class="footer-copy">© 2025 Domenico Punzo — Portfolio Académique</p>
+    <a href="professional.html" class="footer-back">Portfolio Professionnel →</a>
+  </footer>
+
+  <!-- Modal backdrop -->
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal" id="modal"></div>
+  </div>
+
+  <!-- Academic project data -->
+  <script>
+    window.PROJECTS = {
+      'acad-web1': {
+        title: 'Mon premier site web responsive',
+        category: 'SAÉ — Développement web',
+        year: 'BUT 1',
+        emoji: '🌐',
+        description: 'Conception et intégration complète d\'un site de présentation en HTML/CSS avec navigation, galerie d\'images et formulaire de contact. Premier projet web de A à Z.',
+        context: 'Première SAÉ de développement web en BUT 1. L\'objectif était de maîtriser les bases du HTML sémantique, du CSS moderne et du responsive design.',
+        objectives: 'Créer un site multi-pages structuré, fonctionnel et adaptatif sur mobile, desktop et tablette, en partant d\'un zéro absolu.',
+        methodology: 'Maquette papier → Structure HTML sémantique → Styles CSS (Flexbox, Grid) → Responsive (Media queries) → Tests cross-browser → Mise en ligne.',
+        reflection: {
+          before: 'Je n\'avais jamais touché à du HTML avant ce projet. La structure d\'une page me semblait complexe.',
+          during: 'Le responsive design a été la vraie difficulté : faire tenir le même contenu sur tous les écrans demande de penser différemment la mise en page.',
+          after: 'À la fin, je maîtrisais les bases. Surtout, j\'avais compris la logique de cascade du CSS — quelque chose qui bloque beaucoup de débutants.',
+          learned: 'On n\'apprend pas le web en lisant, on l\'apprend en cassant puis en réparant. Chaque bug m\'a plus appris qu\'un cours entier.'
+        },
+        tools: ['HTML', 'CSS', 'VS Code', 'Figma'],
+        ac: [
+          { code: 'AC3.1', title: 'Intégrer en HTML/CSS', desc: 'Créer des pages web structurées, accessibles et responsive mobile-first.' }
+        ]
+      },
+      'acad-graph': {
+        title: 'Identité graphique pour une association fictive',
+        category: 'SAÉ — Design graphique',
+        year: 'BUT 1',
+        emoji: '🎨',
+        description: 'Création d\'une identité visuelle complète pour une association fictive : logo déclinable, palette chromatique, typographies et charte d\'usage. Du brief créatif à la livraison.',
+        context: 'SAÉ de design graphique en BUT 1. Exercice de réponse à un brief : comprendre un besoin client, proposer une direction artistique et la défendre devant un jury.',
+        objectives: 'Concevoir une identité cohérente, mémorable et adaptable. Produire les fichiers sources et un PDF de présentation de la charte.',
+        methodology: 'Analyse du brief → Recherche créative (mood board) → 3 pistes créatives → Choix et affinage → Déclinaisons → Charte PDF → Soutenance.',
+        reflection: {
+          before: 'Je savais utiliser Illustrator pour des tâches basiques, mais pas pour construire un univers graphique cohérent.',
+          during: 'La plus grande difficulté a été de ne pas m\'attacher à ma première idée. Le mood board m\'a aidé à explorer avant de choisir.',
+          after: 'J\'ai compris que le design graphique, c\'est résoudre un problème de communication — pas juste faire quelque chose de beau.',
+          learned: 'Un logo doit fonctionner en noir et blanc avant tout. Règle que j\'applique maintenant systématiquement.'
+        },
+        tools: ['Illustrator', 'Figma', 'Photoshop'],
+        ac: [
+          { code: 'AC2.1', title: 'Imaginer et conceptualiser', desc: 'Générer des idées créatives et les formaliser en solutions visuelles concrètes.' },
+          { code: 'AC4.1', title: 'Créer des visuels numériques', desc: 'Concevoir des supports graphiques adaptés aux contextes de diffusion numérique.' }
+        ]
+      },
+      'acad-video': {
+        title: 'Mini-documentaire sur un lieu du campus',
+        category: 'SAÉ — Production audiovisuelle',
+        year: 'BUT 1',
+        emoji: '🎬',
+        description: 'Réalisation d\'un mini-documentaire de 3 minutes sur un lieu du campus : tournage, prise de son, montage, étalonnage couleur et habillage de générique.',
+        context: 'SAÉ audiovisuelle en BUT 1. Premier projet vidéo complet — de la préproduction à l\'export final — en équipe de 2.',
+        objectives: 'Maîtriser les étapes fondamentales de la chaîne de production vidéo : cadrage, lumière, montage et export.',
+        methodology: 'Repérage → Storyboard → Tournage → Capture son → Montage Premiere Pro → Étalonnage → Générique → Export H.264.',
+        reflection: {
+          before: 'Je n\'avais jamais monté de vidéo sérieusement. Je pensais que filmer avec son téléphone suffisait.',
+          during: 'La capture sonore a été la révélation : un bon son vaut plus qu\'une belle image. Nous avons dû retourner certaines séquences à cause d\'un son inutilisable.',
+          after: 'Je suis sorti de ce projet avec une vraie culture cinématographique des bases. Je regarde maintenant les films différemment.',
+          learned: 'Le montage, c\'est de l\'écriture. On ne colle pas des plans — on raconte une histoire avec des images.'
+        },
+        tools: ['Premiere Pro', 'DaVinci Resolve', 'Appareil photo', 'Micro directionnel'],
+        ac: [
+          { code: 'AC4.2', title: 'Produire des contenus vidéo', desc: 'Capturer, monter et exporter des vidéos selon les contraintes et objectifs du projet.' }
+        ]
+      },
+      'acad-web2': {
+        title: 'Application web interactive avec JavaScript',
+        category: 'SAÉ — Développement interactif',
+        year: 'BUT 2',
+        emoji: '⚡',
+        description: 'Conception et développement d\'un quiz interactif gamifié avec JavaScript : manipulation du DOM, gestion des événements, timer, score et animations CSS.',
+        context: 'SAÉ de développement JavaScript en BUT 2. Après les bases HTML/CSS en BUT 1, il fallait ajouter l\'interactivité avec du JS natif, sans framework.',
+        objectives: 'Maîtriser la manipulation du DOM, la gestion d\'événements et les requêtes API — construire une application fonctionnelle et animée.',
+        methodology: 'Architecture JS (modules) → Requête API (questions quiz) → DOM manipulation → Gestion du state → Timer + animations → Tests et debug.',
+        reflection: {
+          before: 'Je comprenais la syntaxe JavaScript mais pas encore la logique asynchrone. Les Promises me semblaient obscures.',
+          during: 'Le débogage JS m\'a pris beaucoup de temps. Apprendre à utiliser les DevTools correctement a tout changé.',
+          after: 'Je pense maintenant en "événements" — chaque action utilisateur déclenche quelque chose. Cette façon de voir le code est fondamentale.',
+          learned: 'Séparer la logique (JS) de la présentation (CSS) dès le départ évite beaucoup de douleur en maintenance.'
+        },
+        tools: ['JavaScript', 'HTML / CSS', 'VS Code', 'API REST'],
+        ac: [
+          { code: 'AC3.2', title: 'Ajouter de l\'interactivité', desc: 'Implémenter des comportements dynamiques et animations via JavaScript.' },
+          { code: 'AC1.2', title: 'Comprendre les usages', desc: 'Concevoir une expérience utilisateur fluide et engageante.' }
+        ]
+      },
+      'acad-ux': {
+        title: 'Refonte UX d\'une application de transport',
+        category: 'SAÉ — UX/UI Design',
+        year: 'BUT 2',
+        emoji: '📱',
+        description: 'Audit UX complet d\'une application de transport public existante, identification des frictions, tests utilisateurs, wireframes et prototype Figma haute fidélité.',
+        context: 'SAÉ UX/UI en BUT 2. Travail sur une vraie application (transport régional) avec des utilisateurs réels. L\'objectif était d\'améliorer un parcours identifié comme problématique.',
+        objectives: 'Comprendre les raisons des frictions via la recherche utilisateur, puis proposer une interface repensée et la prototyper fidèlement.',
+        methodology: 'Audit heuristique → Personas → Tests utilisateurs (5 participants) → Synthèse → Wireframes → Prototype Figma → Tests de validation → Rapport.',
+        reflection: {
+          before: 'Je pensais savoir ce que les utilisateurs voulaient. Ce projet m\'a prouvé que l\'intuition ne suffit pas.',
+          during: 'Regarder quelqu\'un utiliser mon prototype pour la première fois a été révélateur : des choses évidentes pour moi ne l\'étaient pas du tout pour eux.',
+          after: 'Je ne dessine plus une interface sans me demander d\'abord : "comment est-ce que l\'utilisateur va trouver ça ?"',
+          learned: 'L\'empathie est une compétence de designer autant que la maîtrise des outils. Sans l\'une, l\'autre ne sert à rien.'
+        },
+        tools: ['Figma', 'Notion', 'Whimsical', 'Maze'],
+        ac: [
+          { code: 'AC2.2', title: 'Prototyper des interfaces', desc: 'Créer des maquettes et prototypes validant les choix UX/UI avant développement.' },
+          { code: 'AC1.2', title: 'Comprendre les usages', desc: 'Analyser le comportement des utilisateurs face à une interface.' }
+        ]
+      },
+      'acad-projet': {
+        title: 'Site événementiel complet pour un client réel',
+        category: 'Projet tutoré — BUT 2',
+        year: 'BUT 2',
+        emoji: '🎓',
+        description: 'Projet tutoré en équipe de 3 pour un client réel : brief, maquettes Figma, développement HTML/CSS/JS et livraison complète d\'un site événementiel fonctionnel.',
+        context: 'Projet commandé par une association étudiante pour son événement annuel. Premier projet avec un vrai client, un vrai brief et une vraie deadline.',
+        objectives: 'Livrer un site complet et opérationnel — formulaire d\'inscription, programme, galerie — dans les délais convenus avec le client.',
+        methodology: 'Brief client → Cahier des charges → Maquettes Figma → Validation → Développement itératif (Git) → Recette → Livraison → Formation client.',
+        results: 'Site mis en ligne 10 jours avant l\'événement. 180 inscriptions via le formulaire. Client satisfait et projet noté 17/20 au jury.',
+        reflection: {
+          before: 'Je n\'avais jamais travaillé avec un client réel. Je pensais que le développement était la partie la plus dure.',
+          during: 'La communication avec le client a été la vraie complexité. Les allers-retours sur les maquettes ont pris plus de temps que le développement.',
+          after: 'J\'ai appris à fixer des limites claires dans un brief et à documenter chaque décision pour éviter les mauvaises surprises.',
+          learned: 'Un projet ne finit pas quand le code est livré — il finit quand le client sait l\'utiliser seul.'
+        },
+        tools: ['HTML / CSS', 'JavaScript', 'Figma', 'Git', 'Notion'],
+        ac: [
+          { code: 'AC3.1', title: 'Intégrer en HTML/CSS', desc: 'Créer des pages web structurées, accessibles et responsive mobile-first.' },
+          { code: 'AC3.2', title: 'Ajouter de l\'interactivité', desc: 'Implémenter des comportements dynamiques via JavaScript.' },
+          { code: 'AC5.1', title: 'Planifier et coordonner', desc: 'Organiser les étapes d\'un projet en équipe avec un client réel.' },
+          { code: 'AC5.2', title: 'Argumenter ses choix', desc: 'Présenter et défendre ses décisions de design devant le client et le jury.' }
+        ]
+      }
+    };
+  </script>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Domenico Punzo — Portfolio</title>
+  <meta name="description" content="Portfolio de Domenico Punzo — Data & Digital Transformation" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ── Landing specific ── */
+    .landing {
+      position: relative;
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 64px 24px;
+      overflow: hidden;
+    }
+
+    /* Orbs background */
+    .orbs { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+    .orb {
+      position: absolute; border-radius: 50%;
+      filter: blur(100px); opacity: 0.3;
+    }
+    .orb-1 {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, #557DD1, #4671CD);
+      top: -200px; left: -150px;
+      animation: float 8s ease-in-out infinite;
+    }
+    .orb-2 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, #4671CD, #2a4b99);
+      bottom: -200px; right: -100px;
+      animation: float 10s ease-in-out infinite 2s;
+    }
+
+    /* Noise texture */
+    .noise {
+      position: fixed; inset: 0; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    /* ── Center ID ── */
+    .landing-id {
+      position: relative; z-index: 10;
+      text-align: center;
+      margin-bottom: 52px;
+      animation: slideUp 0.9s var(--ease-expo) both;
+    }
+    .landing-eyebrow {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 4px; text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
+    .landing-name {
+      font-size: clamp(34px, 5vw, 58px);
+      font-weight: 800;
+      letter-spacing: -2.5px;
+      margin-bottom: 12px;
+      line-height: 1;
+    }
+    .landing-subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+      font-weight: 400;
+      letter-spacing: 0.3px;
+    }
+
+    /* ── Showcase ── */
+    .showcase-wrap {
+      position: relative; z-index: 10;
+      width: min(1060px, 100%);
+      perspective: 1800px;
+      animation: slideUp 1s var(--ease-expo) 0.18s both;
+    }
+    .showcase {
+      display: flex;
+      gap: 20px;
+    }
+
+    /* ── Card ── */
+    .showcase-card {
+      flex: 1;
+      display: block;
+      text-decoration: none; color: inherit;
+      border-radius: var(--radius-xl);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      cursor: pointer;
+      transform-style: preserve-3d;
+      will-change: transform;
+      transition: transform 0.15s var(--ease-out), border-color 0.35s, box-shadow 0.35s;
+      box-shadow: var(--shadow-card);
+    }
+    .showcase-card:hover {
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow), 0 0 70px rgba(85,125,209,0.18);
+    }
+
+    /* ── Video / animated visual ── */
+    .showcase-visual {
+      position: relative;
+      aspect-ratio: 16/10;
+      overflow: hidden;
+    }
+    .showcase-video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+    .showcase-video-bg {
+      position: absolute; inset: 0;
+      z-index: 0;
+      animation: bgFloat 16s ease-in-out infinite alternate;
+    }
+    .pro-bg {
+      background:
+        radial-gradient(ellipse 150% 110% at 0% 55%, rgba(85,125,209,0.65), transparent 52%),
+        radial-gradient(ellipse 80% 70% at 95% 5%,  rgba(122,157,220,0.3), transparent 50%),
+        radial-gradient(ellipse 60% 80% at 55% 95%, rgba(70,113,205,0.2),  transparent 50%),
+        #090914;
+    }
+    .acad-bg {
+      background:
+        radial-gradient(ellipse 150% 110% at 100% 55%, rgba(70,113,205,0.65), transparent 52%),
+        radial-gradient(ellipse 80% 70% at 5% 5%,    rgba(85,125,209,0.3),  transparent 50%),
+        radial-gradient(ellipse 60% 80% at 45% 95%, rgba(122,157,220,0.2),  transparent 50%),
+        #090914;
+    }
+    @keyframes bgFloat {
+      0%   { transform: scale(1)    translate(0px,   0px); }
+      33%  { transform: scale(1.06) translate(10px, -12px); }
+      66%  { transform: scale(1.03) translate(-7px,  7px); }
+      100% { transform: scale(1.08) translate(12px, -6px); }
+    }
+    .showcase-video-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(7,7,15,0.94) 0%,
+        rgba(7,7,15,0.42) 52%,
+        rgba(7,7,15,0.08) 100%
+      );
+      z-index: 2;
+    }
+
+    /* Glare overlay */
+    .showcase-glare {
+      position: absolute; inset: 0; z-index: 3;
+      pointer-events: none;
+      opacity: 0;
+      background: radial-gradient(circle 240px at var(--mx,50%) var(--my,50%), rgba(255,255,255,0.09), transparent 70%);
+      transition: opacity 0.3s;
+    }
+    .showcase-card:hover .showcase-glare { opacity: 1; }
+
+    /* Content overlay inside visual */
+    .showcase-visual-content {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 28px 32px;
+      z-index: 4;
+    }
+    .showcase-vis-eyebrow {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(122,157,220,0.75);
+      margin-bottom: 9px;
+    }
+    .showcase-choice {
+      font-size: clamp(22px, 2.8vw, 32px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.5px;
+      color: #fff;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    /* Info block under visual */
+    .showcase-info {
+      padding: 20px 28px 26px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .showcase-info-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+    .showcase-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: gap 0.3s var(--ease-out), color 0.3s;
+    }
+    .showcase-card:hover .showcase-cta { gap: 13px; color: var(--primary-light); }
+    .showcase-cta svg { width: 14px; height: 14px; transition: transform 0.3s var(--ease-out); }
+    .showcase-card:hover .showcase-cta svg { transform: translateX(2px); }
+
+    /* Bottom hint */
+    .landing-hint {
+      position: relative; z-index: 10;
+      margin-top: 28px;
+      font-size: 12px; color: var(--text-subtle);
+      animation: fadeIn 1s 0.6s both;
+      text-align: center;
+      letter-spacing: 0.3px;
+    }
+
+    /* Mobile */
+    @media (max-width: 760px) {
+      .showcase { flex-direction: column; }
+      .showcase-card { transform: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Particle background -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- Landing -->
+  <div class="landing">
+    <!-- Background -->
+    <div class="orbs">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+    </div>
+    <div class="noise"></div>
+
+    <!-- Identity -->
+    <div class="landing-id">
+      <p class="landing-eyebrow">Portfolio · 2025</p>
+      <h1 class="landing-name">Domenico Punzo</h1>
+      <p class="landing-subtitle">Qui êtes-vous ?</p>
+    </div>
+
+    <!-- Showcase choice -->
+    <div class="showcase-wrap">
+      <div class="showcase">
+
+        <!-- Recruteur → Professional -->
+        <a class="showcase-card" id="cardPro" href="professional.html">
+          <div class="showcase-visual">
+            <video class="showcase-video" autoplay muted loop playsinline>
+              <source src="assets/video-pro.mp4" type="video/mp4">
+            </video>
+            <div class="showcase-video-bg pro-bg"></div>
+            <div class="showcase-video-overlay"></div>
+            <div class="showcase-glare"></div>
+            <div class="showcase-visual-content">
+              <p class="showcase-vis-eyebrow">Portfolio professionnel</p>
+              <h2 class="showcase-choice">Je suis un<br>recruteur</h2>
+            </div>
+          </div>
+          <div class="showcase-info">
+            <p class="showcase-info-desc">Projets clients, compétences et réalisations concrètes.</p>
+            <div class="showcase-cta">
+              Explorer
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+        </a>
+
+        <!-- Enseignant → Academic -->
+        <a class="showcase-card" id="cardAcad" href="academic.html">
+          <div class="showcase-visual">
+            <video class="showcase-video" autoplay muted loop playsinline>
+              <source src="assets/video-acad.mp4" type="video/mp4">
+            </video>
+            <div class="showcase-video-bg acad-bg"></div>
+            <div class="showcase-video-overlay"></div>
+            <div class="showcase-glare"></div>
+            <div class="showcase-visual-content">
+              <p class="showcase-vis-eyebrow">Portfolio académique</p>
+              <h2 class="showcase-choice">Je suis un<br>enseignant</h2>
+            </div>
+          </div>
+          <div class="showcase-info">
+            <p class="showcase-info-desc">SAÉ, compétences BUT et progression académique.</p>
+            <div class="showcase-cta">
+              Explorer
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <p class="landing-hint">Sélectionnez votre profil pour accéder au portfolio correspondant</p>
+  </div>
+
+  <script>
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + 'px'; cursor.style.top = my + 'px'; });
+    (function animate() {
+      rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      requestAnimationFrame(animate);
+    })();
+
+    // Particles
+    (function() {
+      const canvas = document.getElementById('particleCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let w, h;
+      const N = 55, LINK = 130, pts = [];
+      function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
+      function P() { return { x: Math.random()*w, y: Math.random()*h, vx:(Math.random()-.5)*.38, vy:(Math.random()-.5)*.38, r: Math.random()*1.2+.4 }; }
+      function loop() {
+        ctx.clearRect(0,0,w,h);
+        for(let i=0;i<N;i++){
+          const p=pts[i]; p.x+=p.vx; p.y+=p.vy;
+          if(p.x<0||p.x>w)p.vx*=-1; if(p.y<0||p.y>h)p.vy*=-1;
+          ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+          ctx.fillStyle='rgba(85,125,209,0.55)'; ctx.fill();
+          for(let j=i+1;j<N;j++){
+            const q=pts[j],d=Math.hypot(p.x-q.x,p.y-q.y);
+            if(d<LINK){ ctx.strokeStyle=`rgba(85,125,209,${.14*(1-d/LINK)})`; ctx.lineWidth=.6; ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y); ctx.stroke(); }
+          }
+        }
+        requestAnimationFrame(loop);
+      }
+      resize(); window.addEventListener('resize',resize);
+      for(let i=0;i<N;i++) pts.push(P());
+      loop();
+    })();
+
+    // 3D tilt on showcase cards (pointer devices only)
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      document.querySelectorAll('.showcase-card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const r = card.getBoundingClientRect();
+          const px = (e.clientX - r.left) / r.width;
+          const py = (e.clientY - r.top) / r.height;
+          const rotX = (py - 0.5) * -12;
+          const rotY = (px - 0.5) * 12;
+          card.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-4px)`;
+          card.style.setProperty('--mx', (px * 100) + '%');
+          card.style.setProperty('--my', (py * 100) + '%');
+        });
+        card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+      });
+    }
+  </script>
+</body>
+</html>
