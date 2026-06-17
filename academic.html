@@ -65,6 +65,27 @@
     /* Section divider */
     .section-divider { height: 1px; background: var(--border); }
 
+    /* Stage badge */
+    .stage-badge {
+      position: absolute;
+      top: 14px; left: 14px;
+      padding: 4px 12px;
+      background: rgba(245,158,11,0.12);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(245,158,11,0.35);
+      border-radius: var(--radius-full);
+      font-size: 9px; font-weight: 800;
+      color: #f59e0b;
+      letter-spacing: 2px; text-transform: uppercase;
+      font-family: 'Space Grotesk', sans-serif;
+      z-index: 10;
+    }
+    .project-card.card-stage { border-color: rgba(245,158,11,0.22); }
+    .project-card.card-stage:hover {
+      border-color: rgba(245,158,11,0.45);
+      box-shadow: 0 0 0 1px rgba(245,158,11,0.1), var(--shadow);
+    }
+
     /* BUT MMI subtitle in hero */
     .hero-but-label {
       font-size: clamp(18px, 2.6vw, 28px);
@@ -319,6 +340,7 @@
           <button class="filter-btn" data-group="skill" data-value="web">Web</button>
           <button class="filter-btn" data-group="skill" data-value="ux">UX/UI</button>
           <button class="filter-btn" data-group="skill" data-value="video">Vidéo</button>
+          <button class="filter-btn" data-group="skill" data-value="comm">Communication</button>
         </div>
       </div>
 
@@ -387,31 +409,10 @@
           </div>
         </div>
 
-        <!-- BUT 2 / Projet 1 -->
-        <div class="project-card reveal" data-modal="acad-web2" data-year="but2" data-skill="web">
+        <!-- BUT 2 / So' Italiano — Click & Collect -->
+        <div class="project-card reveal" data-modal="acad-soitaliano" data-year="but2" data-skill="ux,design">
           <div class="project-card-thumb">
-            <div class="project-card-thumb-placeholder">⚡</div>
-            <div class="project-card-overlay"></div>
-            <span class="project-card-year but2">BUT 2</span>
-            <div class="project-card-cta">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </div>
-          </div>
-          <div class="project-card-body">
-            <div class="project-card-type">SAÉ — Développement interactif</div>
-            <div class="project-card-category">Application web & JavaScript</div>
-            <h3 class="project-card-title">Application web interactive avec JavaScript</h3>
-            <p class="project-card-desc">Interface web dynamique avec DOM manipulation, événements JS et animation CSS — quiz interactif gamifié.</p>
-            <div class="project-card-tags">
-              <span class="tag">JavaScript</span><span class="tag">HTML / CSS</span><span class="tag">API REST</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- BUT 2 / Projet 2 -->
-        <div class="project-card reveal reveal-delay-1" data-modal="acad-ux" data-year="but2" data-skill="ux">
-          <div class="project-card-thumb">
-            <div class="project-card-thumb-placeholder">📱</div>
+            <div class="project-card-thumb-placeholder">🍝</div>
             <div class="project-card-overlay"></div>
             <span class="project-card-year but2">BUT 2</span>
             <div class="project-card-cta">
@@ -420,19 +421,19 @@
           </div>
           <div class="project-card-body">
             <div class="project-card-type">SAÉ — UX/UI Design</div>
-            <div class="project-card-category">Recherche utilisateur & prototypage</div>
-            <h3 class="project-card-title">Refonte UX d'une application de transport</h3>
-            <p class="project-card-desc">Audit d'une app existante, tests utilisateurs, wireframes et prototype Figma haute fidélité d'une interface de transport repensée.</p>
+            <div class="project-card-category">Click & Collect · Prototype Figma</div>
+            <h3 class="project-card-title">So' Italiano — Site click & collect</h3>
+            <p class="project-card-desc">Conception UX/UI d'un service de click & collect pour une épicerie italienne — du cadrage produit aux tests utilisateurs jusqu'au prototype haute fidélité.</p>
             <div class="project-card-tags">
-              <span class="tag">Figma</span><span class="tag">UX Research</span><span class="tag">Tests utilisateurs</span>
+              <span class="tag">Figma</span><span class="tag">UX Research</span><span class="tag">Prototypage</span>
             </div>
           </div>
         </div>
 
-        <!-- BUT 2 / Projet 3 -->
-        <div class="project-card reveal reveal-delay-2" data-modal="acad-projet" data-year="but2" data-skill="web,ux,design">
+        <!-- BUT 2 / Carl's Jr. — Stratégie de marque -->
+        <div class="project-card reveal reveal-delay-1" data-modal="acad-carlsjr" data-year="but2" data-skill="branding,comm">
           <div class="project-card-thumb">
-            <div class="project-card-thumb-placeholder">🎓</div>
+            <div class="project-card-thumb-placeholder">🍔</div>
             <div class="project-card-overlay"></div>
             <span class="project-card-year but2">BUT 2</span>
             <div class="project-card-cta">
@@ -440,12 +441,34 @@
             </div>
           </div>
           <div class="project-card-body">
-            <div class="project-card-type">Projet tutoré — BUT 2</div>
-            <div class="project-card-category">Projet intégrateur multi-compétences</div>
-            <h3 class="project-card-title">Site événementiel complet pour un client réel</h3>
-            <p class="project-card-desc">Projet en équipe de 3 : brief client, maquettes Figma, développement HTML/CSS/JS et livraison complète d'un site événementiel.</p>
+            <div class="project-card-type">SAÉ — Communication & Stratégie</div>
+            <div class="project-card-category">Branding · Plan d'action</div>
+            <h3 class="project-card-title">Sauvons Carl's Jr. — Stratégie de relance</h3>
+            <p class="project-card-desc">Analyse concurrentielle et refonte complète de la communication d'une enseigne en perte de vitesse — nouveau produit, stratégie digitale et plan d'action structuré.</p>
             <div class="project-card-tags">
-              <span class="tag">HTML / CSS</span><span class="tag">JavaScript</span><span class="tag">Figma</span><span class="tag">Git</span>
+              <span class="tag">Canva</span><span class="tag">Stratégie</span><span class="tag">Branding</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- BUT 2 / Leclerc — Stage Communication digitale -->
+        <div class="project-card reveal reveal-delay-2 card-stage" data-modal="acad-leclerc" data-year="but2" data-skill="video,comm">
+          <div class="project-card-thumb">
+            <div class="project-card-thumb-placeholder">📲</div>
+            <div class="project-card-overlay"></div>
+            <div class="stage-badge">Stage</div>
+            <span class="project-card-year but2">BUT 2</span>
+            <div class="project-card-cta">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <div class="project-card-type">Stage — Communication digitale</div>
+            <div class="project-card-category">Réseaux sociaux · Création de contenu</div>
+            <h3 class="project-card-title">Leclerc La Seyne — Contenu digital</h3>
+            <p class="project-card-desc">En charge de la communication digitale du magasin pendant mon stage : vidéos et posts pour Instagram & TikTok, avec les contraintes réelles d'une enseigne nationale.</p>
+            <div class="project-card-tags">
+              <span class="tag">CapCut</span><span class="tag">Canva</span><span class="tag">Instagram</span><span class="tag">TikTok</span>
             </div>
           </div>
         </div>
@@ -738,71 +761,65 @@
           { code: 'AC4.2', title: 'Produire des contenus vidéo', desc: 'Capturer, monter et exporter des vidéos selon les contraintes et objectifs du projet.' }
         ]
       },
-      'acad-web2': {
-        title: 'Application web interactive avec JavaScript',
-        category: 'SAÉ — Développement interactif',
+      'acad-soitaliano': {
+        title: 'So\' Italiano — Site click & collect',
+        category: 'SAÉ — UX/UI Design · BUT 2',
         year: 'BUT 2',
-        emoji: '⚡',
-        description: 'Conception et développement d\'un quiz interactif gamifié avec JavaScript : manipulation du DOM, gestion des événements, timer, score et animations CSS.',
-        context: 'SAÉ de développement JavaScript en BUT 2. Après les bases HTML/CSS en BUT 1, il fallait ajouter l\'interactivité avec du JS natif, sans framework.',
-        objectives: 'Maîtriser la manipulation du DOM, la gestion d\'événements et les requêtes API — construire une application fonctionnelle et animée.',
-        methodology: 'Architecture JS (modules) → Requête API (questions quiz) → DOM manipulation → Gestion du state → Timer + animations → Tests et debug.',
+        emoji: '🍝',
+        description: 'Conception sur Figma de l\'expérience complète d\'un site de click & collect spécialisé dans la cuisine italienne — épicerie fine, plats préparés et menus à emporter. Du cadrage du service jusqu\'au prototype interactif validé par tests utilisateurs.',
+        context: 'SAÉ BUT 2 — Concevoir. Co-conception d\'un produit numérique en partant du besoin utilisateur : une clientèle souhaitant commander des produits italiens authentiques et les retirer en magasin. Travail en binôme, avec soutenance devant jury.',
+        objectives: 'Définir une proposition de valeur claire, concevoir l\'architecture du service et les parcours clés (navigation catalogue, ajout panier, choix du créneau de retrait), prototyper en haute fidélité et produire une recommandation ergonomique argumentée à partir de tests utilisateurs.',
+        methodology: 'Cadrage du service → Définition des fonctionnalités → Wireframes basse fidélité → Prototype Figma → Tests utilisateurs (5 participants) → Itérations → Prototype haute fidélité → Rapport ergonomique → Soutenance.',
         reflection: {
-          before: 'Je comprenais la syntaxe JavaScript mais pas encore la logique asynchrone. Les Promises me semblaient obscures.',
-          during: 'Le débogage JS m\'a pris beaucoup de temps. Apprendre à utiliser les DevTools correctement a tout changé.',
-          after: 'Je pense maintenant en "événements" — chaque action utilisateur déclenche quelque chose. Cette façon de voir le code est fondamentale.',
-          learned: 'Séparer la logique (JS) de la présentation (CSS) dès le départ évite beaucoup de douleur en maintenance.'
+          before: 'Je savais utiliser Figma pour mettre en forme des idées, mais pas encore pour structurer un service complet. La notion de "parcours utilisateur" restait abstraite.',
+          during: 'Les tests utilisateurs ont révélé des incohérences invisibles à l\'œil du concepteur : des libellés ambigus, des CTAs mal placés. Chaque retour a forcé une décision concrète sur le prototype.',
+          after: 'Je suis sorti de cette SAÉ avec une méthode : on conçoit pour l\'utilisateur, pas pour soi. Cette méthode s\'applique à tous les types de projets, pas uniquement au digital.',
+          learned: 'Un prototype sans test n\'est qu\'une hypothèse habillée. La vraie conception commence quand on observe quelqu\'un utiliser ce qu\'on a fait.'
         },
-        tools: ['JavaScript', 'HTML / CSS', 'VS Code', 'API REST'],
+        tools: ['Figma', 'Notion', 'Maze'],
         ac: [
-          { code: 'AC3.2', title: 'Ajouter de l\'interactivité', desc: 'Implémenter des comportements dynamiques et animations via JavaScript.' },
-          { code: 'AC1.2', title: 'Comprendre les usages', desc: 'Concevoir une expérience utilisateur fluide et engageante.' }
+          { code: 'AC22.01', title: 'Co-concevoir un produit ou un service', desc: 'Définir la proposition de valeur et les fonctionnalités d\'un service de click & collect adapté à une cible identifiée.' },
+          { code: 'AC22.02', title: 'Recommandation ergonomique', desc: 'Produire une analyse argumentée à partir des tests utilisateurs sur le prototype Figma, avec préconisations d\'amélioration.' }
         ]
       },
-      'acad-ux': {
-        title: 'Refonte UX d\'une application de transport',
-        category: 'SAÉ — UX/UI Design',
+      'acad-carlsjr': {
+        title: 'Sauvons Carl\'s Jr. — Stratégie de relance',
+        category: 'SAÉ — Communication & Stratégie · BUT 2',
         year: 'BUT 2',
-        emoji: '📱',
-        description: 'Audit UX complet d\'une application de transport public existante, identification des frictions, tests utilisateurs, wireframes et prototype Figma haute fidélité.',
-        context: 'SAÉ UX/UI en BUT 2. Travail sur une vraie application (transport régional) avec des utilisateurs réels. L\'objectif était d\'améliorer un parcours identifié comme problématique.',
-        objectives: 'Comprendre les raisons des frictions via la recherche utilisateur, puis proposer une interface repensée et la prototyper fidèlement.',
-        methodology: 'Audit heuristique → Personas → Tests utilisateurs (5 participants) → Synthèse → Wireframes → Prototype Figma → Tests de validation → Rapport.',
+        emoji: '🍔',
+        description: 'En équipe, nous avons pris en charge la relance stratégique de Carl\'s Jr., enseigne de fast-food américaine en perte de vitesse face à ses concurrents en France. Analyse concurrentielle, nouveau produit, supports de communication et plan d\'action structuré — en simulant les conditions d\'un brief d\'agence.',
+        context: 'SAÉ BUT 2 — Communication & Stratégie. L\'objectif : co-construire une recommandation stratégique complète pour redresser une marque affaiblie. La contrainte principale était de s\'appuyer sur une analyse rigoureuse plutôt que sur l\'intuition créative.',
+        objectives: 'Identifier les faiblesses de Carl\'s Jr. face à McDonald\'s et Burger King sur le marché français, proposer une innovation produit différenciante, concevoir les supports de communication associés et structurer un plan d\'action défendable devant jury.',
+        methodology: 'Audit de marque → Analyse concurrentielle (positioning map) → Identification des opportunités → Co-conception du nouveau produit → Création des supports com (Canva) → Structuration du plan d\'action → Présentation orale.',
         reflection: {
-          before: 'Je pensais savoir ce que les utilisateurs voulaient. Ce projet m\'a prouvé que l\'intuition ne suffit pas.',
-          during: 'Regarder quelqu\'un utiliser mon prototype pour la première fois a été révélateur : des choses évidentes pour moi ne l\'étaient pas du tout pour eux.',
-          after: 'Je ne dessine plus une interface sans me demander d\'abord : "comment est-ce que l\'utilisateur va trouver ça ?"',
-          learned: 'L\'empathie est une compétence de designer autant que la maîtrise des outils. Sans l\'une, l\'autre ne sert à rien.'
+          before: 'Je pensais que la communication, c\'était surtout du graphisme. Ce projet m\'a montré que sans stratégie solide en amont, les plus beaux visuels ne servent à rien.',
+          during: 'L\'analyse concurrentielle a été la fondation : comprendre pourquoi Carl\'s Jr. échoue là où McDonald\'s réussit demande de regarder au-delà du logo et des prix. La vraie réponse était dans le positionnement de marque.',
+          after: 'J\'ai appris à structurer une argumentation stratégique — pas juste "voilà ce qu\'on propose" mais "voilà pourquoi ça va fonctionner, et voilà comment on le mesure".',
+          learned: 'La recommandation stratégique, c\'est de la narration : il faut convaincre, pas seulement informer. La forme de la présentation est aussi importante que son contenu.'
         },
-        tools: ['Figma', 'Notion', 'Whimsical', 'Maze'],
+        tools: ['Canva', 'Notion', 'PowerPoint'],
         ac: [
-          { code: 'AC2.2', title: 'Prototyper des interfaces', desc: 'Créer des maquettes et prototypes validant les choix UX/UI avant développement.' },
-          { code: 'AC1.2', title: 'Comprendre les usages', desc: 'Analyser le comportement des utilisateurs face à une interface.' }
+          { code: 'AC22.03', title: 'Co-construire une recommandation stratégique', desc: 'Structurer un plan d\'action argumenté pour redresser le positionnement de Carl\'s Jr. face à ses concurrents directs.' }
         ]
       },
-      'acad-projet': {
-        title: 'Site événementiel complet pour un client réel',
-        category: 'Projet tutoré — BUT 2',
-        year: 'BUT 2',
-        emoji: '🎓',
-        description: 'Projet tutoré en équipe de 3 pour un client réel : brief, maquettes Figma, développement HTML/CSS/JS et livraison complète d\'un site événementiel fonctionnel.',
-        context: 'Projet commandé par une association étudiante pour son événement annuel. Premier projet avec un vrai client, un vrai brief et une vraie deadline.',
-        objectives: 'Livrer un site complet et opérationnel — formulaire d\'inscription, programme, galerie — dans les délais convenus avec le client.',
-        methodology: 'Brief client → Cahier des charges → Maquettes Figma → Validation → Développement itératif (Git) → Recette → Livraison → Formation client.',
-        results: 'Site mis en ligne 10 jours avant l\'événement. 180 inscriptions via le formulaire. Client satisfait et projet noté 17/20 au jury.',
+      'acad-leclerc': {
+        title: 'Leclerc La Seyne — Communication digitale',
+        category: 'Stage professionnel — Communication digitale · BUT 2',
+        year: 'Stage · BUT 2',
+        emoji: '📲',
+        description: 'Pendant mon stage chez Leclerc La Seyne-sur-Mer, j\'étais en charge de la communication digitale du magasin. Création de vidéos et de posts pour Instagram et TikTok, en respectant l\'image de marque de l\'enseigne, avec des contraintes réelles de planning, de cohérence visuelle et d\'objectifs d\'engagement.',
+        context: 'Stage professionnel BUT 2 — Communication digitale en conditions réelles. Contexte : production de contenu pour l\'audience existante d\'un magasin de grande surface, avec des contraintes de marque fortes (charte Leclerc) et des objectifs de résultats concrets sur les réseaux sociaux.',
+        objectives: 'Assurer une présence régulière et cohérente sur les comptes Instagram et TikTok du magasin, produire des contenus adaptés aux formats et aux algorithmes de chaque plateforme, et respecter l\'image de marque Leclerc tout en donnant une personnalité locale et engageante au compte.',
+        methodology: 'Audit des comptes existants → Définition d\'un planning éditorial → Repérage en magasin → Tournage et montage vidéo (CapCut) → Création de visuels statiques (Canva) → Publication planifiée → Analyse des performances → Ajustements éditoriaux.',
+        results: 'Production régulière de contenu sur toute la durée du stage, avec adaptation constante aux contraintes opérationnelles du magasin. Expérience complète de gestion d\'un compte professionnel sur deux plateformes simultanément, dans un cadre de marque nationale.',
         reflection: {
-          before: 'Je n\'avais jamais travaillé avec un client réel. Je pensais que le développement était la partie la plus dure.',
-          during: 'La communication avec le client a été la vraie complexité. Les allers-retours sur les maquettes ont pris plus de temps que le développement.',
-          after: 'J\'ai appris à fixer des limites claires dans un brief et à documenter chaque décision pour éviter les mauvaises surprises.',
-          learned: 'Un projet ne finit pas quand le code est livré — il finit quand le client sait l\'utiliser seul.'
+          before: 'Créer du contenu pour un exercice scolaire et créer du contenu pour une vraie audience sont deux choses fondamentalement différentes. Je l\'ai compris dès le premier post publié.',
+          during: 'La contrainte de cohérence de marque était parfois frustrante : je ne pouvais pas tout faire comme je voulais. Mais c\'est précisément cette contrainte qui m\'a appris à créer dans un cadre — ce que font les professionnels tous les jours.',
+          after: 'J\'ai appris à produire vite, bien et en quantité. La régularité de publication m\'a formé à une discipline créative que les cours seuls ne donnent pas.',
+          learned: 'Une bonne idée non publiée ne vaut rien. En communication digitale, l\'exécution régulière bat l\'idée parfaite publiée une seule fois.'
         },
-        tools: ['HTML / CSS', 'JavaScript', 'Figma', 'Git', 'Notion'],
-        ac: [
-          { code: 'AC3.1', title: 'Intégrer en HTML/CSS', desc: 'Créer des pages web structurées, accessibles et responsive mobile-first.' },
-          { code: 'AC3.2', title: 'Ajouter de l\'interactivité', desc: 'Implémenter des comportements dynamiques via JavaScript.' },
-          { code: 'AC5.1', title: 'Planifier et coordonner', desc: 'Organiser les étapes d\'un projet en équipe avec un client réel.' },
-          { code: 'AC5.2', title: 'Argumenter ses choix', desc: 'Présenter et défendre ses décisions de design devant le client et le jury.' }
-        ]
+        tools: ['CapCut', 'Canva', 'Instagram', 'TikTok'],
+        link: 'https://www.instagram.com/leclerclaseynesurmer/'
       }
     };
   </script>
