@@ -88,7 +88,7 @@
 
     /* PDF embed in modal */
     .modal-pdf-wrap {
-      width: 100%; height: 520px;
+      width: 100%; height: 380px;
       border-radius: var(--radius);
       overflow: hidden;
       border: 1px solid var(--border);
@@ -97,6 +97,22 @@
     }
     .modal-pdf-iframe { width: 100%; height: 100%; border: none; display: block; }
     .modal-pdf-dl { margin-top: 10px; display: inline-flex; align-items: center; gap: 8px; }
+
+    /* Card video */
+    .project-card-video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    /* Mobile modal */
+    @media (max-width: 600px) {
+      .modal-pdf-wrap { height: 220px; }
+      .modal-pdf-top { padding: 14px 16px 0; }
+      .modal-video { max-height: 240px; }
+      .modal-nav { padding: 12px 16px 20px; }
+      .modal-nav-btn { padding: 9px 14px; font-size: 12px; }
+    }
     .modal-footer-meta {
       display: flex; flex-wrap: wrap; gap: 14px; align-items: center;
       padding-top: 20px; border-top: 1px solid var(--border);
@@ -390,69 +406,6 @@
 
       <div class="projects-grid">
 
-        <!-- BUT 1 / Projet 1 -->
-        <div class="project-card reveal" data-modal="acad-web1" data-year="but1" data-skill="web">
-          <div class="project-card-thumb">
-            <div class="project-card-thumb-placeholder">🌐</div>
-            <div class="project-card-overlay"></div>
-            <span class="project-card-year but1">BUT 1</span>
-            <div class="project-card-cta">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </div>
-          </div>
-          <div class="project-card-body">
-            <div class="project-card-type">SAÉ — Développement web</div>
-            <div class="project-card-category">Intégration & mise en ligne</div>
-            <h3 class="project-card-title">Mon premier site web responsive</h3>
-            <p class="project-card-desc">Conception et intégration d'un site de présentation en HTML/CSS avec navigation, galerie et formulaire de contact.</p>
-            <div class="project-card-tags">
-              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Responsive</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- BUT 1 / Projet 2 -->
-        <div class="project-card reveal reveal-delay-1" data-modal="acad-graph" data-year="but1" data-skill="design,branding">
-          <div class="project-card-thumb">
-            <div class="project-card-thumb-placeholder">🎨</div>
-            <div class="project-card-overlay"></div>
-            <span class="project-card-year but1">BUT 1</span>
-            <div class="project-card-cta">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </div>
-          </div>
-          <div class="project-card-body">
-            <div class="project-card-type">SAÉ — Design graphique</div>
-            <div class="project-card-category">Identité visuelle & charte graphique</div>
-            <h3 class="project-card-title">Création d'une identité graphique associative</h3>
-            <p class="project-card-desc">Logo, palette, typographie et charte d'usage pour une association fictive — du brief créatif à la livraison finale.</p>
-            <div class="project-card-tags">
-              <span class="tag">Illustrator</span><span class="tag">Figma</span><span class="tag">Charte graphique</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- BUT 1 / Projet 3 -->
-        <div class="project-card reveal reveal-delay-2" data-modal="acad-video" data-year="but1" data-skill="video">
-          <div class="project-card-thumb">
-            <div class="project-card-thumb-placeholder">🎬</div>
-            <div class="project-card-overlay"></div>
-            <span class="project-card-year but1">BUT 1</span>
-            <div class="project-card-cta">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </div>
-          </div>
-          <div class="project-card-body">
-            <div class="project-card-type">SAÉ — Production audiovisuelle</div>
-            <div class="project-card-category">Réalisation & montage vidéo</div>
-            <h3 class="project-card-title">Mini-documentaire sur un lieu du campus</h3>
-            <p class="project-card-desc">Tournage, montage et étalonnage d'un reportage de 3 minutes sur un lieu du campus — travail de l'image et du son.</p>
-            <div class="project-card-tags">
-              <span class="tag">Premiere Pro</span><span class="tag">Montage</span><span class="tag">Son</span>
-            </div>
-          </div>
-        </div>
-
         <!-- BUT 2 / So' Italiano — Click & Collect -->
         <div class="project-card reveal" data-modal="acad-soitaliano" data-year="but2" data-skill="ux,design">
           <div class="project-card-thumb">
@@ -542,7 +495,9 @@
         <!-- BUT 2 / Animation Caravaggio -->
         <div class="project-card reveal reveal-delay-1" data-modal="acad-caravaggio" data-year="but2" data-skill="design,video">
           <div class="project-card-thumb">
-            <div class="project-card-thumb-placeholder">🎨</div>
+            <video class="project-card-video" autoplay muted loop playsinline>
+              <source src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Analyse_PUNZO.mp4" type="video/mp4">
+            </video>
             <div class="project-card-overlay"></div>
             <span class="project-card-year but2">BUT 2</span>
             <div class="project-card-cta">
@@ -850,67 +805,6 @@
   <!-- Academic project data -->
   <script>
     window.PROJECTS = {
-      'acad-web1': {
-        title: 'Mon premier site web responsive',
-        category: 'SAÉ — Développement web',
-        year: 'BUT 1',
-        emoji: '🌐',
-        description: 'Conception et intégration complète d\'un site de présentation en HTML/CSS avec navigation, galerie d\'images et formulaire de contact. Premier projet web de A à Z.',
-        context: 'Première SAÉ de développement web en BUT 1. L\'objectif était de maîtriser les bases du HTML sémantique, du CSS moderne et du responsive design.',
-        objectives: 'Créer un site multi-pages structuré, fonctionnel et adaptatif sur mobile, desktop et tablette, en partant d\'un zéro absolu.',
-        methodology: 'Maquette papier → Structure HTML sémantique → Styles CSS (Flexbox, Grid) → Responsive (Media queries) → Tests cross-browser → Mise en ligne.',
-        reflection: {
-          before: 'Je n\'avais jamais touché à du HTML avant ce projet. La structure d\'une page me semblait complexe.',
-          during: 'Le responsive design a été la vraie difficulté : faire tenir le même contenu sur tous les écrans demande de penser différemment la mise en page.',
-          after: 'À la fin, je maîtrisais les bases. Surtout, j\'avais compris la logique de cascade du CSS — quelque chose qui bloque beaucoup de débutants.',
-          learned: 'On n\'apprend pas le web en lisant, on l\'apprend en cassant puis en réparant. Chaque bug m\'a plus appris qu\'un cours entier.'
-        },
-        tools: ['HTML', 'CSS', 'VS Code', 'Figma'],
-        ac: [
-          { code: 'AC3.1', title: 'Intégrer en HTML/CSS', desc: 'Créer des pages web structurées, accessibles et responsive mobile-first.' }
-        ]
-      },
-      'acad-graph': {
-        title: 'Identité graphique pour une association fictive',
-        category: 'SAÉ — Design graphique',
-        year: 'BUT 1',
-        emoji: '🎨',
-        description: 'Création d\'une identité visuelle complète pour une association fictive : logo déclinable, palette chromatique, typographies et charte d\'usage. Du brief créatif à la livraison.',
-        context: 'SAÉ de design graphique en BUT 1. Exercice de réponse à un brief : comprendre un besoin client, proposer une direction artistique et la défendre devant un jury.',
-        objectives: 'Concevoir une identité cohérente, mémorable et adaptable. Produire les fichiers sources et un PDF de présentation de la charte.',
-        methodology: 'Analyse du brief → Recherche créative (mood board) → 3 pistes créatives → Choix et affinage → Déclinaisons → Charte PDF → Soutenance.',
-        reflection: {
-          before: 'Je savais utiliser Illustrator pour des tâches basiques, mais pas pour construire un univers graphique cohérent.',
-          during: 'La plus grande difficulté a été de ne pas m\'attacher à ma première idée. Le mood board m\'a aidé à explorer avant de choisir.',
-          after: 'J\'ai compris que le design graphique, c\'est résoudre un problème de communication — pas juste faire quelque chose de beau.',
-          learned: 'Un logo doit fonctionner en noir et blanc avant tout. Règle que j\'applique maintenant systématiquement.'
-        },
-        tools: ['Illustrator', 'Figma', 'Photoshop'],
-        ac: [
-          { code: 'AC2.1', title: 'Imaginer et conceptualiser', desc: 'Générer des idées créatives et les formaliser en solutions visuelles concrètes.' },
-          { code: 'AC4.1', title: 'Créer des visuels numériques', desc: 'Concevoir des supports graphiques adaptés aux contextes de diffusion numérique.' }
-        ]
-      },
-      'acad-video': {
-        title: 'Mini-documentaire sur un lieu du campus',
-        category: 'SAÉ — Production audiovisuelle',
-        year: 'BUT 1',
-        emoji: '🎬',
-        description: 'Réalisation d\'un mini-documentaire de 3 minutes sur un lieu du campus : tournage, prise de son, montage, étalonnage couleur et habillage de générique.',
-        context: 'SAÉ audiovisuelle en BUT 1. Premier projet vidéo complet — de la préproduction à l\'export final — en équipe de 2.',
-        objectives: 'Maîtriser les étapes fondamentales de la chaîne de production vidéo : cadrage, lumière, montage et export.',
-        methodology: 'Repérage → Storyboard → Tournage → Capture son → Montage Premiere Pro → Étalonnage → Générique → Export H.264.',
-        reflection: {
-          before: 'Je n\'avais jamais monté de vidéo sérieusement. Je pensais que filmer avec son téléphone suffisait.',
-          during: 'La capture sonore a été la révélation : un bon son vaut plus qu\'une belle image. Nous avons dû retourner certaines séquences à cause d\'un son inutilisable.',
-          after: 'Je suis sorti de ce projet avec une vraie culture cinématographique des bases. Je regarde maintenant les films différemment.',
-          learned: 'Le montage, c\'est de l\'écriture. On ne colle pas des plans — on raconte une histoire avec des images.'
-        },
-        tools: ['Premiere Pro', 'DaVinci Resolve', 'Appareil photo', 'Micro directionnel'],
-        ac: [
-          { code: 'AC4.2', title: 'Produire des contenus vidéo', desc: 'Capturer, monter et exporter des vidéos selon les contraintes et objectifs du projet.' }
-        ]
-      },
       'acad-soitaliano': {
         title: 'So\' Italiano — Site click & collect',
         category: 'SAÉ — UX/UI Design · BUT 2',
