@@ -6,6 +6,7 @@
   <title>Portfolio Professionnel — Domenico Punzo</title>
   <meta name="description" content="Missions, réalisations et projets clients de Domenico Punzo" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/logo.png" type="image/png" />
   <style>
     /* Hero gradient unique pro */
     .hero-pro .hero-bg {
@@ -94,8 +95,8 @@
     .project-card-year.type-motion { color: #f59e0b; border-color: rgba(245,158,11,0.35); }
 
     /* Nav & footer logo */
-    .nav-logo-img { height: 34px; width: auto; object-fit: contain; }
-    .footer-logo  { height: 26px; width: auto; object-fit: contain; opacity: 0.65; }
+    .nav-logo-img { height: 34px; width: auto; object-fit: contain; filter: brightness(0) invert(1); }
+    .footer-logo  { height: 26px; width: auto; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.6; }
 
     /* Stage badge */
     .stage-badge {
@@ -364,9 +365,17 @@
         <h2 class="headline reveal reveal-delay-1">Projets professionnels</h2>
         <p class="subtitle reveal reveal-delay-2">Design, web et création multimédia : des réalisations concrètes.</p>
       </div>
+      <div class="filters reveal" style="margin-bottom: 28px;">
+        <div class="filter-group">
+          <button class="filter-btn active" data-group="skill" data-value="all">Tous</button>
+          <button class="filter-btn" data-group="skill" data-value="comm">Communication</button>
+          <button class="filter-btn" data-group="skill" data-value="crea">Création</button>
+          <button class="filter-btn" data-group="skill" data-value="video">Vidéo</button>
+        </div>
+      </div>
       <div class="projects-grid">
         <!-- So' Italiano -->
-        <div class="project-card reveal" data-modal="pro-soitaliano">
+        <div class="project-card reveal" data-modal="pro-soitaliano" data-skill="crea">
           <div class="project-card-thumb">
             <img src="traces/BUT%202/mockoup2.png" alt="So' Italiano — mockup" loading="lazy" />
             <div class="project-card-overlay"></div>
@@ -385,7 +394,7 @@
         </div>
 
         <!-- Leclerc création digitale -->
-        <div class="project-card reveal reveal-delay-1 card-stage" data-modal="pro-leclerc-dig">
+        <div class="project-card reveal reveal-delay-1 card-stage" data-modal="pro-leclerc-dig" data-skill="comm">
           <div class="project-card-thumb">
             <img src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/54907.jpg" alt="Leclerc création digitale" loading="lazy" />
             <div class="project-card-overlay"></div>
@@ -405,7 +414,7 @@
         </div>
 
         <!-- La Grande Rencontre -->
-        <div class="project-card reveal reveal-delay-2 card-stage" data-modal="pro-granderencontre">
+        <div class="project-card reveal reveal-delay-2 card-stage" data-modal="pro-granderencontre" data-skill="comm">
           <div class="project-card-thumb">
             <img src="traces/BUT%202/la%20grande%20rencontre.png" alt="La Grande Rencontre" loading="lazy" />
             <div class="project-card-overlay"></div>
@@ -425,7 +434,7 @@
         </div>
 
         <!-- Les 7 Œuvres de Miséricorde — Caravaggio -->
-        <div class="project-card reveal" data-modal="pro-caravaggio">
+        <div class="project-card reveal" data-modal="pro-caravaggio" data-skill="crea">
           <div class="project-card-thumb">
             <video class="project-card-video" autoplay muted loop playsinline>
               <source src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Analyse_PUNZO.mp4" type="video/mp4">
@@ -446,7 +455,7 @@
         </div>
 
         <!-- Court métrage Spartacus -->
-        <div class="project-card reveal reveal-delay-1" data-modal="pro-spartacus">
+        <div class="project-card reveal reveal-delay-1" data-modal="pro-spartacus" data-skill="video">
           <div class="project-card-thumb">
             <video class="project-card-video" autoplay muted loop playsinline>
               <source src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Il%20mio%20filmato%208.MOV" type="video/mp4">
@@ -467,7 +476,7 @@
         </div>
 
         <!-- Affiches avant-match -->
-        <div class="project-card reveal reveal-delay-2" data-modal="pro-football">
+        <div class="project-card reveal reveal-delay-2" data-modal="pro-football" data-skill="crea">
           <div class="project-card-thumb">
             <img src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/WvuZRFdfd.png" alt="Affiches avant-match" loading="lazy" />
             <div class="project-card-overlay"></div>
@@ -481,6 +490,44 @@
             <p class="project-card-desc">Série de 5 affiches avant-match publiées sur Instagram : traitement photo avancé sur Photoshop, direction iconographique personnelle adaptée à chaque équipe.</p>
             <div class="project-card-tags">
               <span class="tag">Photoshop</span><span class="tag">Iconographie</span><span class="tag">Instagram</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Banque en ligne étudiante -->
+        <div class="project-card reveal" data-modal="pro-banque" data-skill="crea">
+          <div class="project-card-thumb">
+            <img src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/684ecc3e75a87_1.png" alt="Banque en ligne étudiante" loading="lazy" />
+            <div class="project-card-overlay"></div>
+            <span class="project-card-year type-crea">UX/UI</span>
+            <div class="project-card-cta"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </div>
+          <div class="project-card-body">
+            <div class="project-card-type">Identité visuelle · UX/UI</div>
+            <div class="project-card-category">Branding · Application mobile · Figma</div>
+            <h3 class="project-card-title">Banque en ligne étudiante</h3>
+            <p class="project-card-desc">Identité complète d'une banque fictive pour étudiants : logo, carte bancaire, app mobile et affiche A4 — conduit seul de A à Z.</p>
+            <div class="project-card-tags">
+              <span class="tag">Figma</span><span class="tag">Illustrator</span><span class="tag">Photoshop</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Affiche touristique Napoli -->
+        <div class="project-card reveal reveal-delay-1" data-modal="pro-napoli" data-skill="crea">
+          <div class="project-card-thumb">
+            <img src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/Affiche-touristique_Punzo_Domenico.jpg" alt="Affiche touristique Napoli" loading="lazy" />
+            <div class="project-card-overlay"></div>
+            <span class="project-card-year type-crea">Illustration</span>
+            <div class="project-card-cta"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </div>
+          <div class="project-card-body">
+            <div class="project-card-type">Illustration vectorielle</div>
+            <div class="project-card-category">Flat Design · Affiche · Illustrator</div>
+            <h3 class="project-card-title">Affiche touristique — Napoli</h3>
+            <p class="project-card-desc">Affiche flat design pour Naples : le Castel dell'Ovo reconstitué en vectoriel sur Illustrator, entre hommage personnel et exercice graphique.</p>
+            <div class="project-card-tags">
+              <span class="tag">Illustrator</span><span class="tag">Flat Design</span><span class="tag">Vectoriel</span>
             </div>
           </div>
         </div>
@@ -598,7 +645,7 @@
             <p class="body">Montage vidéo, motion design et animations pour le web et les réseaux sociaux.</p>
             <div class="skill-tool-badges">
               <span class="skill-tool-badge">Premiere Pro</span>
-              <span class="skill-tool-badge">After Effects</span>
+              <span class="skill-tool-badge">Blender</span>
               <span class="skill-tool-badge">DaVinci</span>
             </div>
           </div></div></div>
@@ -623,14 +670,13 @@
           <div class="tool-item"><span class="tool-icon">🖼️</span><span class="tool-name">Photoshop</span></div>
           <div class="tool-item"><span class="tool-icon">📐</span><span class="tool-name">InDesign</span></div>
           <div class="tool-item"><span class="tool-icon">🎬</span><span class="tool-name">Premiere Pro</span></div>
-          <div class="tool-item"><span class="tool-icon">✨</span><span class="tool-name">After Effects</span></div>
           <div class="tool-item"><span class="tool-icon">🎞️</span><span class="tool-name">DaVinci Resolve</span></div>
+          <div class="tool-item"><span class="tool-icon">🎲</span><span class="tool-name">Blender</span></div>
           <div class="tool-item"><span class="tool-icon">🌐</span><span class="tool-name">HTML / CSS</span></div>
           <div class="tool-item"><span class="tool-icon">⚡</span><span class="tool-name">JavaScript</span></div>
           <div class="tool-item"><span class="tool-icon">🖥️</span><span class="tool-name">VS Code</span></div>
           <div class="tool-item"><span class="tool-icon">🐱</span><span class="tool-name">Git / GitHub</span></div>
           <div class="tool-item"><span class="tool-icon">🎨</span><span class="tool-name">Canva</span></div>
-          <div class="tool-item"><span class="tool-icon">📷</span><span class="tool-name">Lightroom</span></div>
           <div class="tool-item"><span class="tool-icon">📝</span><span class="tool-name">Notion</span></div>
         </div>
       </div>
@@ -663,13 +709,13 @@
               <svg class="contact-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
               domenicopunzo07@gmail.com
             </a>
-            <a class="contact-link" href="https://linkedin.com" target="_blank">
+            <a class="contact-link" href="https://www.linkedin.com/in/domenico-punzo-ab3b39387" target="_blank">
               <svg class="contact-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
               LinkedIn
             </a>
-            <a class="contact-link" href="https://github.com" target="_blank">
-              <svg class="contact-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
-              GitHub
+            <a class="contact-link" href="https://www.instagram.com/domenico.graphic?igsh=MWd6aXN2aXplbGFxOA%3D%3D&utm_source=qr" target="_blank">
+              <svg class="contact-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              Instagram
             </a>
             <a class="contact-link" href="#" download>
               <svg class="contact-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
@@ -681,11 +727,11 @@
           <form id="contactForm">
             <div class="form-group">
               <label class="form-label">Nom complet</label>
-              <input class="form-input" type="text" placeholder="Jean Dupont" required />
+              <input class="form-input" type="text" placeholder="Domenico Punzo" required />
             </div>
             <div class="form-group">
               <label class="form-label">Email</label>
-              <input class="form-input" type="email" placeholder="jean@entreprise.fr" required />
+              <input class="form-input" type="email" placeholder="domenico@email.fr" required />
             </div>
             <div class="form-group">
               <label class="form-label">Sujet</label>
@@ -767,7 +813,7 @@
         description: "Montage d'un court métrage de fiction pour un ami en école de cinéma : raccords son/image, rythme narratif, étalonnage couleur et mixage sonore.",
         context: "Collaboration externe pour un projet de fin d'études en école de cinéma. Contraintes narratives et techniques réelles, délais imposés par le calendrier académique du réalisateur.",
         results: 'Court métrage finalisé, étalonné et mixé dans les délais impartis. Collaboration enrichissante sur un projet artistique exigeant avec un étudiant en cinéma.',
-        tools: ['Premiere Pro', 'After Effects', 'DaVinci Resolve'],
+        tools: ['Premiere Pro', 'DaVinci Resolve'],
         video: 'https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Il%20mio%20filmato%208.MOV'
       },
       'pro-football': {
@@ -785,6 +831,40 @@
           'https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/liverpool_arsenal.jpg',
           'https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/real_atletico_unico.jpg'
         ]
+      },
+      'pro-banque': {
+        title: 'Banque en ligne étudiante',
+        category: 'Identité visuelle · UX/UI',
+        emoji: '🏦',
+        description: "Conception de A à Z de l'identité complète d'une banque en ligne fictive destinée aux étudiants : logo, carte bancaire, application mobile et affiche A4.",
+        context: "Projet de 1ère année conduit entièrement seul. Objectif : créer une identité visuelle cohérente et accessible pour une cible étudiante, en travaillant l'ensemble des déclinaisons du branding.",
+        methodology: "Audit des banques en ligne existantes, construction de la proposition de valeur, planches d'inspiration définissant la direction artistique, puis conception de tous les supports sur Illustrator, Photoshop et Figma.",
+        results: "Identité complète : logo, carte bancaire, interface application mobile et affiche A4. Chaque élément pensé dans une continuité graphique globale.",
+        reflection: {
+          learned: "Ce projet m'a appris à gérer seul l'ensemble d'un processus créatif, de l'analyse stratégique jusqu'à la déclinaison visuelle complète sur de multiples supports."
+        },
+        gallery: [
+          'https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/684ecc3e75a87_1.png',
+          'https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/684ecc3e76a88_2.png',
+          'https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/684ecc3e7743a_3.png',
+          'https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/684ecc3e77b9a_4.png',
+          'https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/684ecc3e78b1d_5.png',
+          'https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/684ecc3e79435_6.png'
+        ],
+        tools: ['Figma', 'Illustrator', 'Photoshop']
+      },
+      'pro-napoli': {
+        title: 'Affiche touristique — Napoli',
+        category: 'Illustration vectorielle · Flat Design',
+        emoji: '🗺️',
+        description: "Affiche touristique illustrée en style flat design inspiré des affiches vintage de voyage, représentant le Castel dell'Ovo de Naples.",
+        context: "Projet scolaire de 1ère année. Naples est ma ville, mes racines. Représenter le Castel dell'Ovo était autant un exercice graphique qu'un hommage personnel à une ville qui compte énormément pour moi.",
+        methodology: "Travaillant sur Illustrator, reconstitution du Castel dell'Ovo en vectoriel d'après références photographiques, forme par forme. Le style flat design imposait une simplification assumée des volumes tout en conservant l'essence reconnaissable du lieu.",
+        results: "Affiche touristique vectorielle cohérente dans son style flat design, valorisant l'identité visuelle de Naples avec une palette inspirée de la lumière méditerranéenne.",
+        reflection: {
+          learned: "Ce projet m'a appris à traduire une référence photographique réelle en illustration vectorielle stylisée, en faisant des choix graphiques assumés à chaque étape. Les meilleurs projets sont souvent ceux où on met quelque chose de personnel."
+        },
+        tools: ['Illustrator']
       }
     };
   </script>
