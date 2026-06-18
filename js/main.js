@@ -182,43 +182,64 @@ requestAnimationFrame(() => {
   if (!backdrop) return;
   const modal = backdrop.querySelector('.modal');
 
+  const triggers   = Array.from(document.querySelectorAll('[data-modal]'));
+  let   currentIdx = -1;
+
   const close = () => {
     backdrop.classList.remove('open');
     document.body.style.overflow = '';
   };
 
-  document.querySelectorAll('[data-modal]').forEach(trigger => {
-    trigger.addEventListener('click', () => {
-      const id   = trigger.dataset.modal;
-      const data = window.PROJECTS && window.PROJECTS[id];
-      if (!data) return;
-      renderModal(data);
-      backdrop.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    });
+  const openByIdx = (idx) => {
+    if (idx < 0 || idx >= triggers.length) return;
+    currentIdx = idx;
+    const id   = triggers[idx].dataset.modal;
+    const data = window.PROJECTS && window.PROJECTS[id];
+    if (!data) return;
+    renderModal(data);
+    modal.scrollTop = 0;
+    backdrop.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  triggers.forEach((trigger, idx) => {
+    trigger.addEventListener('click', () => openByIdx(idx));
   });
 
   backdrop.addEventListener('click', e => {
-    if (e.target === backdrop || e.target.closest('.modal-close-btn')) close();
+    if (e.target === backdrop || e.target.closest('.modal-close-btn')) { close(); return; }
+    if (e.target.closest('#modalPrev')) { openByIdx(currentIdx - 1); return; }
+    if (e.target.closest('#modalNext')) { openByIdx(currentIdx + 1); return; }
   });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+  document.addEventListener('keydown', e => {
+    if (!backdrop.classList.contains('open')) return;
+    if (e.key === 'Escape')     close();
+    if (e.key === 'ArrowLeft')  openByIdx(currentIdx - 1);
+    if (e.key === 'ArrowRight') openByIdx(currentIdx + 1);
+  });
 
   function renderModal(d) {
-    const gallery = d.images?.length
-      ? `<div class="modal-gallery">
-          <div class="modal-gallery-main">
-            <img id="modalMainImg" src="${d.images[0]}" alt="${d.title}" loading="lazy" />
-          </div>
-          ${d.images.length > 1 ? `<div class="modal-gallery-thumbs">
-            ${d.images.map((img, i) => `<div class="modal-gallery-thumb${i===0?' active':''}" onclick="setModalImg('${img}',this)"><img src="${img}" alt="" loading="lazy"/></div>`).join('')}
-          </div>` : ''}
-        </div>`
-      : `<div class="modal-hero-emoji">${d.emoji || '📁'}</div>`;
-
     const tools    = (d.tools || []).map(t => `<span class="skill-tool-badge">${t}</span>`).join('');
     const acBadges = (d.ac   || []).map(a => `<div class="ac-badge">${a.code}<div class="ac-tooltip"><div class="ac-tooltip-code">${a.code}</div><div class="ac-tooltip-title">${a.title}</div><div class="ac-tooltip-desc">${a.desc}</div></div></div>`).join('');
     const demarche = [d.context, d.methodology].filter(Boolean).map(p => `<p class="body">${p}</p>`).join('');
     const learned  = d.reflection?.learned || '';
+
+    const topSection = d.video
+      ? `<div class="modal-video-wrap">
+           <video src="${d.video}" controls class="modal-video" preload="metadata" playsinline></video>
+         </div>`
+      : d.pdf
+      ? `<div class="modal-pdf-top">
+           <div class="modal-pdf-wrap"><iframe src="${d.pdf}" class="modal-pdf-iframe" loading="lazy" title="Document PDF"></iframe></div>
+           <a href="${d.pdf}" target="_blank" class="btn btn-ghost modal-pdf-dl">
+             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+             Ouvrir en plein écran
+           </a>
+         </div>`
+      : `<div class="modal-hero-emoji">${d.emoji || '📁'}</div>`;
+
+    const navPrevDisabled = currentIdx <= 0 ? ' disabled' : '';
+    const navNextDisabled = currentIdx >= triggers.length - 1 ? ' disabled' : '';
 
     modal.innerHTML = `
       <div class="modal-close">
@@ -226,7 +247,7 @@ requestAnimationFrame(() => {
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
         </button>
       </div>
-      ${gallery}
+      ${topSection}
       <div class="modal-body">
         <div class="modal-meta">
           <span class="modal-category">${d.category || ''}</span>
@@ -234,33 +255,26 @@ requestAnimationFrame(() => {
         </div>
         <h2 class="modal-title">${d.title}</h2>
         <p class="modal-desc">${d.description}</p>
-        ${d.pdf ? `<div class="modal-section modal-pdf-section">
-          <h4>Document de projet</h4>
-          <div class="modal-pdf-wrap">
-            <iframe src="${d.pdf}" class="modal-pdf-iframe" loading="lazy" title="Document PDF"></iframe>
-          </div>
-          <a href="${d.pdf}" target="_blank" class="btn btn-ghost modal-pdf-dl">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-            Ouvrir en plein écran
-          </a>
-        </div>` : ''}
         ${demarche  ? `<div class="modal-section"><h4>Démarche</h4>${demarche}</div>` : ''}
         ${d.results ? `<div class="modal-section"><h4>Résultats</h4><p class="body">${d.results}</p></div>` : ''}
         ${learned   ? `<div class="modal-section"><h4>Ce que j'ai retenu</h4><p class="body">${learned}</p></div>` : ''}
         ${acBadges  ? `<div class="modal-section"><h4>Apprentissages Critiques</h4><div class="ac-list">${acBadges}</div></div>` : ''}
         ${tools     ? `<div class="modal-section"><h4>Outils utilisés</h4><div class="skill-tool-badges">${tools}</div></div>` : ''}
         ${d.link    ? `<div class="modal-section"><a href="${d.link}" target="_blank" class="btn btn-ghost">Voir le projet ↗</a></div>` : ''}
+      </div>
+      <div class="modal-nav">
+        <button class="modal-nav-btn" id="modalPrev"${navPrevDisabled}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Précédent
+        </button>
+        <button class="modal-nav-btn" id="modalNext"${navNextDisabled}>
+          Suivant
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
       </div>`;
   }
 })();
 
-/* ── Global thumb switcher ── */
-window.setModalImg = (src, thumb) => {
-  const main = document.getElementById('modalMainImg');
-  if (main) main.src = src;
-  document.querySelectorAll('.modal-gallery-thumb').forEach(t => t.classList.remove('active'));
-  thumb?.classList.add('active');
-};
 
 /* ── Contact form ── */
 (function initForm() {
@@ -339,31 +353,6 @@ window.setModalImg = (src, thumb) => {
   loop();
 })();
 
-/* ── 3D Card Tilt ── */
-(function initTilt() {
-  const isMobile = window.matchMedia('(hover: none)').matches;
-  if (isMobile) return;
-
-  document.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('mousemove', e => {
-      const r  = card.getBoundingClientRect();
-      const x  = e.clientX - r.left;
-      const y  = e.clientY - r.top;
-      const rx = ((y / r.height) - 0.5) * -14;
-      const ry = ((x / r.width)  - 0.5) *  14;
-      card.style.transition = 'box-shadow 0.15s';
-      card.style.transform  = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.025)`;
-      card.style.boxShadow  = `0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(85,125,209,0.12)`;
-      card.style.setProperty('--mx', (x / r.width  * 100) + '%');
-      card.style.setProperty('--my', (y / r.height * 100) + '%');
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.transition = 'transform 0.55s var(--ease-expo), box-shadow 0.55s';
-      card.style.transform  = '';
-      card.style.boxShadow  = '';
-    });
-  });
-})();
 
 /* ── Magnetic Buttons ── */
 (function initMagnetic() {

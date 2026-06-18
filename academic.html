@@ -102,6 +102,34 @@
       padding-top: 20px; border-top: 1px solid var(--border);
     }
 
+    /* Modal video player */
+    .modal-video-wrap { width: 100%; background: #000; }
+    .modal-video { width: 100%; max-height: 420px; display: block; object-fit: contain; }
+
+    /* PDF at top of modal (outside body) */
+    .modal-pdf-top { padding: 24px 32px 0; }
+    .modal-pdf-top .modal-pdf-wrap { margin-top: 0; }
+
+    /* Prev/Next modal navigation */
+    .modal-nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 16px 32px 28px;
+      border-top: 1px solid var(--border);
+      gap: 12px;
+    }
+    .modal-nav-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 600; color: var(--text-muted);
+      background: var(--bg-3); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 10px 18px;
+      cursor: pointer; font-family: inherit;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .modal-nav-btn:hover:not(:disabled) {
+      color: var(--text); border-color: var(--border-hover); background: var(--bg-card);
+    }
+    .modal-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
     /* BUT MMI subtitle in hero */
     .hero-but-label {
       font-size: clamp(18px, 2.6vw, 28px);
@@ -489,6 +517,112 @@
           </div>
         </div>
 
+        <!-- BUT 2 / La Grande Rencontre — Événement Leclerc (Stage) -->
+        <div class="project-card reveal card-stage" data-modal="acad-granderencontre" data-year="but2" data-skill="design,comm">
+          <div class="project-card-thumb">
+            <img src="traces/BUT%202/la%20grande%20rencontre.png" alt="La Grande Rencontre — affiche" loading="lazy" />
+            <div class="project-card-overlay"></div>
+            <div class="stage-badge">Stage</div>
+            <span class="project-card-year but2">BUT 2</span>
+            <div class="project-card-cta">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <div class="project-card-type">Stage — Événementiel & Communication</div>
+            <div class="project-card-category">Affiche · Réseaux sociaux</div>
+            <h3 class="project-card-title">La Grande Rencontre — Job dating</h3>
+            <p class="project-card-desc">Communication visuelle complète pour un événement job dating organisé par Leclerc : affiche, publications Instagram et déclinaisons réseaux en conditions professionnelles réelles.</p>
+            <div class="project-card-tags">
+              <span class="tag">Canva</span><span class="tag">Instagram</span><span class="tag">Événementiel</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- BUT 2 / Animation Caravaggio -->
+        <div class="project-card reveal reveal-delay-1" data-modal="acad-caravaggio" data-year="but2" data-skill="design,video">
+          <div class="project-card-thumb">
+            <div class="project-card-thumb-placeholder">🎨</div>
+            <div class="project-card-overlay"></div>
+            <span class="project-card-year but2">BUT 2</span>
+            <div class="project-card-cta">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <div class="project-card-type">SAÉ — Motion Design & Analyse d'œuvre</div>
+            <div class="project-card-category">Animation · Analyse iconographique</div>
+            <h3 class="project-card-title">Les 7 Œuvres de Miséricorde — Caravaggio</h3>
+            <p class="project-card-desc">Animation vidéo décryptant la composition et la symbolique du chef-d'œuvre de Caravaggio, avec mouvements de caméra et incrustations d'analyse réalisés sur Blender et Photoshop.</p>
+            <div class="project-card-tags">
+              <span class="tag">Blender</span><span class="tag">Photoshop</span><span class="tag">Motion Design</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- BUT 2 / Sillans la Cascade — Département du Var -->
+        <div class="project-card reveal reveal-delay-2" data-modal="acad-sillans" data-year="but2" data-skill="comm,ux">
+          <div class="project-card-thumb">
+            <div class="project-card-thumb-placeholder">🌊</div>
+            <div class="project-card-overlay"></div>
+            <span class="project-card-year but2">BUT 2</span>
+            <div class="project-card-cta">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <div class="project-card-type">Projet commandité — Communication transmédia</div>
+            <div class="project-card-category">Audioguide · Stratégie Instagram</div>
+            <h3 class="project-card-title">Sillans-la-Cascade — Médiation numérique</h3>
+            <p class="project-card-desc">Valorisation numérique d'un site naturel du Var : conception d'un audioguide et d'une stratégie Instagram pour un projet commandité par le Département.</p>
+            <div class="project-card-tags">
+              <span class="tag">Canva</span><span class="tag">Instagram</span><span class="tag">Audioguide</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- BUT 2 / La Chèvre de Monsieur Seguin — Podcast -->
+        <div class="project-card reveal" data-modal="acad-chevre" data-year="but2" data-skill="comm">
+          <div class="project-card-thumb">
+            <div class="project-card-thumb-placeholder">🎙️</div>
+            <div class="project-card-overlay"></div>
+            <span class="project-card-year but2">BUT 2</span>
+            <div class="project-card-cta">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <div class="project-card-type">SAÉ — Production audio & Narration</div>
+            <div class="project-card-category">Podcast · Adaptation littéraire</div>
+            <h3 class="project-card-title">La Chèvre de Monsieur Seguin — Podcast</h3>
+            <p class="project-card-desc">Adaptation et production d'un podcast narratif du conte de Daudet : écriture, enregistrement, montage et habillage sonore pour une diffusion en ligne.</p>
+            <div class="project-card-tags">
+              <span class="tag">Audacity</span><span class="tag">Narration</span><span class="tag">Podcast</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- BUT 2 / Court métrage Spartacus -->
+        <div class="project-card reveal reveal-delay-1" data-modal="acad-spartacus" data-year="but2" data-skill="video">
+          <div class="project-card-thumb">
+            <div class="project-card-thumb-placeholder">🎞️</div>
+            <div class="project-card-overlay"></div>
+            <span class="project-card-year but2">BUT 2</span>
+            <div class="project-card-cta">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <div class="project-card-type">Création — Montage vidéo</div>
+            <div class="project-card-category">Court métrage · Fiction</div>
+            <h3 class="project-card-title">Court métrage Spartacus</h3>
+            <p class="project-card-desc">Montage d'un court métrage de fiction pour un ami en école de cinéma : raccords, rythme, étalonnage couleur et mixage sonore sur Premiere Pro.</p>
+            <div class="project-card-tags">
+              <span class="tag">Premiere Pro</span><span class="tag">Étalonnage</span><span class="tag">Fiction</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -789,7 +923,7 @@
           learned: 'Ce projet m\'a confirmé qu\'on ne conçoit jamais vraiment pour soi. Les retours de tests ont transformé mon design plus profondément que toutes mes convictions initiales, et c\'est précisément cette confrontation au regard de l\'autre qui fait progresser en UX.'
         },
         images: ['traces/BUT%202/mockoup2.png'],
-        pdf: 'traces/BUT%202/So\'%20italiano.pdf',
+        pdf: 'https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/So\'%20italiano.pdf',
         tools: ['Figma'],
         ac: [
           { code: 'AC22.01', title: 'Co-concevoir un produit ou un service', desc: 'Définir la proposition de valeur et les fonctionnalités d\'un service de click & collect adapté à une cible identifiée.' },
@@ -808,7 +942,7 @@
           learned: 'Ce projet m\'a montré que toute stratégie de communication naît d\'une analyse rigoureuse : sans audit solide en amont, même la meilleure idée créative reste sans fondation. La partie hors-médias m\'a également révélé l\'importance de penser la communication dans sa globalité, bien au-delà des seuls supports digitaux.'
         },
         images: ['traces/BUT%202/mockoup1.png'],
-        pdf: 'traces/BUT%202/CARL\'S%20JR.pdf',
+        pdf: 'https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Sauvons%20la%20marque/CARL\'S%20JR.pdf',
         tools: ['Canva', 'PowerPoint'],
         ac: [
           { code: 'AC22.03', title: 'Co-construire une recommandation stratégique', desc: 'Structurer un plan d\'action argumenté pour redresser le positionnement de Carl\'s Jr. face à ses concurrents directs.' }
@@ -828,6 +962,86 @@
         },
         tools: ['CapCut', 'Canva', 'Instagram', 'TikTok'],
         link: 'https://www.instagram.com/leclerclaseynesurmer/'
+      },
+      'acad-granderencontre': {
+        title: 'La Grande Rencontre — Job dating Leclerc',
+        category: 'Stage — Événementiel & Communication · BUT 2',
+        year: 'Stage · BUT 2',
+        emoji: '🤝',
+        description: 'Dans le cadre de mon stage chez Leclerc La Seyne-sur-Mer, j\'ai pris en charge la communication visuelle et digitale d\'un événement job dating organisé par le magasin : "La Grande Rencontre". J\'ai conçu l\'ensemble des supports de communication — affiche, publications réseaux sociaux — depuis le brief jusqu\'à la publication.',
+        context: 'Le magasin souhaitait recruter et cherchait à donner à cet événement une visibilité locale maximale. Ma tutrice m\'a confié la réalisation de la communication événementielle en autonomie, avec validation à chaque étape. C\'était la première fois que je gérais un projet de communication complet en conditions professionnelles, avec un délai court et des contraintes de charte fortes.',
+        methodology: 'J\'ai commencé par cadrer l\'événement avec ma tutrice : ton, cible, informations essentielles à faire passer. J\'ai ensuite conçu l\'affiche sur Canva en respectant les codes graphiques de la marque Leclerc, puis décliné le visuel en formats adaptés aux réseaux sociaux. Les publications Instagram ont été programmées pour maximiser la portée avant l\'événement.',
+        reflection: {
+          learned: 'Ce projet m\'a appris ce que signifie livrer dans un contexte professionnel sous contrainte de temps : chaque décision créative doit être rapide, justifiable et alignée avec la marque. L\'événementiel demande une rigueur logistique que la production habituelle de contenu n\'entraîne pas.'
+        },
+        tools: ['Canva', 'Instagram'],
+        ac: [
+          { code: 'AC23.02', title: 'Co-concevoir des réponses à des problèmes de communication', desc: 'Concevoir la communication événementielle d\'un job dating en réponse à un besoin de recrutement identifié.' },
+          { code: 'AC23.03', title: 'Proposer une recommandation graphique et éditoriale', desc: 'Définir les partis pris visuels et éditoriaux de l\'affiche et des publications sociales.' },
+          { code: 'AC25.04', title: 'Diffuser des contenus sur les plateformes de réseaux sociaux', desc: 'Programmer et publier les contenus sur Instagram en tenant compte des temps forts de l\'événement.' }
+        ]
+      },
+      'acad-caravaggio': {
+        title: 'Les 7 Œuvres de Miséricorde — Animation Caravaggio',
+        category: 'SAÉ — Motion Design & Analyse d\'œuvre · BUT 2',
+        year: 'BUT 2',
+        emoji: '🎨',
+        description: 'Production d\'une animation vidéo analysant "Les Sept Œuvres de Miséricorde" de Caravaggio. Ce projet alliait analyse iconographique approfondie et production visuelle : j\'ai déconstruit le tableau plan par plan pour en révéler la composition, la symbolique et la narration à travers l\'animation.',
+        context: 'La SAÉ portait sur l\'analyse d\'une œuvre d\'art majeure et sur sa transposition en contenu visuel animé. J\'ai choisi Caravaggio pour la densité narrative de son œuvre et la richesse de sa symbolique religieuse — sept figures de miséricorde condensées dans une seule toile, une composition qui nécessitait une lecture guidée pour être pleinement comprise.',
+        methodology: 'J\'ai d\'abord conduit une analyse iconographique détaillée, en identifiant chaque figure et son acte de miséricorde. J\'ai ensuite construit le découpage de l\'animation sur Blender : mouvements de caméra sur les détails du tableau, zooms progressifs sur les personnages, incrustations de texte explicatif réalisées sur Photoshop. Le résultat est une lecture visuelle guidée de l\'œuvre, pensée pour un public non-spécialiste.',
+        reflection: {
+          learned: 'Ce projet m\'a révélé la puissance de l\'animation comme outil de médiation culturelle. Déplacer un regard sur une œuvre d\'art — lui donner un sens de lecture, une temporalité — peut transformer complètement la façon dont on la perçoit.'
+        },
+        video: 'https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Analyse_PUNZO.mp4',
+        tools: ['Blender', 'Photoshop'],
+        ac: [
+          { code: 'AC23.06', title: 'Analyser une œuvre pour en produire une lecture', desc: 'Décomposer la composition et la symbolique du tableau de Caravaggio pour en proposer une interprétation animée.' }
+        ]
+      },
+      'acad-sillans': {
+        title: 'Sillans-la-Cascade — Médiation numérique',
+        category: 'Projet commandité — Communication transmédia · BUT 2',
+        year: 'BUT 2',
+        emoji: '🌊',
+        description: 'Projet de médiation numérique pour la commune de Sillans-la-Cascade et le Département du Var. L\'objectif : valoriser ce site naturel remarquable à travers des outils digitaux accessibles — audioguide et présence Instagram — pour accompagner la découverte du lieu par un public large et varié.',
+        context: 'Ce projet commandité nous a mis en position de prestataires face à un vrai client : la commune et ses partenaires institutionnels. Les attentes étaient concrètes, les contraintes réelles — accessibilité du contenu, ton adapté au grand public, respect de l\'identité du territoire. Un exercice de communication transmédia à l\'échelle d\'un territoire, bien différent des SAÉ classiques.',
+        methodology: 'J\'ai travaillé sur deux axes complémentaires : la conception du scénario de l\'audioguide, avec une écriture pensée pour l\'oreille et l\'itinérance, et la stratégie de contenu pour Instagram, avec un ton éditorial adapté à la communication touristique. Les deux supports devaient se compléter pour créer une expérience cohérente du lieu, du pré-visite au souvenir.',
+        reflection: {
+          learned: 'Travailler sur un territoire réel, avec des interlocuteurs institutionnels, m\'a appris à adapter ma communication à des contraintes que l\'école simule rarement : validation politique, accessibilité pour tous les publics, cohérence entre supports offline et online.'
+        },
+        tools: ['Canva', 'Instagram', 'Audacity'],
+        ac: []
+      },
+      'acad-chevre': {
+        title: 'La Chèvre de Monsieur Seguin — Podcast narratif',
+        category: 'SAÉ — Production audio & Narration · BUT 2',
+        year: 'BUT 2',
+        emoji: '🎙️',
+        description: 'Production d\'un podcast narratif adapté du conte d\'Alphonse Daudet "La Chèvre de Monsieur Seguin". Ce projet de création sonore mêlait écriture d\'adaptation, enregistrement, montage audio et habillage sonore pour produire un format audio autonome, pensé pour une écoute en ligne.',
+        context: 'La SAÉ portait sur la narration sonore et l\'adaptation littéraire en format audio. J\'ai choisi "La Chèvre de Monsieur Seguin" pour la richesse de son récit et la possibilité d\'en proposer une lecture contemporaine, tout en restant fidèle à la langue de Daudet. L\'exercice était aussi technique que créatif : produire quelque chose de beau à écouter demande une attention que l\'écrit n\'exige pas.',
+        methodology: 'J\'ai d\'abord réalisé un travail d\'adaptation du texte original, en sélectionnant et restructurant les passages pour qu\'ils fonctionnent à l\'oral. L\'enregistrement a nécessité plusieurs prises pour obtenir le bon placement de voix et un rendu acoustique propre. Le montage a intégré des ambiances sonores et une musique de fond discrète pour soutenir le récit sans l\'envahir. L\'ensemble a été masterisé pour une diffusion homogène.',
+        reflection: {
+          learned: 'La production audio m\'a appris que le silence est un outil narratif à part entière. Une pause, une respiration, un fond sonore atténué : ces éléments invisibles portent l\'émotion plus sûrement que les mots. Je n\'entends plus les podcasts de la même façon depuis.'
+        },
+        tools: ['Audacity', 'GarageBand'],
+        ac: [
+          { code: 'AC23.01', title: 'Réaliser et diffuser un contenu sonore narratif', desc: 'Adapter un texte littéraire en podcast autonome, de l\'écriture au mixage final.' }
+        ]
+      },
+      'acad-spartacus': {
+        title: 'Court métrage Spartacus — Montage vidéo',
+        category: 'Création — Montage vidéo · BUT 2',
+        year: 'BUT 2',
+        emoji: '🎞️',
+        description: 'Montage d\'un court métrage de fiction pour un ami en école de cinéma. Un exercice de montage narratif avec Premiere Pro — raccords, rythme, étalonnage couleur — pour donner une cohérence dramatique à des rushes bruts tournés sur plusieurs jours.',
+        context: 'Ce projet est sorti du cadre académique habituel : un ami réalisateur m\'a confié le montage de son court métrage de fin d\'année. C\'était la première fois que je montais un film de fiction d\'une autre personne — avec ses intentions, son style, ses contraintes. Une expérience de collaboration créative très différente de monter sa propre vision.',
+        methodology: 'J\'ai travaillé à partir d\'un dossier de rushes classés par scènes. Après une première visualisation complète pour comprendre le film, j\'ai établi un premier montage dit "ours" avec toutes les scènes dans l\'ordre, puis procédé à un affinage progressif — raccords, rythme, gestion des silences. L\'étalonnage couleur et le mixage sonore ont été réalisés en fin de post-production pour assurer une cohérence esthétique finale.',
+        reflection: {
+          learned: 'Monter le film de quelqu\'un d\'autre oblige à mettre de côté ses propres réflexes pour servir une vision qui n\'est pas la sienne. C\'est un exercice d\'écoute que je n\'avais jamais pratiqué à ce niveau — et qui m\'a rendu meilleur monteur.'
+        },
+        video: 'https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Il%20mio%20filmato%208.MOV',
+        tools: ['Premiere Pro', 'DaVinci Resolve'],
+        ac: []
       }
     };
   </script>
