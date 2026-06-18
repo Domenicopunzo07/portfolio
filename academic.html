@@ -187,12 +187,18 @@
     }
 
 
-    /* Type badges */
-    .project-card-year.type-sae   { color: var(--primary); border-color: var(--border-blue); }
-    .project-card-year.type-stage { color: #f59e0b; border-color: rgba(245,158,11,0.35); }
-    .project-card-year.type-perso { color: #a78bfa; border-color: rgba(167,139,250,0.3); }
-    .project-card-year.type-cmd   { color: #34d399; border-color: rgba(52,211,153,0.3); }
-    .project-card-year.type-crea  { color: #f472b6; border-color: rgba(244,114,182,0.3); }
+    /* Discipline badges */
+    .project-card-year.type-dev    { color: var(--primary); border-color: var(--border-blue); }
+    .project-card-year.type-video  { color: #f472b6; border-color: rgba(244,114,182,0.3); }
+    .project-card-year.type-comm   { color: #34d399; border-color: rgba(52,211,153,0.3); }
+    .project-card-year.type-crea   { color: #a78bfa; border-color: rgba(167,139,250,0.3); }
+    .project-card-year.type-motion { color: #f59e0b; border-color: rgba(245,158,11,0.35); }
+
+    /* Nav logo image */
+    .nav-logo-img { height: 34px; width: auto; object-fit: contain; }
+
+    /* Footer logo */
+    .footer-logo { height: 26px; width: auto; object-fit: contain; opacity: 0.65; }
 
     /* Gallery: show full image */
     .modal-gallery-main img { object-fit: contain !important; }
@@ -246,7 +252,7 @@
   <nav class="nav">
     <div class="container nav-inner">
       <a href="index.html" class="nav-logo">
-        <div class="nav-monogram">DP</div>
+        <img src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/logo.png" alt="DP" class="nav-logo-img" />
         <span>Domenico Punzo</span>
       </a>
       <ul class="nav-links">
@@ -277,7 +283,7 @@
     <div class="hero-grid"></div>
 
     <div class="hero-photo-wrap">
-      <img src="images/photo.jpg" alt="" />
+      <img src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/foto.jpg" alt="" />
     </div>
 
     <div class="container hero-inner">
@@ -292,7 +298,7 @@
         </h1>
         <p class="hero-but-label reveal">BUT MMI</p>
         <p class="hero-role reveal reveal-delay-2">
-          2 ans d'apprentissage — <span>Design, Web & Création numérique</span>
+          Design · Création numérique · Communication visuelle
         </p>
         <p class="hero-tagline reveal reveal-delay-3">
           Chaque SAÉ a été une occasion d'apprendre, d'itérer et de progresser. Ce portfolio documente honnêtement ce parcours, des premiers projets web aux créations multimédia avancées.
@@ -325,7 +331,7 @@
 
         <!-- Photo -->
         <div class="bento-cell bento-photo-cell">
-          <img src="images/photo.jpg" alt="Domenico Punzo" />
+          <img src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/photo.jpg" alt="Domenico Punzo" />
         </div>
 
         <!-- Badge formation -->
@@ -367,8 +373,8 @@
           <p class="bento-bio-text">Le BUT MMI m'a plongé dans un univers où le design, le code et la communication se rencontrent. Chaque semestre m'a apporté de nouveaux défis créatifs et techniques à relever.</p>
           <p class="bento-bio-text" style="margin-bottom:18px;">Ce portfolio académique documente honnêtement ce parcours : les réussites, les difficultés surmontées et les apprentissages qui ont le plus compté dans ma progression.</p>
           <div class="about-tags">
-            <span class="about-tag">📘 BUT 1 — Fondamentaux</span>
-            <span class="about-tag">📗 BUT 2 — Approfondissement</span>
+            <span class="about-tag">📘 BUT 1 · Fondamentaux</span>
+            <span class="about-tag">📗 BUT 2 · Approfondissement</span>
             <span class="about-tag">🎓 SAÉ & Projets tutorés</span>
             <span class="about-tag">🎨 Design & Création</span>
             <span class="about-tag">🌐 Web & Développement</span>
@@ -393,7 +399,7 @@
           <div class="timeline-content">
             <div class="timeline-year">2017 – 2021</div>
             <h4>Collège Marie Curie</h4>
-            <p>La Seyne-sur-Mer — Enseignement général et éveil du sens artistique et créatif.</p>
+            <p>La Seyne-sur-Mer · Enseignement général et éveil du sens artistique et créatif.</p>
           </div>
           <div class="timeline-dot"></div>
           <div class="timeline-spacer"></div>
@@ -404,14 +410,14 @@
           <div class="timeline-content">
             <div class="timeline-year">2021 – 2024</div>
             <h4>Lycée Général Beaussier</h4>
-            <p>La Seyne-sur-Mer — Baccalauréat général obtenu avec mention.</p>
+            <p>La Seyne-sur-Mer · Baccalauréat général obtenu avec mention.</p>
           </div>
         </div>
         <div class="timeline-item reveal">
           <div class="timeline-content">
             <div class="timeline-year">2024 – actuel</div>
-            <h4>BUT MMI — IUT de Toulon</h4>
-            <p>Métiers du Multimédia et de l'Internet — Design graphique, développement web, vidéo et UX/UI.</p>
+            <h4>BUT MMI · IUT de Toulon</h4>
+            <p>Métiers du Multimédia et de l'Internet : design graphique, développement web, vidéo et UX/UI.</p>
           </div>
           <div class="timeline-dot" style="box-shadow: 0 0 0 4px var(--bg), 0 0 0 6px var(--border-blue), 0 0 16px rgba(85,125,209,0.5);"></div>
           <div class="timeline-spacer"></div>
@@ -454,13 +460,13 @@
           <div class="project-card-thumb">
             <img src="traces/BUT%202/mockoup2.png" alt="So' Italiano — mockup" loading="lazy" />
             <div class="project-card-overlay"></div>
-            <span class="project-card-year type-sae">SAÉ</span>
+            <span class="project-card-year type-dev">UX/UI</span>
             <div class="project-card-cta">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
           </div>
           <div class="project-card-body">
-            <div class="project-card-type">SAÉ — UX/UI Design</div>
+            <div class="project-card-type">UX/UI Design</div>
             <div class="project-card-category">Click & Collect · Prototype Figma</div>
             <h3 class="project-card-title">So' Italiano — Site click & collect</h3>
             <p class="project-card-desc">Conception UX/UI d'un service de click & collect pour une épicerie italienne — du cadrage produit aux tests utilisateurs jusqu'au prototype haute fidélité.</p>
@@ -475,13 +481,13 @@
           <div class="project-card-thumb">
             <img src="traces/BUT%202/mockoup1.png" alt="Sauvons Carl's Jr. — mockup" loading="lazy" />
             <div class="project-card-overlay"></div>
-            <span class="project-card-year type-sae">SAÉ</span>
+            <span class="project-card-year type-comm">Comm.</span>
             <div class="project-card-cta">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
           </div>
           <div class="project-card-body">
-            <div class="project-card-type">SAÉ — Communication & Stratégie</div>
+            <div class="project-card-type">Communication & Stratégie</div>
             <div class="project-card-category">Branding · Plan d'action</div>
             <h3 class="project-card-title">Sauvons Carl's Jr. — Stratégie de relance</h3>
             <p class="project-card-desc">Analyse concurrentielle et refonte complète de la communication d'une enseigne en perte de vitesse — nouveau produit, stratégie digitale et plan d'action structuré.</p>
@@ -497,13 +503,13 @@
             <img src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/54907.jpg" alt="Leclerc création digitale" loading="lazy" />
             <div class="project-card-overlay"></div>
             <div class="stage-badge">Stage</div>
-            <span class="project-card-year type-stage">Stage</span>
+            <span class="project-card-year type-comm">Comm. digitale</span>
             <div class="project-card-cta">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
           </div>
           <div class="project-card-body">
-            <div class="project-card-type">Stage — Communication digitale</div>
+            <div class="project-card-type">Communication digitale</div>
             <div class="project-card-category">Réseaux sociaux · Création de contenu</div>
             <h3 class="project-card-title">Leclerc La Seyne — Contenu digital</h3>
             <p class="project-card-desc">En charge de la communication digitale du magasin pendant mon stage : vidéos et posts pour Instagram & TikTok, avec les contraintes réelles d'une enseigne nationale.</p>
@@ -519,13 +525,13 @@
             <img src="traces/BUT%202/la%20grande%20rencontre.png" alt="La Grande Rencontre — affiche" loading="lazy" />
             <div class="project-card-overlay"></div>
             <div class="stage-badge">Stage</div>
-            <span class="project-card-year type-stage">Stage</span>
+            <span class="project-card-year type-comm">Événement</span>
             <div class="project-card-cta">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
           </div>
           <div class="project-card-body">
-            <div class="project-card-type">Stage — Événementiel & Communication</div>
+            <div class="project-card-type">Événementiel & Communication</div>
             <div class="project-card-category">Affiche · Réseaux sociaux</div>
             <h3 class="project-card-title">La Grande Rencontre — Job dating</h3>
             <p class="project-card-desc">Communication visuelle complète pour un événement job dating organisé par Leclerc : affiche, publications Instagram et déclinaisons réseaux en conditions professionnelles réelles.</p>
@@ -542,13 +548,13 @@
               <source src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Analyse_PUNZO.mp4" type="video/mp4">
             </video>
             <div class="project-card-overlay"></div>
-            <span class="project-card-year type-sae">SAÉ</span>
+            <span class="project-card-year type-motion">Motion Design</span>
             <div class="project-card-cta">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
           </div>
           <div class="project-card-body">
-            <div class="project-card-type">SAÉ — Motion Design & Analyse d'œuvre</div>
+            <div class="project-card-type">Motion Design</div>
             <div class="project-card-category">Animation · Analyse iconographique</div>
             <h3 class="project-card-title">Les 7 Œuvres de Miséricorde — Caravaggio</h3>
             <p class="project-card-desc">Animation vidéo décryptant la composition et la symbolique du chef-d'œuvre de Caravaggio, avec mouvements de caméra et incrustations d'analyse réalisés sur Blender et Photoshop.</p>
@@ -563,13 +569,13 @@
           <div class="project-card-thumb">
             <img src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/DR8A0122.JPG" alt="Sillans-la-Cascade" loading="lazy" />
             <div class="project-card-overlay"></div>
-            <span class="project-card-year type-cmd">Commandité</span>
+            <span class="project-card-year type-comm">Transmédia</span>
             <div class="project-card-cta">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
           </div>
           <div class="project-card-body">
-            <div class="project-card-type">Projet commandité — Communication transmédia</div>
+            <div class="project-card-type">Communication transmédia</div>
             <div class="project-card-category">Audioguide · Stratégie Instagram</div>
             <h3 class="project-card-title">Sillans-la-Cascade — Médiation numérique</h3>
             <p class="project-card-desc">Valorisation numérique d'un site naturel du Var : conception d'un audioguide et d'une stratégie Instagram pour un projet commandité par le Département.</p>
@@ -584,13 +590,13 @@
           <div class="project-card-thumb">
             <img src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/Capture%20d%E2%80%99e%CC%81cran%202026-06-18%20a%CC%80%2015.17.42.png" alt="La Chèvre de Monsieur Seguin" loading="lazy" />
             <div class="project-card-overlay"></div>
-            <span class="project-card-year type-sae">SAÉ</span>
+            <span class="project-card-year type-comm">Audio</span>
             <div class="project-card-cta">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
           </div>
           <div class="project-card-body">
-            <div class="project-card-type">SAÉ — Production audio & Narration</div>
+            <div class="project-card-type">Production audio</div>
             <div class="project-card-category">Podcast · Adaptation littéraire</div>
             <h3 class="project-card-title">La Chèvre de Monsieur Seguin — Podcast</h3>
             <p class="project-card-desc">Adaptation et production d'un podcast narratif du conte de Daudet : écriture, enregistrement, montage et habillage sonore pour une diffusion en ligne.</p>
@@ -607,13 +613,13 @@
               <source src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Il%20mio%20filmato%208.MOV" type="video/mp4">
             </video>
             <div class="project-card-overlay"></div>
-            <span class="project-card-year type-crea">Création</span>
+            <span class="project-card-year type-video">Vidéo</span>
             <div class="project-card-cta">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
           </div>
           <div class="project-card-body">
-            <div class="project-card-type">Création — Montage vidéo</div>
+            <div class="project-card-type">Montage vidéo</div>
             <div class="project-card-category">Court métrage · Fiction</div>
             <h3 class="project-card-title">Court métrage Spartacus</h3>
             <p class="project-card-desc">Montage d'un court métrage de fiction pour un ami en école de cinéma : raccords, rythme, étalonnage couleur et mixage sonore sur Premiere Pro.</p>
@@ -628,13 +634,13 @@
           <div class="project-card-thumb">
             <img src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/WvuZRFdfd.png" alt="Affiches de football" loading="lazy" />
             <div class="project-card-overlay"></div>
-            <span class="project-card-year type-perso">Perso</span>
+            <span class="project-card-year type-crea">Création</span>
             <div class="project-card-cta">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
           </div>
           <div class="project-card-body">
-            <div class="project-card-type">Projet personnel — Création graphique</div>
+            <div class="project-card-type">Création graphique</div>
             <div class="project-card-category">Affiche · Iconographie · Instagram</div>
             <h3 class="project-card-title">Affiches avant-match — Série graphique</h3>
             <p class="project-card-desc">Série de 5 affiches avant-match publiées sur Instagram : traitement photographique poussé sur Photoshop avec une direction iconographique entièrement personnelle adaptée à chaque équipe.</p>
@@ -649,13 +655,13 @@
           <div class="project-card-thumb">
             <img src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/DR8A0122.JPG" alt="Sillans-la-Cascade gestion" loading="lazy" />
             <div class="project-card-overlay"></div>
-            <span class="project-card-year type-cmd">Commandité</span>
+            <span class="project-card-year type-comm">Comm.</span>
             <div class="project-card-cta">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
           </div>
           <div class="project-card-body">
-            <div class="project-card-type">Projet commandité — Gestion de projet</div>
+            <div class="project-card-type">Gestion de projet</div>
             <div class="project-card-category">Écosystème · Soutenance · Juridique</div>
             <h3 class="project-card-title">Sillans-la-Cascade — Professionnalisation</h3>
             <p class="project-card-desc">Cartographie de l'écosystème institutionnel, gestion des contraintes juridiques et soutenance face aux représentants du Département du Var et de la commune.</p>
@@ -671,13 +677,13 @@
             <img src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/E.Leclerc_logo.svg.webp" alt="Stage E.Leclerc" loading="lazy" />
             <div class="project-card-overlay"></div>
             <div class="stage-badge">Stage</div>
-            <span class="project-card-year type-stage">Stage</span>
+            <span class="project-card-year type-comm">Comm.</span>
             <div class="project-card-cta">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
           </div>
           <div class="project-card-body">
-            <div class="project-card-type">Stage — Expérience professionnelle</div>
+            <div class="project-card-type">Expérience de stage</div>
             <div class="project-card-category">Collaboration · Réseau · Polyvalence</div>
             <h3 class="project-card-title">Stage E.Leclerc — Expérience globale</h3>
             <p class="project-card-desc">Deux mois d'immersion complète : missions variées (communication interne, externe, affiches, vidéos), validation régulière et construction d'un réseau professionnel durable.</p>
@@ -692,13 +698,13 @@
           <div class="project-card-thumb">
             <div class="project-card-thumb-placeholder">📋</div>
             <div class="project-card-overlay"></div>
-            <span class="project-card-year type-sae">SAÉ</span>
+            <span class="project-card-year type-comm">Comm.</span>
             <div class="project-card-cta">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
           </div>
           <div class="project-card-body">
-            <div class="project-card-type">SAÉ — Communication & Pédagogie</div>
+            <div class="project-card-type">Communication & Pédagogie</div>
             <div class="project-card-category">Vidéo pédagogique · Méthode Scrum</div>
             <h3 class="project-card-title">La méthode Scrum — Vidéo pédagogique</h3>
             <p class="project-card-desc">Production en équipe d'une vidéo pédagogique sur la méthode Scrum : maîtrise approfondie avant vulgarisation, script structuré, voix off et montage pour un contenu clair et accessible.</p>
@@ -713,13 +719,13 @@
           <div class="project-card-thumb">
             <img src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/3bf13809aa7.png" alt="Site JPO MMI" loading="lazy" />
             <div class="project-card-overlay"></div>
-            <span class="project-card-year type-perso">Perso</span>
+            <span class="project-card-year type-dev">Dev Web</span>
             <div class="project-card-cta">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
           </div>
           <div class="project-card-body">
-            <div class="project-card-type">Projet personnel — Développement web</div>
+            <div class="project-card-type">Développement web</div>
             <div class="project-card-category">HTML/CSS/JS · Mini jeu · Dataviz</div>
             <h3 class="project-card-title">Site JPO — IUT MMI Toulon</h3>
             <p class="project-card-desc">Site complet pour la Journée Portes Ouvertes de l'IUT MMI, développé seul : responsive, mini jeu QCM interactif et dataviz animée des débouchés. Déployé sur Netlify.</p>
@@ -734,13 +740,13 @@
           <div class="project-card-thumb">
             <img src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/808490d8cd5.png" alt="Agence de famille WordPress" loading="lazy" />
             <div class="project-card-overlay"></div>
-            <span class="project-card-year type-perso">Perso</span>
+            <span class="project-card-year type-dev">Dev Web</span>
             <div class="project-card-cta">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
           </div>
           <div class="project-card-body">
-            <div class="project-card-type">Projet personnel — Développement WordPress</div>
+            <div class="project-card-type">Développement WordPress</div>
             <div class="project-card-category">Back office · CMS · Prestataire</div>
             <h3 class="project-card-title">Site agence de famille — WordPress</h3>
             <p class="project-card-desc">Conception et développement autonome d'un site WordPress pour une agence de famille : configuration complète, personnalisation graphique et gestion du back office en situation de prestataire réel.</p>
@@ -755,13 +761,13 @@
           <div class="project-card-thumb">
             <div class="project-card-thumb-placeholder">💼</div>
             <div class="project-card-overlay"></div>
-            <span class="project-card-year type-perso">Perso</span>
+            <span class="project-card-year type-dev">Dev Web</span>
             <div class="project-card-cta">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
           </div>
           <div class="project-card-body">
-            <div class="project-card-type">Projet personnel — Développement web</div>
+            <div class="project-card-type">Développement web</div>
             <div class="project-card-category">HTML/CSS/JS · Trilingue · GitHub</div>
             <h3 class="project-card-title">Portfolio personnel — BUT MMI</h3>
             <p class="project-card-desc">Vitrine professionnelle développée de A à Z en HTML/CSS/JS/PHP, trilingue (FR/EN/IT), hébergée sur GitHub. Design sombre, performances optimisées, responsive et en évolution continue.</p>
@@ -928,18 +934,18 @@
       <div class="section-header">
         <p class="label reveal">Contact</p>
         <h2 class="headline reveal reveal-delay-1">Une question sur mon parcours ?</h2>
-        <p class="subtitle reveal reveal-delay-2">Enseignants, jury, recruteurs — je suis disponible pour en discuter.</p>
+        <p class="subtitle reveal reveal-delay-2">Enseignants, jury, recruteurs : je suis disponible pour en discuter.</p>
       </div>
       <div class="contact-grid">
         <div class="contact-info reveal">
           <div class="contact-photo">
-            <img src="images/photo.jpg" alt="Domenico Punzo" />
+            <img src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/photo.jpg" alt="Domenico Punzo" />
           </div>
           <div class="contact-name">Domenico Punzo</div>
-          <div class="contact-role">Étudiant BUT MMI — Multimédia & Internet</div>
+          <div class="contact-role">Étudiant BUT MMI · Multimédia & Internet</div>
           <div class="contact-availability">
             <span class="contact-availability-dot"></span>
-            Disponible — Échanges &amp; Opportunités
+            Disponible · Échanges & Opportunités
           </div>
           <div class="contact-links">
             <a class="contact-link" href="mailto:domenicopunzo07@gmail.com">
@@ -948,7 +954,7 @@
             </a>
             <a class="contact-link" href="https://linkedin.com" target="_blank">
               <svg class="contact-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-              LinkedIn — Domenico Punzo
+              LinkedIn
             </a>
             <a class="contact-link" href="professional.html">
               <svg class="contact-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
@@ -986,8 +992,9 @@
 
   <!-- Footer -->
   <footer class="container footer">
-    <p class="footer-copy">© 2025 Domenico Punzo — Portfolio Académique</p>
-    <a href="professional.html" class="footer-back">Portfolio Professionnel →</a>
+    <img src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/logo.png" alt="DP" class="footer-logo" />
+    <p class="footer-copy">© 2025 Domenico Punzo</p>
+    <a href="professional.html" class="footer-back">Portfolio Pro →</a>
   </footer>
 
   <!-- Modal backdrop -->
@@ -1000,7 +1007,7 @@
     window.PROJECTS = {
       'acad-soitaliano': {
         title: 'So\' Italiano — Site click & collect',
-        category: 'SAÉ — UX/UI Design · BUT 2',
+        category: 'UX/UI Design · BUT 2',
         year: 'BUT 2',
         emoji: '🍝',
         description: 'Conception d\'une maquette Figma pour un service de click & collect dédié à la cuisine italienne. J\'ai choisi ce thème librement : il reflète mon identité d\'Italien et mon attachement à une gastronomie que je considère comme un véritable patrimoine culturel mondial. L\'enjeu du projet était de rendre ce service aussi simple et accessible que possible, en pensant chaque écran depuis la perspective du client.',
@@ -1020,7 +1027,7 @@
       },
       'acad-carlsjr': {
         title: 'Sauvons Carl\'s Jr. — Stratégie de relance',
-        category: 'SAÉ — Communication & Stratégie · BUT 2',
+        category: 'Communication & Stratégie · BUT 2',
         year: 'BUT 2',
         emoji: '🍔',
         description: 'Dans le cadre d\'une SAÉ BUT 2 sur la stratégie de communication, notre équipe de quatre a pris en charge la relance d\'une marque en difficulté : Carl\'s Jr., enseigne américaine de fast-food quasiment invisible en France face à McDonald\'s et Burger King. Mon rôle a porté sur la stratégie hors-médias, les analyses de marché et la définition des cibles.',
@@ -1053,7 +1060,7 @@
       },
       'acad-granderencontre': {
         title: 'La Grande Rencontre — E.Leclerc La Seyne',
-        category: 'Stage — Événementiel & Communication · BUT 2',
+        category: 'Événementiel & Communication · BUT 2',
         year: 'Stage · BUT 2',
         emoji: '🤝',
         description: 'La Grande Rencontre est un événement annuel de job dating organisé à l\'échelle nationale par l\'ensemble des magasins E.Leclerc. Dans le cadre de mon stage, ma tutrice m\'a confié en totale autonomie la charge de la communication événementielle de l\'édition locale : de la conception des supports jusqu\'à l\'analyse post-événement. Plus de 450 personnes présentes le jour J.',
@@ -1091,7 +1098,7 @@
       },
       'acad-sillans': {
         title: 'Sillans-la-Cascade — Communication numérique',
-        category: 'Projet commandité — Communication transmédia · BUT 2',
+        category: 'Communication transmédia · BUT 2',
         year: 'BUT 2',
         emoji: '🌊',
         description: 'Projet de médiation numérique pour la commune de Sillans-la-Cascade et le Département du Var. Objectif : valoriser ce site naturel remarquable à travers des outils digitaux accessibles — audioguide et présence Instagram — pour accompagner la découverte du lieu par un public large et varié.',
@@ -1109,7 +1116,7 @@
 
       'acad-chevre': {
         title: 'La Chèvre de Monsieur Seguin — Podcast narratif',
-        category: 'SAÉ — Production audio & Narration · BUT 2',
+        category: 'Production audio · BUT 2',
         year: 'BUT 2',
         emoji: '🎙️',
         description: 'Production d\'un podcast narratif adapté du conte d\'Alphonse Daudet "La Chèvre de Monsieur Seguin". Ce projet de création sonore mêlait écriture d\'adaptation, enregistrement, montage audio et habillage sonore pour produire un format audio autonome, pensé pour une écoute en ligne.',
@@ -1125,7 +1132,7 @@
       },
       'acad-spartacus': {
         title: 'Court métrage Spartacus — Montage vidéo',
-        category: 'Création — Montage vidéo · BUT 2',
+        category: 'Montage vidéo · BUT 2',
         year: 'BUT 2',
         emoji: '🎞️',
         description: 'Montage d\'un court métrage de fiction pour un ami en école de cinéma. Un exercice de montage narratif avec Premiere Pro — raccords, rythme, étalonnage couleur — pour donner une cohérence dramatique à des rushes bruts tournés sur plusieurs jours.',
@@ -1140,7 +1147,7 @@
       },
       'acad-football': {
         title: 'Affiches avant-match — Série graphique',
-        category: 'Projet personnel — Création graphique · BUT 2',
+        category: 'Création graphique · BUT 2',
         year: 'BUT 2',
         emoji: '⚽',
         description: 'Projet personnel né de l\'envie de fusionner deux passions : le football et la création graphique. J\'ai conçu une série de 5 à 6 affiches avant-match pour différentes équipes, publiées sur mon compte Instagram professionnel. Ce projet entièrement libre m\'a permis d\'explorer ma propre direction iconographique sans contrainte de brief ou de client.',
@@ -1216,7 +1223,7 @@
       },
       'acad-jpo': {
         title: 'Site JPO — IUT MMI Toulon',
-        category: 'Projet personnel — Développement web · BUT 2',
+        category: 'Développement web · BUT 2',
         year: 'BUT 2',
         emoji: '🎓',
         description: 'Dans le cadre de l\'organisation de la Journée Portes Ouvertes de l\'IUT MMI de Toulon, j\'ai proposé de façon autonome la conception et le développement d\'un site web complet destiné à présenter la formation aux futurs étudiants. Travaillant seul, j\'ai pris en charge l\'intégralité du projet, de la conception à la mise en ligne. Ma proposition n\'a malheureusement pas été retenue, mais le projet reste une démonstration complète de mes capacités techniques et créatives.',
@@ -1233,7 +1240,7 @@
       },
       'acad-wordpress': {
         title: 'Site agence de famille — WordPress',
-        category: 'Projet personnel — Développement WordPress · BUT 2',
+        category: 'Développement WordPress · BUT 2',
         year: 'BUT 2',
         emoji: '⚙️',
         description: 'Dans le cadre d\'un projet personnel, j\'ai conçu et développé de façon totalement autonome le site web d\'une agence de famille sur WordPress. Contrairement aux projets WordPress réalisés en première année dans un cadre scolaire encadré, ce projet m\'a placé en situation de vrai prestataire : aucun filet, aucune consigne préétablie, juste un brief et un résultat à livrer.',
@@ -1249,7 +1256,7 @@
       },
       'acad-portfolio': {
         title: 'Portfolio personnel — BUT MMI',
-        category: 'Projet personnel — Développement web · BUT 2',
+        category: 'Développement web · BUT 2',
         year: 'BUT 2',
         emoji: '💼',
         description: 'Mon portfolio est bien plus qu\'un projet scolaire : c\'est ma vitrine professionnelle, l\'outil central de ma recherche de stage et d\'alternance, et le reflet de tout ce que j\'ai appris et produit depuis le début de ma formation en BUT MMI. Développé seul de A à Z, il évolue en continu et représente à la fois mes compétences techniques et ma sensibilité créative.',
