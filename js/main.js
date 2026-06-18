@@ -145,28 +145,30 @@ requestAnimationFrame(() => {
       const match = (yearVal  === 'all' || year  === yearVal) &&
                     (skillVal === 'all' || skill.split(',').includes(skillVal));
       if (match) {
-        if (card.style.display === 'none') {
-          card.style.display = '';
+        const wasHidden = card.classList.contains('card-out');
+        card.classList.remove('card-out');
+        card.style.pointerEvents = '';
+        if (wasHidden) {
           card.style.opacity = '0';
-          card.style.transform = 'translateY(12px) scale(0.97)';
+          card.style.transform = 'translateY(10px) scale(0.97)';
+          card.style.transition = 'none';
           requestAnimationFrame(() => {
-            card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-            card.style.opacity = '1';
-            card.style.transform = '';
-            card.style.pointerEvents = '';
+            requestAnimationFrame(() => {
+              card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+              card.style.opacity = '';
+              card.style.transform = '';
+            });
           });
         } else {
-          card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-          card.style.opacity = '1';
+          card.style.opacity = '';
           card.style.transform = '';
-          card.style.pointerEvents = '';
         }
       } else {
-        card.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(8px) scale(0.97)';
+        card.style.opacity = '';
+        card.style.transform = '';
+        card.style.transition = 'none';
         card.style.pointerEvents = 'none';
-        setTimeout(() => { if (card.style.opacity === '0') card.style.display = 'none'; }, 260);
+        card.classList.add('card-out');
       }
     });
   };

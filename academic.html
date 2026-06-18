@@ -66,6 +66,16 @@
     /* Section divider */
     .section-divider { height: 1px; background: var(--border); }
 
+    .nav-logo-wrap {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      display: grid; place-items: center;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .nav-logo-img { width: 80%; height: 80%; object-fit: contain; mix-blend-mode: screen; }
+    .footer-logo  { height: 26px; width: auto; object-fit: contain; opacity: 0.55; }
     /* Stage badge */
     .stage-badge {
       position: absolute;
@@ -196,10 +206,8 @@
     .project-card-year.type-motion { color: #f59e0b; border-color: rgba(245,158,11,0.35); }
 
     /* Nav logo image */
-    .nav-logo-img { height: 34px; width: auto; object-fit: contain; filter: brightness(0) invert(1); }
 
     /* Footer logo */
-    .footer-logo { height: 26px; width: auto; object-fit: contain; opacity: 0.65; }
 
     /* Gallery: show full image */
     .modal-gallery-main img { object-fit: contain !important; }
@@ -211,8 +219,7 @@
     }
     .projects-grid .project-card:first-child {
       grid-column: auto !important;
-      display: block !important;
-      border-color: var(--border) !important;
+            border-color: var(--border) !important;
       box-shadow: var(--shadow-card) !important;
     }
     .projects-grid .project-card:first-child .project-card-thumb {
@@ -221,8 +228,7 @@
     }
     .projects-grid .project-card:first-child .project-card-body {
       padding: 16px 20px !important;
-      display: block !important;
-    }
+          }
     .projects-grid .project-card:first-child .project-card-title {
       font-size: 18px !important;
       margin-bottom: 10px !important;
@@ -243,6 +249,7 @@
     /* Year + skill filters stacked */
     .filters { flex-direction: column; align-items: center; gap: 12px; }
 
+    .card-out { display: none !important; }
   </style>
 </head>
 <body>
@@ -253,7 +260,9 @@
   <nav class="nav">
     <div class="container nav-inner">
       <a href="index.html" class="nav-logo">
-        <img src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/logo.png" alt="DP" class="nav-logo-img" />
+        <div class="nav-logo-wrap">
+          <img src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/logo.png" alt="DP" class="nav-logo-img" />
+        </div>
         <span>Domenico Punzo</span>
       </a>
       <ul class="nav-links">
