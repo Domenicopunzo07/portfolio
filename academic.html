@@ -186,13 +186,59 @@
       .hero-photo-wrap { display: none; }
     }
 
+
+    /* Type badges */
+    .project-card-year.type-sae   { color: var(--primary); border-color: var(--border-blue); }
+    .project-card-year.type-stage { color: #f59e0b; border-color: rgba(245,158,11,0.35); }
+    .project-card-year.type-perso { color: #a78bfa; border-color: rgba(167,139,250,0.3); }
+    .project-card-year.type-cmd   { color: #34d399; border-color: rgba(52,211,153,0.3); }
+    .project-card-year.type-crea  { color: #f472b6; border-color: rgba(244,114,182,0.3); }
+
+    /* Gallery: show full image */
+    .modal-gallery-main img { object-fit: contain !important; }
+
+    /* 3-column equal grid, smaller cards */
+    .projects-grid {
+      grid-template-columns: repeat(3, 1fr) !important;
+      gap: 16px !important;
+    }
+    .projects-grid .project-card:first-child {
+      grid-column: auto !important;
+      display: block !important;
+      border-color: var(--border) !important;
+      box-shadow: var(--shadow-card) !important;
+    }
+    .projects-grid .project-card:first-child .project-card-thumb {
+      aspect-ratio: 16/10 !important;
+      min-height: unset !important;
+    }
+    .projects-grid .project-card:first-child .project-card-body {
+      padding: 16px 20px !important;
+      display: block !important;
+    }
+    .projects-grid .project-card:first-child .project-card-title {
+      font-size: 18px !important;
+      margin-bottom: 10px !important;
+    }
+    .projects-grid .project-card:first-child .project-card-desc {
+      font-size: 14px !important;
+      line-height: 1.6 !important;
+      margin-bottom: 16px !important;
+    }
+    .project-card-body { padding: 16px 20px !important; }
+    @media (max-width: 960px) {
+      .projects-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    }
+    @media (max-width: 600px) {
+      .projects-grid { grid-template-columns: 1fr !important; }
+    }
+
+    /* Year + skill filters stacked */
+    .filters { flex-direction: column; align-items: center; gap: 12px; }
+
   </style>
 </head>
 <body>
-  <!-- Cursor -->
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
-
   <!-- Particle background -->
   <canvas id="particleCanvas"></canvas>
 
@@ -388,6 +434,11 @@
       <!-- Filters -->
       <div class="filters reveal">
         <div class="filter-group">
+          <button class="filter-btn active" data-group="year" data-value="all">Toutes les années</button>
+          <button class="filter-btn" data-group="year" data-value="but1">BUT 1</button>
+          <button class="filter-btn" data-group="year" data-value="but2">BUT 2</button>
+        </div>
+        <div class="filter-group">
           <button class="filter-btn active" data-group="skill" data-value="all">Tous les projets</button>
           <button class="filter-btn" data-group="skill" data-value="comm">Communication</button>
           <button class="filter-btn" data-group="skill" data-value="crea">Création</button>
@@ -403,7 +454,7 @@
           <div class="project-card-thumb">
             <img src="traces/BUT%202/mockoup2.png" alt="So' Italiano — mockup" loading="lazy" />
             <div class="project-card-overlay"></div>
-            <span class="project-card-year but2">BUT 2</span>
+            <span class="project-card-year type-sae">SAÉ</span>
             <div class="project-card-cta">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
@@ -424,7 +475,7 @@
           <div class="project-card-thumb">
             <img src="traces/BUT%202/mockoup1.png" alt="Sauvons Carl's Jr. — mockup" loading="lazy" />
             <div class="project-card-overlay"></div>
-            <span class="project-card-year but2">BUT 2</span>
+            <span class="project-card-year type-sae">SAÉ</span>
             <div class="project-card-cta">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
@@ -443,10 +494,10 @@
         <!-- BUT 2 / Leclerc — Stage Communication digitale -->
         <div class="project-card reveal reveal-delay-2 card-stage" data-modal="acad-leclerc" data-year="but2" data-skill="comm,video">
           <div class="project-card-thumb">
-            <div class="project-card-thumb-placeholder">📲</div>
+            <img src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/54907.jpg" alt="Leclerc création digitale" loading="lazy" />
             <div class="project-card-overlay"></div>
             <div class="stage-badge">Stage</div>
-            <span class="project-card-year but2">BUT 2</span>
+            <span class="project-card-year type-stage">Stage</span>
             <div class="project-card-cta">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
@@ -468,7 +519,7 @@
             <img src="traces/BUT%202/la%20grande%20rencontre.png" alt="La Grande Rencontre — affiche" loading="lazy" />
             <div class="project-card-overlay"></div>
             <div class="stage-badge">Stage</div>
-            <span class="project-card-year but2">BUT 2</span>
+            <span class="project-card-year type-stage">Stage</span>
             <div class="project-card-cta">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
@@ -491,7 +542,7 @@
               <source src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Analyse_PUNZO.mp4" type="video/mp4">
             </video>
             <div class="project-card-overlay"></div>
-            <span class="project-card-year but2">BUT 2</span>
+            <span class="project-card-year type-sae">SAÉ</span>
             <div class="project-card-cta">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
@@ -512,7 +563,7 @@
           <div class="project-card-thumb">
             <img src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/DR8A0122.JPG" alt="Sillans-la-Cascade" loading="lazy" />
             <div class="project-card-overlay"></div>
-            <span class="project-card-year but2">BUT 2</span>
+            <span class="project-card-year type-cmd">Commandité</span>
             <div class="project-card-cta">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
@@ -533,7 +584,7 @@
           <div class="project-card-thumb">
             <img src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/Capture%20d%E2%80%99e%CC%81cran%202026-06-18%20a%CC%80%2015.17.42.png" alt="La Chèvre de Monsieur Seguin" loading="lazy" />
             <div class="project-card-overlay"></div>
-            <span class="project-card-year but2">BUT 2</span>
+            <span class="project-card-year type-sae">SAÉ</span>
             <div class="project-card-cta">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
@@ -552,9 +603,11 @@
         <!-- BUT 2 / Court métrage Spartacus -->
         <div class="project-card reveal reveal-delay-1" data-modal="acad-spartacus" data-year="but2" data-skill="video">
           <div class="project-card-thumb">
-            <div class="project-card-thumb-placeholder">🎞️</div>
+            <video class="project-card-video" autoplay muted loop playsinline>
+              <source src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Il%20mio%20filmato%208.MOV" type="video/mp4">
+            </video>
             <div class="project-card-overlay"></div>
-            <span class="project-card-year but2">BUT 2</span>
+            <span class="project-card-year type-crea">Création</span>
             <div class="project-card-cta">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
@@ -575,7 +628,7 @@
           <div class="project-card-thumb">
             <img src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/WvuZRFdfd.png" alt="Affiches de football" loading="lazy" />
             <div class="project-card-overlay"></div>
-            <span class="project-card-year but2">BUT 2</span>
+            <span class="project-card-year type-perso">Perso</span>
             <div class="project-card-cta">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
@@ -596,7 +649,7 @@
           <div class="project-card-thumb">
             <img src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/DR8A0122.JPG" alt="Sillans-la-Cascade gestion" loading="lazy" />
             <div class="project-card-overlay"></div>
-            <span class="project-card-year but2">BUT 2</span>
+            <span class="project-card-year type-cmd">Commandité</span>
             <div class="project-card-cta">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
@@ -615,10 +668,10 @@
         <!-- BUT 2 / Stage E.Leclerc général -->
         <div class="project-card reveal reveal-delay-2 card-stage" data-modal="acad-leclerc-stage" data-year="but2" data-skill="comm">
           <div class="project-card-thumb">
-            <div class="project-card-thumb-placeholder">🏪</div>
+            <img src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/E.Leclerc_logo.svg.webp" alt="Stage E.Leclerc" loading="lazy" />
             <div class="project-card-overlay"></div>
             <div class="stage-badge">Stage</div>
-            <span class="project-card-year but2">BUT 2</span>
+            <span class="project-card-year type-stage">Stage</span>
             <div class="project-card-cta">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
@@ -639,7 +692,7 @@
           <div class="project-card-thumb">
             <div class="project-card-thumb-placeholder">📋</div>
             <div class="project-card-overlay"></div>
-            <span class="project-card-year but2">BUT 2</span>
+            <span class="project-card-year type-sae">SAÉ</span>
             <div class="project-card-cta">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
@@ -658,9 +711,9 @@
         <!-- BUT 2 / Site JPO IUT MMI -->
         <div class="project-card reveal reveal-delay-1" data-modal="acad-jpo" data-year="but2" data-skill="dev">
           <div class="project-card-thumb">
-            <div class="project-card-thumb-placeholder">🎓</div>
+            <img src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/3bf13809aa7.png" alt="Site JPO MMI" loading="lazy" />
             <div class="project-card-overlay"></div>
-            <span class="project-card-year but2">BUT 2</span>
+            <span class="project-card-year type-perso">Perso</span>
             <div class="project-card-cta">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
@@ -679,9 +732,9 @@
         <!-- BUT 2 / Site WordPress agence -->
         <div class="project-card reveal reveal-delay-2" data-modal="acad-wordpress" data-year="but2" data-skill="dev">
           <div class="project-card-thumb">
-            <div class="project-card-thumb-placeholder">⚙️</div>
+            <img src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/808490d8cd5.png" alt="Agence de famille WordPress" loading="lazy" />
             <div class="project-card-overlay"></div>
-            <span class="project-card-year but2">BUT 2</span>
+            <span class="project-card-year type-perso">Perso</span>
             <div class="project-card-cta">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
@@ -702,7 +755,7 @@
           <div class="project-card-thumb">
             <div class="project-card-thumb-placeholder">💼</div>
             <div class="project-card-overlay"></div>
-            <span class="project-card-year but2">BUT 2</span>
+            <span class="project-card-year type-perso">Perso</span>
             <div class="project-card-cta">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>

@@ -66,13 +66,139 @@
     .project-result-item { text-align: center; }
     .project-result-value { font-size: 18px; font-weight: 800; color: var(--primary); display: block; }
     .project-result-label { font-size: 11px; color: var(--text-subtle); }
+
+    /* Card type tag */
+    .project-card-type {
+      font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--text-subtle);
+      margin-bottom: 6px;
+    }
+
+    /* Year / type badge on card thumb */
+    .project-card-year {
+      position: absolute;
+      top: 14px; right: 14px;
+      padding: 4px 12px;
+      background: var(--bg-glass);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      font-size: 11px; font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+    .project-card-year.type-sae   { color: var(--primary); border-color: var(--border-blue); }
+    .project-card-year.type-stage { color: #f59e0b; border-color: rgba(245,158,11,0.35); }
+    .project-card-year.type-perso { color: #a78bfa; border-color: rgba(167,139,250,0.3); }
+    .project-card-year.type-crea  { color: #f472b6; border-color: rgba(244,114,182,0.3); }
+
+    /* Stage badge */
+    .stage-badge {
+      position: absolute;
+      top: 14px; left: 14px;
+      padding: 4px 12px;
+      background: rgba(245,158,11,0.12);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(245,158,11,0.35);
+      border-radius: var(--radius-full);
+      font-size: 9px; font-weight: 800;
+      color: #f59e0b;
+      letter-spacing: 2px; text-transform: uppercase;
+      font-family: 'Space Grotesk', sans-serif;
+      z-index: 10;
+    }
+    .project-card.card-stage { border-color: rgba(245,158,11,0.22); }
+    .project-card.card-stage:hover {
+      border-color: rgba(245,158,11,0.45);
+      box-shadow: 0 0 0 1px rgba(245,158,11,0.1), var(--shadow);
+    }
+
+    /* Card video */
+    .project-card-video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    /* Modal video */
+    .modal-video-wrap { width: 100%; background: #000; }
+    .modal-video { width: 100%; max-height: 420px; display: block; object-fit: contain; }
+
+    /* PDF embed */
+    .modal-pdf-top { padding: 24px 32px 0; }
+    .modal-pdf-wrap {
+      width: 100%; height: 380px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      margin-top: 10px;
+      background: var(--bg-3);
+    }
+    .modal-pdf-iframe { width: 100%; height: 100%; border: none; display: block; }
+    .modal-pdf-dl { margin-top: 10px; display: inline-flex; align-items: center; gap: 8px; }
+
+    /* Prev/Next modal navigation */
+    .modal-nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 16px 32px 28px;
+      border-top: 1px solid var(--border);
+      gap: 12px;
+    }
+    .modal-nav-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 600; color: var(--text-muted);
+      background: var(--bg-3); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 10px 18px;
+      cursor: pointer; font-family: inherit;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .modal-nav-btn:hover:not(:disabled) {
+      color: var(--text); border-color: var(--border-hover); background: var(--bg-card);
+    }
+    .modal-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+    /* Gallery images show fully */
+    .modal-gallery-main img { object-fit: contain !important; }
+
+    /* 3-column equal grid */
+    .projects-grid {
+      grid-template-columns: repeat(3, 1fr) !important;
+      gap: 16px !important;
+    }
+    .projects-grid .project-card:first-child {
+      grid-column: auto !important;
+      display: block !important;
+      border-color: var(--border) !important;
+      box-shadow: var(--shadow-card) !important;
+    }
+    .projects-grid .project-card:first-child .project-card-thumb {
+      aspect-ratio: 16/10 !important;
+      min-height: unset !important;
+    }
+    .projects-grid .project-card:first-child .project-card-body {
+      padding: 16px 20px !important;
+      display: block !important;
+    }
+    .projects-grid .project-card:first-child .project-card-title {
+      font-size: 18px !important;
+      margin-bottom: 10px !important;
+    }
+    .project-card-body { padding: 16px 20px !important; }
+    @media (max-width: 960px) { .projects-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+    @media (max-width: 600px) { .projects-grid { grid-template-columns: 1fr !important; } }
+
+    /* Mobile modal */
+    @media (max-width: 600px) {
+      .modal-pdf-wrap { height: 220px; }
+      .modal-pdf-top { padding: 14px 16px 0; }
+      .modal-video { max-height: 240px; }
+      .modal-nav { padding: 12px 16px 20px; }
+      .modal-nav-btn { padding: 9px 14px; font-size: 12px; }
+    }
+
   </style>
 </head>
 <body>
-  <!-- Cursor -->
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
-
   <!-- Particle background -->
   <canvas id="particleCanvas"></canvas>
 
@@ -240,129 +366,122 @@
         <p class="subtitle reveal reveal-delay-2">Design, web et création multimédia — des projets concrets.</p>
       </div>
       <div class="projects-grid">
-
-        <!-- Projet 1 -->
-        <div class="project-card reveal" data-modal="proj-site">
+        <!-- So' Italiano -->
+        <div class="project-card reveal" data-modal="pro-soitaliano">
           <div class="project-card-thumb">
-            <div class="project-card-thumb-placeholder">🌐</div>
+            <img src="traces/BUT%202/mockoup2.png" alt="So' Italiano — mockup" loading="lazy" />
             <div class="project-card-overlay"></div>
-            <div class="project-card-cta">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </div>
+            <span class="project-card-year type-sae">SAÉ</span>
+            <div class="project-card-cta"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
           </div>
           <div class="project-card-body">
-            <div class="project-card-category">Développement & Intégration Web</div>
-            <h3 class="project-card-title">Site vitrine responsive pour une association</h3>
-            <p class="project-card-desc">Conception et développement complet d'un site multi-pages responsive pour une association locale, mobile-first.</p>
+            <div class="project-card-type">UX/UI Design — Figma</div>
+            <div class="project-card-category">Click &amp; Collect · Prototype</div>
+            <h3 class="project-card-title">So' Italiano — Site click &amp; collect</h3>
+            <p class="project-card-desc">Conception UX/UI d'un service click &amp; collect pour une épicerie italienne — cadrage, recherche utilisateur et prototype haute fidélité Figma.</p>
             <div class="project-card-tags">
-              <span class="tag">HTML / CSS</span>
-              <span class="tag">JavaScript</span>
-              <span class="tag">Figma</span>
+              <span class="tag">Figma</span><span class="tag">UX Research</span><span class="tag">Prototypage</span>
             </div>
           </div>
         </div>
 
-        <!-- Projet 2 -->
-        <div class="project-card reveal reveal-delay-1" data-modal="proj-brand">
+        <!-- Leclerc création digitale -->
+        <div class="project-card reveal reveal-delay-1 card-stage" data-modal="pro-leclerc-dig">
           <div class="project-card-thumb">
-            <div class="project-card-thumb-placeholder">✏️</div>
+            <img src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/54907.jpg" alt="Leclerc création digitale" loading="lazy" />
             <div class="project-card-overlay"></div>
-            <div class="project-card-cta">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </div>
+            <div class="stage-badge">Stage</div>
+            <span class="project-card-year type-stage">Stage</span>
+            <div class="project-card-cta"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
           </div>
           <div class="project-card-body">
-            <div class="project-card-category">Branding & Construction d'identité</div>
-            <h3 class="project-card-title">Charte graphique complète pour une startup</h3>
-            <p class="project-card-desc">Création de l'identité visuelle complète — logo, palette, typographie, charte d'usage — pour une startup locale.</p>
+            <div class="project-card-type">Stage — Communication digitale</div>
+            <div class="project-card-category">Réseaux sociaux · Création vidéo</div>
+            <h3 class="project-card-title">Leclerc La Seyne — Contenu digital</h3>
+            <p class="project-card-desc">Création de contenus vidéo et visuels pour les réseaux sociaux d'un magasin E.Leclerc en situation professionnelle réelle.</p>
             <div class="project-card-tags">
-              <span class="tag">Illustrator</span>
-              <span class="tag">Figma</span>
-              <span class="tag">Adobe CC</span>
+              <span class="tag">CapCut</span><span class="tag">Canva</span><span class="tag">Instagram</span>
             </div>
           </div>
         </div>
 
-        <!-- Projet 3 -->
-        <div class="project-card reveal reveal-delay-2" data-modal="proj-print">
+        <!-- La Grande Rencontre -->
+        <div class="project-card reveal reveal-delay-2 card-stage" data-modal="pro-granderencontre">
           <div class="project-card-thumb">
-            <div class="project-card-thumb-placeholder">🖼️</div>
+            <img src="traces/BUT%202/la%20grande%20rencontre.png" alt="La Grande Rencontre" loading="lazy" />
             <div class="project-card-overlay"></div>
-            <div class="project-card-cta">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </div>
+            <div class="stage-badge">Stage</div>
+            <span class="project-card-year type-stage">Stage</span>
+            <div class="project-card-cta"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
           </div>
           <div class="project-card-body">
-            <div class="project-card-category">Communication visuelle & Print</div>
-            <h3 class="project-card-title">Campagne d'affichage pour un événement culturel</h3>
-            <p class="project-card-desc">Série de 4 affiches grand format pour un festival — de la conception artistique au BAT (bon à tirer).</p>
+            <div class="project-card-type">Stage — Communication événementielle</div>
+            <div class="project-card-category">Affiche · Réseaux sociaux · Événement</div>
+            <h3 class="project-card-title">La Grande Rencontre — Job dating</h3>
+            <p class="project-card-desc">Communication complète pour un job dating Leclerc : affiche, posts Instagram et déclinaisons réseaux en conditions professionnelles réelles.</p>
             <div class="project-card-tags">
-              <span class="tag">Illustrator</span>
-              <span class="tag">Photoshop</span>
-              <span class="tag">InDesign</span>
+              <span class="tag">Canva</span><span class="tag">Instagram</span><span class="tag">Photoshop</span>
             </div>
           </div>
         </div>
 
-        <!-- Projet 4 -->
-        <div class="project-card reveal" data-modal="proj-ux">
+        <!-- Les 7 Œuvres de Miséricorde — Caravaggio -->
+        <div class="project-card reveal" data-modal="pro-caravaggio">
           <div class="project-card-thumb">
-            <div class="project-card-thumb-placeholder">📱</div>
+            <video class="project-card-video" autoplay muted loop playsinline>
+              <source src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Analyse_PUNZO.mp4" type="video/mp4">
+            </video>
             <div class="project-card-overlay"></div>
-            <div class="project-card-cta">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </div>
+            <span class="project-card-year type-sae">SAÉ</span>
+            <div class="project-card-cta"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
           </div>
           <div class="project-card-body">
-            <div class="project-card-category">Optimisation d'expérience utilisateur</div>
-            <h3 class="project-card-title">Prototype d'application mobile de suivi sportif</h3>
-            <p class="project-card-desc">Audit UX, wireframes basse fidélité et prototype Figma haute fidélité d'une app de suivi d'entraînement.</p>
+            <div class="project-card-type">Motion Design — Analyse iconographique</div>
+            <div class="project-card-category">Animation · Blender · Analyse d'œuvre</div>
+            <h3 class="project-card-title">Les 7 Œuvres de Miséricorde — Caravaggio</h3>
+            <p class="project-card-desc">Animation vidéo décryptant la composition et la symbolique du chef-d'œuvre de Caravaggio avec mouvements de caméra et incrustations d'analyse.</p>
             <div class="project-card-tags">
-              <span class="tag">Figma</span>
-              <span class="tag">UX Research</span>
-              <span class="tag">Prototypage</span>
+              <span class="tag">Blender</span><span class="tag">Photoshop</span><span class="tag">Motion Design</span>
             </div>
           </div>
         </div>
 
-        <!-- Projet 5 -->
-        <div class="project-card reveal reveal-delay-1" data-modal="proj-video">
+        <!-- Court métrage Spartacus -->
+        <div class="project-card reveal reveal-delay-1" data-modal="pro-spartacus">
           <div class="project-card-thumb">
-            <div class="project-card-thumb-placeholder">🎬</div>
+            <video class="project-card-video" autoplay muted loop playsinline>
+              <source src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Il%20mio%20filmato%208.MOV" type="video/mp4">
+            </video>
             <div class="project-card-overlay"></div>
-            <div class="project-card-cta">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </div>
+            <span class="project-card-year type-crea">Création</span>
+            <div class="project-card-cta"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
           </div>
           <div class="project-card-body">
-            <div class="project-card-category">Production vidéo & Habillage animé</div>
-            <h3 class="project-card-title">Vidéo promotionnelle avec motion design</h3>
-            <p class="project-card-desc">Court-métrage promotionnel de 90 secondes avec habillage motion design intégré pour une marque locale.</p>
+            <div class="project-card-type">Production vidéo — Montage</div>
+            <div class="project-card-category">Court métrage · Fiction · Étalonnage</div>
+            <h3 class="project-card-title">Court métrage Spartacus</h3>
+            <p class="project-card-desc">Montage d'un court métrage de fiction pour un ami en école de cinéma : raccords, rythme, étalonnage couleur et mixage sonore sur Premiere Pro.</p>
             <div class="project-card-tags">
-              <span class="tag">Premiere Pro</span>
-              <span class="tag">After Effects</span>
-              <span class="tag">DaVinci</span>
+              <span class="tag">Premiere Pro</span><span class="tag">Étalonnage</span><span class="tag">Fiction</span>
             </div>
           </div>
         </div>
 
-        <!-- Projet 6 -->
-        <div class="project-card reveal reveal-delay-2" data-modal="proj-web">
+        <!-- Affiches avant-match -->
+        <div class="project-card reveal reveal-delay-2" data-modal="pro-football">
           <div class="project-card-thumb">
-            <div class="project-card-thumb-placeholder">⚡</div>
+            <img src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/WvuZRFdfd.png" alt="Affiches avant-match" loading="lazy" />
             <div class="project-card-overlay"></div>
-            <div class="project-card-cta">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </div>
+            <span class="project-card-year type-perso">Perso</span>
+            <div class="project-card-cta"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
           </div>
           <div class="project-card-body">
-            <div class="project-card-category">Expérience interactive & Microanimations</div>
-            <h3 class="project-card-title">Interface web animée pour campagne digitale</h3>
-            <p class="project-card-desc">Interface one-page avec animations CSS/JS et micro-interactions pour une campagne de communication digitale.</p>
+            <div class="project-card-type">Création graphique — Série personnelle</div>
+            <div class="project-card-category">Affiche · Photoshop · Instagram</div>
+            <h3 class="project-card-title">Affiches avant-match — Série graphique</h3>
+            <p class="project-card-desc">Série de 5 affiches avant-match publiées sur Instagram : traitement photo avancé sur Photoshop, direction iconographique personnelle adaptée à chaque équipe.</p>
             <div class="project-card-tags">
-              <span class="tag">HTML / CSS</span>
-              <span class="tag">JavaScript</span>
-              <span class="tag">GSAP</span>
+              <span class="tag">Photoshop</span><span class="tag">Iconographie</span><span class="tag">Instagram</span>
             </div>
           </div>
         </div>
@@ -601,77 +720,71 @@
   <!-- Project data -->
   <script>
     window.PROJECTS = {
-      'proj-site': {
-        title: 'Site vitrine responsive pour une association locale',
-        category: 'Développement & Intégration Web',
-        emoji: '🌐',
-        description: 'Conception et développement complet d\'un site vitrine multi-pages pour une association locale. Approche mobile-first, design épuré et intégration soignée.',
-        context: 'L\'association n\'avait aucune présence web. Elle souhaitait un site clair, moderne et facile à maintenir pour présenter ses activités et attirer de nouveaux membres.',
-        objectives: 'Livrer un site 100% responsive, rapide et accessible, en respectant la charte graphique définie lors de la phase de design.',
-        results: 'Site livré en 3 semaines. 4 pages intégrées. Score PageSpeed > 90. Prise en main autonome par le client dès la livraison.',
-        tools: ['HTML / CSS', 'JavaScript', 'Figma', 'Git'],
-        skills: ['Développement web', 'Intégration', 'Design responsif']
+      'pro-soitaliano': {
+        title: "So' Italiano — Site click & collect",
+        category: 'UX/UI Design · Figma',
+        emoji: '🍕',
+        description: "Conception UX/UI complète d'un service click & collect pour une épicerie italienne locale — du cadrage produit aux tests utilisateurs, jusqu'au prototype haute fidélité.",
+        context: "Le client souhaitait digitaliser sa vente avec une expérience d'achat fluide et accessible. Projet mené en conditions réelles de SAÉ universitaire avec contraintes de brief client.",
+        results: 'Prototype Figma complet avec parcours utilisateur end-to-end. Tests validés auprès de 5 utilisateurs. Maquette desktop et mobile.',
+        tools: ['Figma', 'Figjam', 'Notion'],
+        gallery: ['traces/BUT%202/mockoup2.png']
       },
-      'proj-brand': {
-        title: 'Charte graphique complète pour une startup',
-        category: 'Branding & Construction d\'identité',
-        emoji: '✏️',
-        description: 'Création de l\'identité visuelle complète d\'une startup : logo déclinable, palette chromatique, typographies, charte d\'usage et templates pour les réseaux sociaux.',
-        context: 'La startup venait de se lancer et avait besoin d\'une identité forte et professionnelle pour crédibiliser sa communication avant ses premiers rendez-vous clients.',
-        objectives: 'Concevoir une identité mémorable, cohérente et adaptable à tous les supports (print, digital, réseaux sociaux).',
-        results: 'Charte complète livrée en 2 semaines. 3 déclinaisons couleur. 8 templates réseaux sociaux fournis.',
-        tools: ['Illustrator', 'Figma', 'Photoshop', 'Adobe CC'],
-        skills: ['Branding', 'Direction artistique', 'Communication']
+      'pro-leclerc-dig': {
+        title: 'Leclerc La Seyne — Communication digitale',
+        category: 'Stage · Réseaux sociaux',
+        emoji: '📲',
+        description: "En charge de la communication digitale du magasin E.Leclerc La Seyne-sur-Mer pendant mon stage : création de vidéos courtes et visuels pour Instagram & TikTok.",
+        context: "Mission confiée dans le cadre d'un stage de 2 mois dans une enseigne nationale. Travailler sous contraintes réelles : charte Leclerc, délais courts, validation hiérarchique.",
+        results: "Publications régulières sur les comptes Instagram et TikTok du magasin. Montée en compétence sur la création de contenus vidéo courts adaptés à une marque nationale.",
+        tools: ['CapCut', 'Canva', 'Instagram', 'TikTok'],
+        gallery: ['https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/54907.jpg']
       },
-      'proj-print': {
-        title: 'Campagne d\'affichage pour un événement culturel',
-        category: 'Communication visuelle & Print',
-        emoji: '🖼️',
-        description: 'Série de 4 affiches grand format (120×176 cm) pour un festival de musique — de la conception artistique à la validation BAT pour impression offset.',
-        context: 'Un festival local cherchait à renouveler son image avec une campagne d\'affichage percutante, visible depuis la rue, cohérente avec son positionnement underground.',
-        objectives: 'Concevoir une direction artistique forte et décliner l\'identité sur 4 formats différents tout en respectant les contraintes techniques d\'impression.',
-        results: '4 affiches validées et imprimées. Direction artistique unanimement approuvée. Visibilité locale multipliée.',
-        tools: ['Illustrator', 'Photoshop', 'InDesign'],
-        skills: ['Conception graphique', 'Prépresse', 'Direction artistique']
+      'pro-granderencontre': {
+        title: 'La Grande Rencontre — Job dating Leclerc',
+        category: 'Stage · Communication événementielle',
+        emoji: '🎪',
+        description: "Communication visuelle complète pour un événement job dating organisé par E.Leclerc La Seyne-sur-Mer : affiche, posts Instagram et déclinaisons réseaux.",
+        context: "Mission de stage : concevoir tous les visuels de l'événement en respectant la charte Leclerc et les délais imposés par la direction du magasin.",
+        results: "Affiche, posts Instagram et stories livrés dans les délais. Événement organisé avec succès. Première expérience complète de commande réelle avec validation client.",
+        tools: ['Canva', 'Instagram', 'Photoshop'],
+        gallery: ['traces/BUT%202/la%20grande%20rencontre.png']
       },
-      'proj-ux': {
-        title: 'Prototype d\'application mobile de suivi sportif',
-        category: 'Optimisation d\'expérience utilisateur',
-        emoji: '📱',
-        description: 'Audit UX d\'une application existante, identification des frictions, wireframes basse fidélité puis prototype Figma haute fidélité d\'une app de suivi d\'entraînement.',
-        context: 'L\'application avait un taux d\'abandon élevé après la première session. Les utilisateurs trouvaient l\'interface confuse et le parcours d\'onboarding trop long.',
-        objectives: 'Comprendre les raisons d\'abandon via tests utilisateurs, puis repenser complètement le parcours pour fluidifier l\'expérience.',
-        results: '12 écrans designés. Prototype validé lors de 5 tests utilisateurs. Taux d\'abandon estimé réduit de 40%.',
-        tools: ['Figma', 'Notion', 'Whimsical'],
-        skills: ['UX Research', 'UI Design', 'Prototypage'],
-        reflection: {
-          before: 'Je pensais que le design UI était la partie la plus importante. Ce projet m\'a appris que comprendre l\'utilisateur vient avant tout.',
-          during: 'Conduire des tests utilisateurs m\'a confronté à des réactions inattendues. Des éléments que je trouvais évidents n\'étaient pas compris.',
-          after: 'J\'ai appris à séparer mes intuitions des données réelles. Désormais, je teste avant de concevoir.',
-          learned: 'L\'UX ne se dessine pas, elle se teste. Les itérations rapides valent mieux qu\'un design parfait jamais validé.'
-        }
+      'pro-caravaggio': {
+        title: 'Les 7 Œuvres de Miséricorde — Caravaggio',
+        category: 'Motion Design · Analyse iconographique',
+        emoji: '🎨',
+        description: "Animation vidéo décryptant la composition et la symbolique du chef-d'œuvre de Caravaggio, avec mouvements de caméra, zooms progressifs et incrustations d'analyse réalisés sur Blender.",
+        context: "Exploration de l'intersection entre analyse d'œuvre d'art et motion design : rendre accessible une peinture complexe par le mouvement et la narration visuelle.",
+        results: "Vidéo complète avec animation 3D de caméra, incrustations analytiques typographiques et narration claire. Projet reconnu pour sa qualité de mise en scène visuelle.",
+        tools: ['Blender', 'Photoshop', 'Premiere Pro'],
+        video: 'https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Analyse_PUNZO.mp4'
       },
-      'proj-video': {
-        title: 'Vidéo promotionnelle avec motion design',
-        category: 'Production vidéo & Habillage animé',
+      'pro-spartacus': {
+        title: 'Court métrage Spartacus',
+        category: 'Production vidéo · Montage',
         emoji: '🎬',
-        description: 'Production d\'un court-métrage promotionnel de 90 secondes pour une marque locale — tournage, montage, étalonnage couleur et habillage motion design intégré.',
-        context: 'La marque souhaitait une vidéo moderne pour ses réseaux sociaux et son site web, avec une identité visuelle forte et des animations en accord avec sa charte graphique.',
-        objectives: 'Produire une vidéo professionnelle livrée en H.264 pour web et en ProRes pour diffusion, avec un habillage motion cohérent.',
-        results: 'Vidéo livrée en 2 formats. 3 révisions intégrées. Durée finale : 1 min 32 sec. Satisfaction client : 5/5.',
+        description: "Montage d'un court métrage de fiction pour un ami en école de cinéma : raccords son/image, rythme narratif, étalonnage couleur et mixage sonore.",
+        context: "Collaboration externe pour un projet de fin d'études en école de cinéma. Contraintes narratives et techniques réelles, délais imposés par le calendrier académique du réalisateur.",
+        results: 'Court métrage finalisé, étalonné et mixé dans les délais impartis. Collaboration enrichissante sur un projet artistique exigeant avec un étudiant en cinéma.',
         tools: ['Premiere Pro', 'After Effects', 'DaVinci Resolve'],
-        skills: ['Montage vidéo', 'Motion design', 'Étalonnage']
+        video: 'https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Il%20mio%20filmato%208.MOV'
       },
-      'proj-web': {
-        title: 'Interface web animée pour campagne digitale',
-        category: 'Expérience interactive & Microanimations',
-        emoji: '⚡',
-        description: 'Conception et développement d\'une interface one-page avec scroll storytelling, micro-interactions CSS/JS et animations au défilement pour une campagne de communication digitale.',
-        context: 'L\'équipe marketing avait besoin d\'une landing page percutante pour une campagne de lancement — quelque chose qui marque les esprits et incite à l\'action.',
-        objectives: 'Créer une page à fort impact visuel, avec des animations fluides qui renforcent le message sans nuire aux performances.',
-        results: 'Interface livrée en 2 semaines. Temps moyen sur page : 2 min 30. Taux de conversion formulaire : 8%.',
-        tools: ['HTML / CSS', 'JavaScript', 'GSAP', 'VS Code'],
-        skills: ['Développement front-end', 'Animation web', 'Intégration']
+      'pro-football': {
+        title: 'Affiches avant-match — Série graphique',
+        category: 'Création graphique · Série personnelle',
+        emoji: '⚽',
+        description: "Série de 5 affiches avant-match publiées sur Instagram : traitement photographique poussé sur Photoshop, direction iconographique entièrement personnelle adaptée à chaque équipe.",
+        context: "Projet personnel initié pour développer une identité visuelle récurrente autour du football. Exercice de composition, traitement photo et storytelling visuel en série.",
+        results: "Série publiée et partagée sur Instagram. Développement d'un style reconnaissable. Apprentissage de la contrainte de la série et de la régularité de publication.",
+        tools: ['Photoshop', 'Lightroom', 'Instagram'],
+        gallery: [
+          'https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/WvuZRFdfd.png',
+          'https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/Holjund.jpg',
+          'https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/city-napoli.jpg',
+          'https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/liverpool_arsenal.jpg',
+          'https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/real_atletico_unico.jpg'
+        ]
       }
     };
   </script>

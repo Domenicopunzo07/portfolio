@@ -10,26 +10,6 @@ requestAnimationFrame(() => {
   document.body.style.opacity = '1';
 });
 
-/* ── Custom Cursor ── */
-(function initCursor() {
-  const cursor = document.getElementById('cursor');
-  const ring   = document.getElementById('cursorRing');
-  if (!cursor || !ring) return;
-  let mx = 0, my = 0, rx = 0, ry = 0;
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    cursor.style.left = mx + 'px';
-    cursor.style.top  = my + 'px';
-  });
-  (function tick() {
-    rx += (mx - rx) * 0.12;
-    ry += (my - ry) * 0.12;
-    ring.style.left = rx + 'px';
-    ring.style.top  = ry + 'px';
-    requestAnimationFrame(tick);
-  })();
-})();
-
 /* ── Nav scroll behavior ── */
 (function initNav() {
   const nav = document.querySelector('.nav');
@@ -153,10 +133,17 @@ requestAnimationFrame(() => {
   const cards = document.querySelectorAll('.project-card');
   if (!btns.length || !cards.length) return;
 
-  const applyFilter = (skillVal) => {
+  const applyFilters = () => {
+    const yearBtn  = document.querySelector('.filter-btn[data-group="year"].active');
+    const skillBtn = document.querySelector('.filter-btn[data-group="skill"].active');
+    const yearVal  = yearBtn  ? yearBtn.dataset.value  : 'all';
+    const skillVal = skillBtn ? skillBtn.dataset.value : 'all';
+
     cards.forEach(card => {
+      const year  = card.dataset.year  || '';
       const skill = card.dataset.skill || '';
-      const match = skillVal === 'all' || skill.split(',').includes(skillVal);
+      const match = (yearVal  === 'all' || year  === yearVal) &&
+                    (skillVal === 'all' || skill.split(',').includes(skillVal));
       if (match) {
         if (card.style.display === 'none') {
           card.style.display = '';
@@ -186,9 +173,10 @@ requestAnimationFrame(() => {
 
   btns.forEach(btn => {
     btn.addEventListener('click', () => {
-      btns.forEach(b => b.classList.remove('active'));
+      const group = btn.dataset.group;
+      document.querySelectorAll(`.filter-btn[data-group="${group}"]`).forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      applyFilter(btn.dataset.value);
+      applyFilters();
     });
   });
 })();
