@@ -153,25 +153,42 @@ requestAnimationFrame(() => {
   const cards = document.querySelectorAll('.project-card');
   if (!btns.length || !cards.length) return;
 
+  const applyFilter = (skillVal) => {
+    cards.forEach(card => {
+      const skill = card.dataset.skill || '';
+      const match = skillVal === 'all' || skill.split(',').includes(skillVal);
+      if (match) {
+        if (card.style.display === 'none') {
+          card.style.display = '';
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(12px) scale(0.97)';
+          requestAnimationFrame(() => {
+            card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            card.style.opacity = '1';
+            card.style.transform = '';
+            card.style.pointerEvents = '';
+          });
+        } else {
+          card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+          card.style.opacity = '1';
+          card.style.transform = '';
+          card.style.pointerEvents = '';
+        }
+      } else {
+        card.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(8px) scale(0.97)';
+        card.style.pointerEvents = 'none';
+        setTimeout(() => { if (card.style.opacity === '0') card.style.display = 'none'; }, 260);
+      }
+    });
+  };
+
   btns.forEach(btn => {
     btn.addEventListener('click', () => {
-      const group = btn.dataset.group;
-      document.querySelectorAll(`.filter-btn[data-group="${group}"]`).forEach(b => b.classList.remove('active'));
+      btns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-
-      const yearActive  = document.querySelector('.filter-btn[data-group="year"].active')?.dataset.value  || 'all';
-      const skillActive = document.querySelector('.filter-btn[data-group="skill"].active')?.dataset.value || 'all';
-
-      cards.forEach(card => {
-        const year  = card.dataset.year  || 'all';
-        const skill = card.dataset.skill || 'all';
-        const matchY = yearActive  === 'all' || year  === yearActive;
-        const matchS = skillActive === 'all' || skill.split(',').includes(skillActive);
-        card.style.opacity    = matchY && matchS ? '1' : '0.2';
-        card.style.transform  = matchY && matchS ? '' : 'scale(0.96)';
-        card.style.pointerEvents = matchY && matchS ? '' : 'none';
-        card.style.transition = 'opacity 0.35s, transform 0.35s';
-      });
+      applyFilter(btn.dataset.value);
     });
   });
 })();
@@ -210,6 +227,13 @@ requestAnimationFrame(() => {
     if (e.target === backdrop || e.target.closest('.modal-close-btn')) { close(); return; }
     if (e.target.closest('#modalPrev')) { openByIdx(currentIdx - 1); return; }
     if (e.target.closest('#modalNext')) { openByIdx(currentIdx + 1); return; }
+    const thumb = e.target.closest('.modal-gallery-thumb');
+    if (thumb) {
+      const main = document.getElementById('modalMainImg');
+      if (main) main.src = thumb.dataset.src;
+      document.querySelectorAll('.modal-gallery-thumb').forEach(t => t.classList.remove('active'));
+      thumb.classList.add('active');
+    }
   });
   document.addEventListener('keydown', e => {
     if (!backdrop.classList.contains('open')) return;
@@ -230,11 +254,20 @@ requestAnimationFrame(() => {
          </div>`
       : d.pdf
       ? `<div class="modal-pdf-top">
-           <div class="modal-pdf-wrap"><iframe src="${d.pdf}" class="modal-pdf-iframe" loading="lazy" title="Document PDF"></iframe></div>
+           <div class="modal-pdf-wrap"><iframe src="${d.pdf}#view=Fit" class="modal-pdf-iframe" loading="lazy" title="Document PDF"></iframe></div>
            <a href="${d.pdf}" target="_blank" class="btn btn-ghost modal-pdf-dl">
              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
              Ouvrir en plein écran
            </a>
+         </div>`
+      : d.gallery?.length
+      ? `<div class="modal-gallery">
+           <div class="modal-gallery-main">
+             <img id="modalMainImg" src="${d.gallery[0]}" alt="${d.title}" loading="lazy" />
+           </div>
+           ${d.gallery.length > 1 ? `<div class="modal-gallery-thumbs">
+             ${d.gallery.map((img, i) => `<div class="modal-gallery-thumb${i===0?' active':''}" data-src="${img}"><img src="${img}" alt="" loading="lazy"/></div>`).join('')}
+           </div>` : ''}
          </div>`
       : `<div class="modal-hero-emoji">${d.emoji || '📁'}</div>`;
 
