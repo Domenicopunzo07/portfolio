@@ -130,10 +130,16 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Space Grotesk', sans-serif; font-weight: 
 }
 .nav-inner {
   height: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: 16px;
+}
+.nav-center {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
+  justify-content: center;
+  gap: 6px;
 }
 .nav-logo {
   display: flex; align-items: center; gap: 12px;
@@ -906,7 +912,12 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Space Grotesk', sans-serif; font-weight: 
 }
 @media (max-width: 768px) {
   :root { --section-pad: 64px; }
-  .nav-links, .nav-cta, .nav-switch { display: none; }
+  .nav-inner {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .nav-center { display: none; }
   .nav-hamburger { display: flex; }
   .nav-lang { gap: 1px; }
   .lang-btn { padding: 4px 6px; font-size: 10px; }
