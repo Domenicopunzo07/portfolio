@@ -177,6 +177,43 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Space Grotesk', sans-serif; font-weight: 
   transition: all 0.2s;
 }
 .nav-switch:hover { border-color: var(--primary); color: var(--primary); }
+
+/* ── Language switcher ── */
+.nav-lang {
+  display: flex; align-items: center; gap: 2px;
+}
+.lang-btn {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--text-subtle);
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 5px 8px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+  font-family: 'Space Grotesk', sans-serif;
+}
+.lang-btn:hover { color: var(--text-muted); }
+.lang-btn.active {
+  color: var(--primary);
+  border-color: var(--border-blue);
+  background: rgba(85,125,209,0.08);
+}
+
+/* Floating lang switcher (index page) */
+.lang-fixed {
+  position: fixed;
+  top: 20px; right: 20px;
+  z-index: 200;
+  display: flex; gap: 2px;
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 6px 8px;
+}
+
 .nav-hamburger { display: none; flex-direction: column; gap: 5px; padding: 4px; }
 .nav-hamburger span {
   width: 24px; height: 2px;
@@ -871,6 +908,8 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Space Grotesk', sans-serif; font-weight: 
   :root { --section-pad: 64px; }
   .nav-links, .nav-cta, .nav-switch { display: none; }
   .nav-hamburger { display: flex; }
+  .nav-lang { gap: 1px; }
+  .lang-btn { padding: 4px 6px; font-size: 10px; }
   .projects-grid { grid-template-columns: 1fr; }
   .cursor, .cursor-ring { display: none; }
   .skill-body-content { grid-template-columns: 1fr; }

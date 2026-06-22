@@ -230,12 +230,17 @@
         <span>Domenico Punzo</span>
       </a>
       <ul class="nav-links">
-        <li><a class="nav-link" href="#about">À propos</a></li>
-        <li><a class="nav-link" href="#projects">Projets</a></li>
-        <li><a class="nav-link" href="#skills">Compétences</a></li>
-        <li><a class="nav-link" href="#contact">Contact</a></li>
+        <li><a class="nav-link" href="#about" data-i18n="nav_about">À propos</a></li>
+        <li><a class="nav-link" href="#projects" data-i18n="nav_projects">Projets</a></li>
+        <li><a class="nav-link" href="#skills" data-i18n="nav_skills">Compétences</a></li>
+        <li><a class="nav-link" href="#contact" data-i18n="nav_contact">Contact</a></li>
       </ul>
-      <a href="academic.html" class="nav-switch">Portfolio Académique →</a>
+      <a href="academic.html" class="nav-switch" data-i18n="nav_switch_acad">Portfolio Académique →</a>
+      <div class="nav-lang">
+        <button class="lang-btn active" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="it">IT</button>
+      </div>
       <button class="nav-hamburger" id="burger" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
@@ -244,11 +249,11 @@
 
   <!-- Mobile nav -->
   <div class="mobile-nav" id="mobileNav">
-    <a class="nav-link" href="#about">À propos</a>
-    <a class="nav-link" href="#projects">Projets</a>
-    <a class="nav-link" href="#skills">Compétences</a>
-    <a class="nav-link" href="#contact">Contact</a>
-    <a href="academic.html" class="btn btn-primary" style="margin-top:20px">Portfolio Académique</a>
+    <a class="nav-link" href="#about" data-i18n="nav_about">À propos</a>
+    <a class="nav-link" href="#projects" data-i18n="nav_projects">Projets</a>
+    <a class="nav-link" href="#skills" data-i18n="nav_skills">Compétences</a>
+    <a class="nav-link" href="#contact" data-i18n="nav_contact">Contact</a>
+    <a href="academic.html" class="btn btn-primary" style="margin-top:20px" data-i18n="nav_switch_acad">Portfolio Académique →</a>
   </div>
 
   <!-- ── HERO ── -->
@@ -266,29 +271,29 @@
           <span id="heroFirst" data-text="Domenico"></span><br>
           <span id="heroLast" data-text="Punzo"></span>
         </h1>
-        <p class="hero-role reveal reveal-delay-2">Design · Création numérique · Communication visuelle</p>
-        <p class="hero-tagline reveal reveal-delay-3">
+        <p class="hero-role reveal reveal-delay-2" data-i18n="pro_role">Design · Création numérique · Communication visuelle</p>
+        <p class="hero-tagline reveal reveal-delay-3" data-i18n="pro_tagline">
           Je conçois des expériences visuelles et numériques percutantes : design graphique, développement web, vidéo et motion.
         </p>
         <div class="hero-actions reveal reveal-delay-4">
           <a href="#projects" class="btn btn-primary">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-            Voir mes projets
+            <span data-i18n="cta_projects">Voir mes projets</span>
           </a>
-          <a href="#contact" class="btn btn-secondary">Me contacter</a>
+          <a href="#contact" class="btn btn-secondary" data-i18n="cta_contact">Me contacter</a>
         </div>
         <div class="hero-stats reveal">
           <div>
             <div class="hero-stat-value" data-count="2" data-suffix="">2</div>
-            <div class="hero-stat-label">Années de BUT MMI</div>
+            <div class="hero-stat-label" data-i18n="stat_years">Années de BUT MMI</div>
           </div>
           <div>
             <div class="hero-stat-value" data-count="10" data-suffix="+">10+</div>
-            <div class="hero-stat-label">Projets réalisés</div>
+            <div class="hero-stat-label" data-i18n="stat_projects">Projets réalisés</div>
           </div>
           <div>
             <div class="hero-stat-value" data-count="6" data-suffix="">6</div>
-            <div class="hero-stat-label">Compétences clés</div>
+            <div class="hero-stat-label" data-i18n="stat_skills">Compétences clés</div>
           </div>
         </div>
       </div>
@@ -305,8 +310,8 @@
   <section class="section" id="about">
     <div class="container">
       <div class="section-header" style="margin-bottom:52px;">
-        <p class="label reveal">À propos</p>
-        <h2 class="headline reveal reveal-delay-1">Qui suis-je ?</h2>
+        <p class="label reveal" data-i18n="about_label">À propos</p>
+        <h2 class="headline reveal reveal-delay-1" data-i18n="about_headline">Qui suis-je ?</h2>
       </div>
       <div class="bento-grid reveal">
 
@@ -319,7 +324,7 @@
         <div class="bento-cell" style="display:flex;align-items:center;gap:18px;">
           <span class="bento-icon">📍</span>
           <div>
-            <div class="bento-small-label">Localisation</div>
+            <div class="bento-small-label" data-i18n="location_label">Localisation</div>
             <div class="bento-value">France 🇫🇷</div>
           </div>
         </div>
@@ -328,9 +333,9 @@
         <div class="bento-cell" style="display:flex;align-items:center;gap:16px;">
           <div class="bento-status-dot"></div>
           <div>
-            <div class="bento-small-label">Statut</div>
-            <div class="bento-value" style="color:#4ade80;font-size:17px;">Disponible</div>
-            <div style="font-size:12px;color:var(--text-muted);margin-top:3px;">Stage / Alternance</div>
+            <div class="bento-small-label" data-i18n="status_label">Statut</div>
+            <div class="bento-value" style="color:#4ade80;font-size:17px;" data-i18n="status_value">Disponible</div>
+            <div style="font-size:12px;color:var(--text-muted);margin-top:3px;" data-i18n="status_sub">Stage / Alternance</div>
           </div>
         </div>
 
@@ -338,15 +343,15 @@
         <div class="bento-cell bento-stats-cell">
           <div class="bento-stat">
             <span class="bento-stat-num" data-count="2" data-suffix="">2</span>
-            <span class="bento-stat-label">Années BUT MMI</span>
+            <span class="bento-stat-label" data-i18n="stat_years">Années BUT MMI</span>
           </div>
           <div class="bento-stat">
             <span class="bento-stat-num" data-count="10" data-suffix="+">10+</span>
-            <span class="bento-stat-label">Projets réalisés</span>
+            <span class="bento-stat-label" data-i18n="stat_projects">Projets réalisés</span>
           </div>
           <div class="bento-stat">
             <span class="bento-stat-num" data-count="6" data-suffix="">6</span>
-            <span class="bento-stat-label">Compétences clés</span>
+            <span class="bento-stat-label" data-i18n="stat_skills">Compétences clés</span>
           </div>
         </div>
 
@@ -375,16 +380,16 @@
   <section class="section" id="projects">
     <div class="container">
       <div class="section-header">
-        <p class="label reveal">Réalisations</p>
-        <h2 class="headline reveal reveal-delay-1">Projets professionnels</h2>
-        <p class="subtitle reveal reveal-delay-2">Design, web et création multimédia : des réalisations concrètes.</p>
+        <p class="label reveal" data-i18n="proj_label">Réalisations</p>
+        <h2 class="headline reveal reveal-delay-1" data-i18n="pro_proj_headline">Projets professionnels</h2>
+        <p class="subtitle reveal reveal-delay-2" data-i18n="pro_proj_sub">Design, web et création multimédia : des réalisations concrètes.</p>
       </div>
       <div class="filters reveal" style="margin-bottom: 28px;">
         <div class="filter-group">
-          <button class="filter-btn active" data-group="skill" data-value="all">Tous</button>
-          <button class="filter-btn" data-group="skill" data-value="comm">Communication</button>
-          <button class="filter-btn" data-group="skill" data-value="crea">Création</button>
-          <button class="filter-btn" data-group="skill" data-value="video">Vidéo</button>
+          <button class="filter-btn active" data-group="skill" data-value="all" data-i18n="filter_all">Tous</button>
+          <button class="filter-btn" data-group="skill" data-value="comm" data-i18n="filter_comm">Communication</button>
+          <button class="filter-btn" data-group="skill" data-value="crea" data-i18n="filter_crea">Création</button>
+          <button class="filter-btn" data-group="skill" data-value="video" data-i18n="filter_video">Vidéo</button>
         </div>
       </div>
       <div class="projects-grid">
@@ -556,9 +561,9 @@
   <section class="section" id="skills">
     <div class="container">
       <div class="section-header">
-        <p class="label reveal">Expertise</p>
-        <h2 class="headline reveal reveal-delay-1">Compétences clés</h2>
-        <p class="subtitle reveal reveal-delay-2">Design, développement et création multimédia.</p>
+        <p class="label reveal" data-i18n="skills_label">Expertise</p>
+        <h2 class="headline reveal reveal-delay-1" data-i18n="skills_headline">Compétences clés</h2>
+        <p class="subtitle reveal reveal-delay-2" data-i18n="skills_sub">Design, développement et création multimédia.</p>
       </div>
       <div class="skills-track reveal">
 
@@ -675,7 +680,7 @@
   <section class="tools-section">
     <div class="tools-ticker">
       <div class="tools-ticker-label">
-        <p class="label">Outils maîtrisés</p>
+        <p class="label" data-i18n="tools_label">Outils maîtrisés</p>
       </div>
       <div class="tools-track-wrap">
         <div class="tools-track" id="toolsTrack">
@@ -703,9 +708,9 @@
   <section class="section" id="contact">
     <div class="container">
       <div class="section-header">
-        <p class="label reveal">Contact</p>
-        <h2 class="headline reveal reveal-delay-1">Travaillons ensemble</h2>
-        <p class="subtitle reveal reveal-delay-2">Une mission, un stage, une alternance ? Parlons-en.</p>
+        <p class="label reveal" data-i18n="contact_label">Contact</p>
+        <h2 class="headline reveal reveal-delay-1" data-i18n="pro_contact_headline">Travaillons ensemble</h2>
+        <p class="subtitle reveal reveal-delay-2" data-i18n="pro_contact_sub">Une mission, un stage, une alternance ? Parlons-en.</p>
       </div>
       <div class="contact-grid">
         <div class="contact-info reveal">
@@ -713,10 +718,10 @@
             <img src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/photo.jpg" alt="Domenico Punzo" />
           </div>
           <div class="contact-name">Domenico Punzo</div>
-          <div class="contact-role">Étudiant BUT MMI · Multimédia & Création numérique</div>
+          <div class="contact-role" data-i18n="pro_contact_role">Étudiant BUT MMI · Multimédia & Création numérique</div>
           <div class="contact-availability">
             <span class="contact-availability-dot"></span>
-            Disponible · Alternance / Stage
+            <span data-i18n="pro_avail">Disponible · Alternance / Stage</span>
           </div>
           <div class="contact-links">
             <a class="contact-link" href="mailto:domenicopunzo07@gmail.com">
@@ -733,7 +738,7 @@
             </a>
             <a class="contact-link" href="#" download>
               <svg class="contact-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-              Télécharger mon CV
+              <span data-i18n="cv_dl">Télécharger mon CV</span>
             </a>
           </div>
         </div>
@@ -756,7 +761,7 @@
               <textarea class="form-textarea" placeholder="Décrivez votre projet ou besoin…" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary form-submit">
-              Envoyer le message
+              <span data-i18n="form_submit_pro">Envoyer le message</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
             </button>
           </form>
@@ -878,6 +883,7 @@
         reflection: {
           learned: "Ce projet m'a appris à traduire une référence photographique réelle en illustration vectorielle stylisée, en faisant des choix graphiques assumés à chaque étape. Les meilleurs projets sont souvent ceux où on met quelque chose de personnel."
         },
+        gallery: ['https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/Affiche-touristique_Punzo_Domenico.jpg'],
         tools: ['Illustrator']
       }
     };

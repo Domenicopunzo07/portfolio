@@ -237,6 +237,13 @@
   <!-- Particle background -->
   <canvas id="particleCanvas"></canvas>
 
+  <!-- Language switcher (floating) -->
+  <div class="lang-fixed">
+    <button class="lang-btn active" data-lang="fr">FR</button>
+    <button class="lang-btn" data-lang="en">EN</button>
+    <button class="lang-btn" data-lang="it">IT</button>
+  </div>
+
   <!-- Landing -->
   <div class="landing">
     <!-- Background -->
@@ -251,7 +258,7 @@
       <img src="https://pub-c142d74a81774582afa4b6283e9c608b.r2.dev/Affiches/logo-removebg-preview%20(2).png" alt="Domenico Punzo" class="landing-logo" />
       <p class="landing-eyebrow">Portfolio · 2026</p>
       <h1 class="landing-name">Domenico Punzo</h1>
-      <p class="landing-subtitle">Qui êtes-vous ?</p>
+      <p class="landing-subtitle" data-i18n="index_sub">Qui êtes-vous ?</p>
     </div>
 
     <!-- Showcase choice -->
@@ -268,14 +275,14 @@
             <div class="showcase-video-overlay"></div>
             <div class="showcase-glare"></div>
             <div class="showcase-visual-content">
-              <p class="showcase-vis-eyebrow">Portfolio professionnel</p>
-              <h2 class="showcase-choice">Je suis un<br>recruteur</h2>
+              <p class="showcase-vis-eyebrow" data-i18n="index_pro_eyebrow">Portfolio professionnel</p>
+              <h2 class="showcase-choice" data-i18n="index_pro_title" data-i18n-html>Je suis un<br>recruteur</h2>
             </div>
           </div>
           <div class="showcase-info">
-            <p class="showcase-info-desc">Projets clients, compétences et réalisations concrètes.</p>
+            <p class="showcase-info-desc" data-i18n="index_pro_desc">Projets clients, compétences et réalisations concrètes.</p>
             <div class="showcase-cta">
-              Explorer
+              <span data-i18n="index_explore">Explorer</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
           </div>
@@ -291,14 +298,14 @@
             <div class="showcase-video-overlay"></div>
             <div class="showcase-glare"></div>
             <div class="showcase-visual-content">
-              <p class="showcase-vis-eyebrow">Portfolio académique</p>
-              <h2 class="showcase-choice">Je suis un<br>enseignant</h2>
+              <p class="showcase-vis-eyebrow" data-i18n="index_acad_eyebrow">Portfolio académique</p>
+              <h2 class="showcase-choice" data-i18n="index_acad_title" data-i18n-html>Je suis un<br>enseignant</h2>
             </div>
           </div>
           <div class="showcase-info">
-            <p class="showcase-info-desc">SAÉ, compétences BUT et progression académique.</p>
+            <p class="showcase-info-desc" data-i18n="index_acad_desc">SAÉ, compétences BUT et progression académique.</p>
             <div class="showcase-cta">
-              Explorer
+              <span data-i18n="index_explore">Explorer</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
           </div>
@@ -307,7 +314,7 @@
       </div>
     </div>
 
-    <p class="landing-hint">Sélectionnez votre profil pour accéder au portfolio correspondant</p>
+    <p class="landing-hint" data-i18n="index_hint">Sélectionnez votre profil pour accéder au portfolio correspondant</p>
   </div>
 
   <script>
@@ -355,6 +362,63 @@
         card.addEventListener('mouseleave', () => { card.style.transform = ''; });
       });
     }
+  </script>
+  <script>
+    /* ── Language switcher for landing page ── */
+    (function() {
+      const T = {
+        fr: {
+          index_sub: 'Qui êtes-vous ?',
+          index_pro_eyebrow: 'Portfolio professionnel', index_pro_title: 'Je suis un<br>recruteur',
+          index_pro_desc: 'Projets clients, compétences et réalisations concrètes.',
+          index_acad_eyebrow: 'Portfolio académique', index_acad_title: 'Je suis un<br>enseignant',
+          index_acad_desc: 'SAÉ, compétences BUT et progression académique.',
+          index_explore: 'Explorer',
+          index_hint: 'Sélectionnez votre profil pour accéder au portfolio correspondant'
+        },
+        en: {
+          index_sub: 'Who are you?',
+          index_pro_eyebrow: 'Professional Portfolio', index_pro_title: "I'm a<br>recruiter",
+          index_pro_desc: 'Client projects, skills and concrete achievements.',
+          index_acad_eyebrow: 'Academic Portfolio', index_acad_title: "I'm a<br>teacher",
+          index_acad_desc: 'SAÉ projects, BUT skills and academic progression.',
+          index_explore: 'Explore',
+          index_hint: 'Select your profile to access the corresponding portfolio'
+        },
+        it: {
+          index_sub: 'Chi sei?',
+          index_pro_eyebrow: 'Portfolio professionale', index_pro_title: 'Sono un<br>recruiter',
+          index_pro_desc: 'Progetti clienti, competenze e risultati concreti.',
+          index_acad_eyebrow: 'Portfolio accademico', index_acad_title: 'Sono un<br>insegnante',
+          index_acad_desc: 'SAÉ, competenze BUT e progressione accademica.',
+          index_explore: 'Esplora',
+          index_hint: 'Seleziona il tuo profilo per accedere al portfolio corrispondente'
+        }
+      };
+
+      function applyLang(lang) {
+        if (!T[lang]) lang = 'fr';
+        localStorage.setItem('lang', lang);
+        document.documentElement.lang = lang;
+        const t = T[lang];
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.dataset.i18n;
+          if (t[key] === undefined) return;
+          if ('i18nHtml' in el.dataset) { el.innerHTML = t[key]; }
+          else { el.textContent = t[key]; }
+        });
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.lang === lang);
+        });
+      }
+
+      applyLang(localStorage.getItem('lang') || 'fr');
+
+      document.addEventListener('click', e => {
+        const btn = e.target.closest('.lang-btn');
+        if (btn && btn.dataset.lang) applyLang(btn.dataset.lang);
+      });
+    })();
   </script>
 </body>
 </html>
